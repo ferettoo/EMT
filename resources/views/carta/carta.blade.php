@@ -124,13 +124,13 @@
     </div>
 
     <div class="col-4 d-flex flex-column p-1">
-        <div class="rounded rounded-3 overflow-hidden">
+        <div class="rounded rounded-3 overflow-hidden h-50">
             {{-- Contenido de los expedientes --}}
             <table class="table">
             <thead class='text-center text-light fw-bold' style="background-color: #0F9DB2">
                 <tr>
                     <th scope="col">Incidente</th>
-                    <th scope="col">Estado Expediente</th>
+                    <th scope="col">Estado</th>
                     <th scope="col">Asociar</th>
                     <th scope="col">Creado</th>
                 </tr>
@@ -154,10 +154,17 @@
                     <td colspan="1">Larry the Bird</td>
                     <td>@twitter</td>
                 </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td colspan="1">Larry the Bird</td>
+                    <td colspan="1">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
             </tbody>
+             <caption><button class="btn btn-warning smll float-end btn-sm"><strong>Nuevo Expediente</strong></button></caption>
         </table>
     </div>
-        <div>
+        <div class="h-50">
             {{-- Contenido del mapa --}}
             <p>b</p>
         </div>

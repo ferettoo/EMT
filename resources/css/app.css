@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+/* PLANTILLA PARA TODAS LAS PAGINAS */
+/* PLANTILLA PARA TODAS LAS PAGINAS */
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* FONDO BLANCO PARA TODAS LAS PAGINAS */
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+#person {
+    width: 32;
+    height: 32;
+}
+
+/* NAVBAR MAS GRANDE */
+#cuadroNav {
+    height: 58px;
+}
+
+/* TITULO PRINCIAPL DE LA PAGINA */
+h1.titulo {
+    margin-top: 70px;
+    margin-bottom: 30px;
+    font-family: 'Lato', sans-serif;
+}
+
+
+#linea {
+    color: #BB1167;
+}
+
+.dropdown-menu {
+    width: 20px;
+    font-size: 2px;
+}
+
+.dropdown-item {
+    font-size: 17px;
+}
+
+li {
+    width: 150px;
+}
+
+
+li.nav-item {
+    font-weight: bold;
+}
+
+
+
+
+/* SUBTITULO PRINCIAPL DE LA PAGINA */
+h2.subtitulo {
+    margin-top: 35px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+}
+
+/* SEPARACION ENTRE ELEMNTOS EN LA NAVBAR */
+li {
+
+    font-size: 15px;
+    color: white;
+}
+
+
+/* PLANTILLA PARA TODAS LAS PAGINAS */
+/* PLANTILLA PARA TODAS LAS PAGINAS */
