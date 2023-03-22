@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/2cf292bb20.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('css/css.css') }}">
     <title>@yield('title')</title>
     @vite(["resources/css/app.css", "resources/css/app.scss", "resources/js/app.js",])
 </head>
 <body>
 
     {{-- Navabar --}}
-<div class="shadow rounded-bottom " id="cuadroNav" style="background-color: #0F9DB2;">
+<div class="shadow  mb-5" id="cuadroNav" style="background-color: #0F9DB2;">
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-body-tertiary  ">
-            <div class="container-fluid ">
+            <div class="container ">
                 <a class="navbar-brand" href="#"
                 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">EMT(LOGO)</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -48,9 +49,8 @@
                         Call card</button>
                     </a href="#">
 
-                    <ul class="nav justify-content-end">
-                        <div class="nav-item dropdown d-flex">
-
+                    <div class="nav-item dropdown d-flex">
+                        <ul class="nav justify-content-end">
                             <a style="color: #000000;"
                             class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
