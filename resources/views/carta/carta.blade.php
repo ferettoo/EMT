@@ -124,18 +124,18 @@
     </div>
 
     <div class="col-4 d-flex flex-column p-1">
-        <div class="rounded rounded-3 overflow-hidden h-50">
+        <div class="h-50">
             {{-- Contenido de los expedientes --}}
-            <table class="table">
+            <table class="table table-responsive">
             <thead class='text-center text-light fw-bold' style="background-color: #0F9DB2">
                 <tr>
                     <th scope="col">Incidente</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Asociar</th>
-                    <th scope="col">Creado</th>
+                    <th scope="col">Creación</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody  style="background-color: #f9f9f9">
                 <tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
@@ -143,30 +143,96 @@
                     <td>@mdo</td>
                 </tr>
                 <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
                 </tr>
                 <tr>
-                    <th scope="row">3</th>
-                    <td colspan="1">Larry the Bird</td>
-                    <td colspan="1">Larry the Bird</td>
-                    <td>@twitter</td>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
                 </tr>
                 <tr>
-                    <th scope="row">4</th>
-                    <td colspan="1">Larry the Bird</td>
-                    <td colspan="1">Larry the Bird</td>
-                    <td>@twitter</td>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
                 </tr>
             </tbody>
-             <caption><button class="btn btn-warning smll float-end btn-sm"><strong>Nuevo Expediente</strong></button></caption>
+            <tfoot style="background-color: #f9f9f9">
+                <tr>
+                    <td colspan=""><button class="btn btn-warning smll float-end btn-sm"><strong>Nuevo Expediente</strong></button></td>
+                </tr>
+            </tfoot>
+
         </table>
     </div>
         <div class="h-50">
             {{-- Contenido del mapa --}}
-            <p>b</p>
+            <img src="{{ asset('images/mapa.jpg') }}" alt="mapa" class="img-fluid rounded" style="height: 100%">
+
         </div>
     </div>
 </div>

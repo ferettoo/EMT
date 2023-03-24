@@ -71,4 +71,19 @@ li {
 
 
 /* PLANTILLA PARA TODAS LAS PAGINAS */
-/* PLANTILLA PARA TODAS LAS PAGINAS */
+
+/* CSS PARA LA TABLA DE LA CARTA DE LLAMADA */
+
+
+tbody {
+    display: block;
+    max-height: 310px;
+    overflow-y: scroll;
+}
+
+thead,
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
