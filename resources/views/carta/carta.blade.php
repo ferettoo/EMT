@@ -124,9 +124,9 @@
     </div>
 
     <div class="col-4 d-flex flex-column p-1">
-        <div class="h-50">
+        <div class="h-50 tableContainer" style="background-color: #f9f9f9">
             {{-- Contenido de los expedientes --}}
-            <table class="table table-responsive">
+            <table class="table table-borderless">
             <thead class='text-center text-light fw-bold' style="background-color: #0F9DB2">
                 <tr>
                     <th scope="col">Incidente</th>
@@ -135,55 +135,7 @@
                     <th scope="col">Creación</th>
                 </tr>
             </thead>
-            <tbody  style="background-color: #f9f9f9">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
+            <tbody class="text-center" style="background-color: #f9f9f9">
                 <tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
@@ -221,9 +173,9 @@
                     <td>@mdo</td>
                 </tr>
             </tbody>
-            <tfoot style="background-color: #f9f9f9">
-                <tr>
-                    <td colspan=""><button class="btn btn-warning smll float-end btn-sm"><strong>Nuevo Expediente</strong></button></td>
+            <tfoot style="background-color: #f9f9f9" class="mb-1">
+                <tr class="float-end">
+                    <td><button class="btn btn-warning btn-sm"><strong>Nuevo Expediente</strong></button></td>
                 </tr>
             </tfoot>
 
@@ -231,7 +183,7 @@
     </div>
         <div class="h-50">
             {{-- Contenido del mapa --}}
-            <img src="{{ asset('images/mapa.jpg') }}" alt="mapa" class="img-fluid rounded" style="height: 100%">
+            <img src="{{ asset('images/mapa.jpg') }}" alt="mapa" class="img-fluid rounded mapa" style="height: 96%">
 
         </div>
     </div>
