@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./terceros/bootstrap-5.2.1-dist/css/bootstrap.min.css">
+    <script src="./terceros/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/css.css">
+    <title>Ad-Expedientes</title>
+</head>
+
+<body>
+
+    <div class="shadow rounded-bottom " id="cuadroNav" style="background-color: #0F9DB2;">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary  ">
+                <div class="container-fluid ">
+                    <a class="navbar-brand" href="#"
+                        style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">EMT(LOGO)</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- en el "ul" el ajuste en medio es "mx-auto"  y en el lado izquierdo "me-auto" -->
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active"
+                                    style="color: #ffffff; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+                                    aria-current="page" href="#">EXPEDIENTES</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active"
+                                    style="color: #ffffff; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+                                    aria-current="page" href="#">GRAFICOS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active"
+                                    style="color: #ffffff; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+                                    aria-current="page" href="#">HELPBOX</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active"
+                                    style="color: #ffffff; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+                                    aria-current="page" href="#">AYUDA</a>
+                            </li>
+                        </ul>
+                        <a>
+                            <button class="btn btn-warning" style="color: #000000; font-weight: 700;" type="submit">
+                                <i class="bi bi-plus-circle-dotted"></i>
+                                Call card</button>
+                        </a href="#">
+
+                        <ul class="nav justify-content-end">
+                            <div class="nav-item dropdown d-flex">
+
+                                <a style="color: #F7C363; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+                                    class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-person-circle"></i>
+                                </a>
+                                <ul class="dropdown-menu" style="color: #be964c;">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    </div>
+    <!-- br (espacio) para que salga el sombreado -->
+    <br>
+    <div class="container">
+        <!-- TITULO Y SUBTITULO -->
+        <div class="card  mx-5 text-center border-0">
+            <div class="card-body ">
+                <!-- TITULO Y SUBTITULO-->
+                <div class="d-flex ">
+                    <h1 class="titulo">Administración</h1>
+                </div>
+                <!-- linea de division -->
+                <hr id="linea" class="w-100 clearfix d-md m-0" />
+                <div class="d-flex p-3">
+                    <h3 class="subtitulo">Expedientes</h3>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- DOS TABLAS -->
+        <div class="row">
+            <!-- PRIMERA TABLA -->
+            <div class="col-8">
+                <div class="card mt-5 mx-5 text-center border-0">
+
+                    <!-- NUEVO EXPEDIENTE Y ORDENAR -->
+                    <div class="container text-center">
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <!-- boton de añadir usuario -->
+                                <a class="shadow btn btn-warning text-white rounded-3" href="#">
+                                    <!-- <i class=" bi bi-plus-circle "></i> -->
+                                    Nuevo Expediente
+                                </a>
+                            </div>
+                            <!-- DESPLEGABLES DE ORDEN Y ACTIVOS  -->
+                            <div class="col-7">Columna vacia </div>
+                            <div class="col-2">
+                                <div class="form-floating  ">
+                                    <select class="form-select rounded-4" id="floatingSelect"
+                                        aria-label="Floating label select example">
+                                        <option selected>Todos</option>
+                                        <option value="1">A-Z</option>
+                                        <option value="2">Z-A</option>
+                                    </select>
+                                    <label for="floatingSelect">Ordenar por:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TABLA -->
+                    <div class="card-body ">
+                        <table class="table table-striped border-2">
+                            <thead class="shadow bg-primary ">
+                                <tr class="text-white" style="background-color: #0F9DB2;">
+                                    <th class="text-center" scope="col">Código</th>
+                                    <th class="text-center" scope="col">Incidente</th>
+                                    <th class="text-center" scope="col">Núm. Llamadas</th>
+                                    <th class="text-center" scope="col">Modificar Estado</th>
+                                    <th class="text-center" scope="col">Creado</th>
+                                    <th class="text-center" scope="col">Editar / Borrar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center">
+                                    <th class="text-center" scope="row">123123</th>
+                                    <td class="text-center">Accidente</td>
+                                    <td class="text-center">12</td>
+                                    <td class="text-center">
+                                        <select class="form-select form-select-sm rounded-3"
+                                            aria-label="Ejemplo de .form-select-sm">
+                                            <option selected aria-label="Buscar">EN PROCESO</option>
+                                            <option value="1">Uno</option>
+                                            <option value="2">Dos</option>
+                                            <option value="3">Tres</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">$12-03-23</td>
+                                    <!-- botones -->
+                                    <td class="text-center">
+                                        <form action="" class="float-end mx-1" method="POST">
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="bi bi-trash-fill"></i></button>
+                                        </form>
+                                        <form action="" class="float-end">
+                                            <button type="submit" class="btn btn-secondary"><i
+                                                    class="bi bi-pencil-square"></i> </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                                <!-- PRUEBAS -->
+                                <tr class="text-center">
+                                    <th class="text-center" scope="row">123123</th>
+                                    <td class="text-center">Accidente</td>
+                                    <td class="text-center">12</td>
+                                    <td class="text-center">
+                                        <select class="form-select form-select-sm rounded-3"
+                                            aria-label="Ejemplo de .form-select-sm">
+                                            <option selected aria-label="Buscar">EN PROCESO</option>
+                                            <option value="1">Uno</option>
+                                            <option value="2">Dos</option>
+                                            <option value="3">Tres</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">$12-03-23</td>
+                                    <!-- botones -->
+                                    <td class="text-center">
+                                        <form action="" class="float-end mx-1" method="POST">
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </form>
+                                        <form action="" class="float-end">
+                                            <button type="submit" class="btn btn-secondary"><i
+                                                    class="bi bi-pencil-square"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <th class="text-center" scope="row">123123</th>
+                                    <td class="text-center">Accidente</td>
+                                    <td class="text-center">12</td>
+                                    <td class="text-center">
+                                        <select class="form-select form-select-sm rounded-3"
+                                            aria-label="Ejemplo de .form-select-sm">
+                                            <option selected aria-label="Buscar">EN PROCESO</option>
+                                            <option value="1">Uno</option>
+                                            <option value="2">Dos</option>
+                                            <option value="3">Tres</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">$12-03-23</td>
+                                    <!-- botones -->
+                                    <td class="text-center">
+                                        <form action="" class="float-end mx-1" method="POST">
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </form>
+                                        <form action="" class="float-end">
+                                            <button type="submit" class="btn btn-secondary"><i
+                                                    class="bi bi-pencil-square"></i> </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <th class="text-center" scope="row">123123</th>
+                                    <td class="text-center">Accidente</td>
+                                    <td class="text-center">12</td>
+                                    <td class="text-center">
+                                        <select class="form-select form-select-sm rounded-3"
+                                            aria-label="Ejemplo de .form-select-sm">
+                                            <option selected aria-label="Buscar">EN PROCESO</option>
+                                            <option value="1">Uno</option>
+                                            <option value="2">Dos</option>
+                                            <option value="3">Tres</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">$12-03-23</td>
+                                    <!-- botones -->
+                                    <td class="text-center">
+                                        <form action="" class="float-end mx-1" method="POST">
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </form>
+                                        <form action="" class="float-end">
+                                            <button type="submit" class="btn btn-secondary"><i
+                                                    class="bi bi-pencil-square"></i> </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                                <tr class="text-center">
+                                    <th class="text-center" scope="row">123123</th>
+                                    <td class="text-center">Accidente</td>
+                                    <td class="text-center">12</td>
+                                    <td class="text-center">
+                                        <select class="form-select form-select-sm rounded-3 "
+                                            aria-label="Ejemplo de .form-select-sm">
+                                            <option selected aria-label="Buscar">EN PROCESO</option>
+                                            <option value="1">Uno</option>
+                                            <option value="2">Dos</option>
+                                            <option value="3">Tres</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">$12-03-23</td>
+                                    <!-- botones -->
+                                    <td class="text-center">
+                                        <form action="" class="float-end mx-1" method="POST">
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </form>
+                                        <form action="" class="float-end">
+                                            <button type="submit" class="btn btn-secondary"><i
+                                                    class="bi bi-pencil-square"></i> </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- SEGUNDA tabla -->
+            <div class="col-4">
+                <div class="  ">
+                    <div class="container text-md-start ">
+                        <div class="col-12">
+                            <h5>
+                                Cartas de llamada
+                            </h5>
+                            <p>
+                                Pequeña descripción, Pequeña descripción, <br>
+                                Pequeña descripción, Pequeña descripción.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card mt-5 mx-0 text-center border-0">
+
+                    <div class="card-body ">
+                        <table class="table table-striped border-2">
+                            <thead class="shadow bg-primary ">
+                                <tr style="background-color: #E0127A;">
+                                    <th class="text-light">
+                                        Expediente: <br>
+                                         1233
+                                    </th>
+                                    <th class="text-light ">
+                                        Estado:
+                                        <select class="form-select text-center form-select-sm rounded-3"
+                                        aria-label=".form-select-sm example">
+                                            <option selected aria-label="Buscar">Inmovilizado</option>
+                                            <option value="1">Uno</option>
+                                            <option value="2">Dos</option>
+                                            <option value="3">Tres</option>
+                                        </select>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th> Cod. de llamada: </th>
+                                    <td>12322</td>
+                                </tr>
+                                <tr>
+                                    <th> Cod. de llamada: </th>
+                                    <td>23422</td>
+                                </tr>
+                                <tr>
+                                    <th >Cod. de llamada: </th>
+                                    <td>12321</td>
+                                </tr>
+                                <tr>
+                                    <th >Cod. de llamada: </th>
+                                    <td>12321</td>
+                                </tr>
+                                <tr>
+                                    <th >Cod. de llamada: </th>
+                                    <td>12321</td>
+                                </tr>
+                                <tr>
+                                    <th >Cod. de llamada: </th>
+                                    <td>12321</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
