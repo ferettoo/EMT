@@ -122,4 +122,5 @@ tfoot {
 
 .mapa {
     filter: blur(4px);
+    pointer-events: none;
 }
