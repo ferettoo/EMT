@@ -13,8 +13,8 @@ class UsuarioController extends Controller
     {
         // $usuario = new usuaris();
 
-        // $usuario->username = 'prueba';
-        // $usuario->contrasenya = bcrypt('prueba');
+        // $usuario->username = 'prueba1';
+        // $usuario->contrasenya = bcrypt('prueba1');
         // $usuario->nom = 'Francisco';
         // $usuario->cognoms = 'Fernández Fernández';
         // $usuario->tipus_usuaris_id = 1;
@@ -36,7 +36,7 @@ class UsuarioController extends Controller
             $response = redirect('/index');
         } else {
             $request->session()->flash('error', 'Usuari o contrasenya incorrectes');
-            $response = redirect('/login')->withInput();
+            $response = redirect('/')->withInput();
         }
 
         return $response;
@@ -45,6 +45,6 @@ class UsuarioController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 }
