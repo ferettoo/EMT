@@ -43,12 +43,6 @@
                         aria-current="page" href="#">AYUDA</a>
                     </li>
                 </ul>
-                <a>
-                    <button class="rounded-5 btn btn-warning" style="color: #000000; font-weight: 700;" type="submit">
-                        <i class="bi bi-plus-circle-dotted"></i>
-                        Call card</button>
-                    </a href="#">
-
                     <div class="nav-item dropdown d-flex">
                         <ul class="nav justify-content-end">
                             <a style="color: #000000;"

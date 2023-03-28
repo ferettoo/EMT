@@ -58,7 +58,7 @@
                         <h5 class="card-title fs-6"><strong>Nota Comuna</strong></h5>
                         <textarea class="form-control mb-2" id="antecedentes" rows="3" style="height: 94px;"></textarea>
                         <div class="mb-2">
-                            <p class="fs-6 mb-2"><strong>Incidente</strong></p>
+                            <p class="fs-6 mb-2"><strong>Incidente</strong><button class="helpbox_boton" type="button"> <img class="helpbox_boton" src="{{ asset('images/helpbox_boton.png') }}" height="18px" width="18px" alt="helpbox"></button></p>
                             <select class="form-select w-100 mb-3" aria-label="Default select example">
                                 <option selected>Tipo de Incidente</option>
                                 <option value="1">One</option>
@@ -69,7 +69,7 @@
                             </select>
                             <textarea class="form-control" id="antecedentes" rows="3" placeholder="Explicación del incidente.."></textarea>
                         </div>
-                        <p class="fs-6 mb-1"><strong>Localización</strong></p>
+                        <p class="fs-6 mb-1"><strong>Localización</strong><button class="helpbox_boton" type="button"> <img class="helpbox_boton" src="{{ asset('images/helpbox_boton.png') }}" height="18px" width="18px" alt="helpbox"></button></p>
                         <div class="row">
                             <div class="col">
                                 <div class="row mt-2">

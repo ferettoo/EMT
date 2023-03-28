@@ -124,3 +124,10 @@ tfoot {
     filter: blur(4px);
     pointer-events: none;
 }
+
+/* HELPBOX BOTON */
+
+.helpbox_boton{
+background-color: #F9F9F9;
+border:0;
+}
