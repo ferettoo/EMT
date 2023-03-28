@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 
-class usuaris extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class usuaris extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'usuaris';
     // protected $primaryKey = 'id';
@@ -19,8 +25,11 @@ class usuaris extends Model
         return $this->hasMany(cartes_trucades::class, 'usuaris_id');
     }
 
+
     public function tipusUsuaris()
     {
         return $this->belongsTo(tipus_usuaris::class, 'tipus_usuaris_id');
     }
 }
+
+
