@@ -16,6 +16,14 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
+#fondoLogin{
+  background-color: #0F9DB2;
+}
+
+#amarillo{
+    color:#F7C363;
+}
+
 #person {
     width: 32;
     height: 32;

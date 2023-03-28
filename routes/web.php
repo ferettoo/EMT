@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('carta.carta');
+// });
+
+ 
+// AUTENTIFICACION USUARIOS
+
 Route::get('/', function () {
-    return view('carta.carta');
+    return view('index');
+});
+
+Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
+Route::post('/login', [UsuarioController::class, 'login']);
+Route::get('/logout', [UsuarioController::class, 'logout']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/index', function () {
+        $user = Auth::user();
+
+        return view('carta.carta', compact('user'));
+    });
+
 });
