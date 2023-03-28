@@ -23,7 +23,7 @@ use App\Http\Controllers\UsuarioController;
 // AUTENTIFICACION USUARIOS
 
 Route::get('/', function () {
-    return view('index');
+    return view('carta.carta');
 });
 
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');

@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-8 p-1">
         {{-- Contenido de la carta --}}
-        <div class="card border border-0 mb-3" >
+        <div class="card border border-0 mb-3">
             <div class="card-header border-0  border-success text-center" style="background-color: #0F9DB2">
                 {{-- Contenido del header  --}}
                 <div class="row fs-6 fw-light text-light fw-bold">
@@ -58,7 +58,10 @@
                         <h5 class="card-title fs-6"><strong>Nota Comuna</strong></h5>
                         <textarea class="form-control mb-2" id="antecedentes" rows="3" style="height: 94px;"></textarea>
                         <div class="mb-2">
-                            <p class="fs-6 mb-2"><strong>Incidente</strong><button class="helpbox_boton" type="button"> <img class="helpbox_boton" src="{{ asset('images/helpbox_boton.png') }}" height="18px" width="18px" alt="helpbox"></button></p>
+                            <p class="fs-6 mb-2"><strong>Incidente</strong><button id="open_incidente"
+                                    class="helpbox_boton" type="button"> <img class="helpbox_boton"
+                                        src="{{ asset('images/helpbox_boton.png') }}" height="18px" width="18px"
+                                        alt="helpbox"></button></p>
                             <select class="form-select w-100 mb-3" aria-label="Default select example">
                                 <option selected>Tipo de Incidente</option>
                                 <option value="1">One</option>
@@ -67,9 +70,13 @@
                                 <option selected> Tipo en Concreto..</option>
                                 <option value="1">One</option>
                             </select>
-                            <textarea class="form-control" id="antecedentes" rows="3" placeholder="Explicación del incidente.."></textarea>
+                            <textarea class="form-control" id="antecedentes" rows="3"
+                                placeholder="Explicación del incidente.."></textarea>
                         </div>
-                        <p class="fs-6 mb-1"><strong>Localización</strong><button class="helpbox_boton" type="button"> <img class="helpbox_boton" src="{{ asset('images/helpbox_boton.png') }}" height="18px" width="18px" alt="helpbox"></button></p>
+                        <p class="fs-6 mb-1"><strong>Localización</strong><button id="open_localizacion"
+                                class="helpbox_boton" type="button">
+                                <img class="helpbox_boton" src="{{ asset('images/helpbox_boton.png') }}" height="18px"
+                                    width="18px" alt="helpbox"></button></p>
                         <div class="row">
                             <div class="col">
                                 <div class="row mt-2">
@@ -91,7 +98,8 @@
                                     <input type="text" class="form-control w-100" id="municipio">
                                 </div>
                                 <div class="mb-2">
-                                    <textarea class="form-control" id="antecedentes" rows="1" placeholder="Explicación breve.."></textarea>
+                                    <textarea class="form-control" id="antecedentes" rows="1"
+                                        placeholder="Explicación breve.."></textarea>
                                 </div>
                             </div>
                             <div class="col">
@@ -100,7 +108,8 @@
                                     <option value="1">Carretera</option>
                                 </select>
                                 <div class="mb-2">
-                                    <label for="comarca" class="form-label" style="margin-top: 4px">Nom Carretera</label>
+                                    <label for="comarca" class="form-label" style="margin-top: 4px">Nom
+                                        Carretera</label>
                                     <input type="text" class="form-control w-100" id="comarca">
                                 </div>
                                 <div class="mb-2">
@@ -112,7 +121,8 @@
                                     <input type="text" class="form-control w-100" id="municipio">
                                 </div>
                                 <div class="mb-2">
-                                    <textarea class="form-control" id="antecedentes" rows="1" placeholder="Explicación breve.."></textarea>
+                                    <textarea class="form-control" id="antecedentes" rows="1"
+                                        placeholder="Explicación breve.."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -127,38 +137,38 @@
         <div class="h-50 tableContainer" style="background-color: #f9f9f9">
             {{-- Contenido de los expedientes --}}
             <table class="table table-borderless">
-            <thead class='text-center text-light fw-bold' style="background-color: #0F9DB2">
-                <tr>
-                    <th scope="col">Incidente</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Asociar</th>
-                    <th scope="col">Creación</th>
-                </tr>
-            </thead>
-            <tbody class="text-center" style="background-color: #f9f9f9">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Inmobilizado</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
+                <thead class='text-center text-light fw-bold' style="background-color: #0F9DB2">
+                    <tr>
+                        <th scope="col">Incidente</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Asociar</th>
+                        <th scope="col">Creación</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center" style="background-color: #f9f9f9">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Inmobilizado</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
 
-                    <th>1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
+                        <th>1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
 
-            </tbody>
-            <tfoot style="background-color: #f9f9f9" class="mb-1">
-                <tr class="float-end">
-                    <td><button class="btn btn-warning btn-sm"><strong>Nuevo Expediente</strong></button></td>
-                </tr>
-            </tfoot>
+                </tbody>
+                <tfoot style="background-color: #f9f9f9" class="mb-1">
+                    <tr class="float-end">
+                        <td><button class="btn btn-warning btn-sm"><strong>Nuevo Expediente</strong></button></td>
+                    </tr>
+                </tfoot>
 
-        </table>
-    </div>
+            </table>
+        </div>
         <div class="h-50">
             {{-- Contenido del mapa --}}
             <img src="{{ asset('images/mapa.jpg') }}" alt="mapa" class="img-fluid rounded mapa" style="height: 96%">
@@ -166,4 +176,101 @@
         </div>
     </div>
 </div>
+
+{{-- Popup Incidente --}}
+<dialog id="popup_incidente">
+    <button id="close_incidente" type="button"> <img src="{{ asset('images/cerrar_boton.png') }}" height="30px"
+            width="30px" alt="boton_cerrar"></button></p>
+    <h4>INCIDENTES</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">ESPAÑOL</th>
+                <th scope="col">INGLES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Apuñalamiento</td>
+                <td>Stabbing</td>
+            </tr>
+            <tr>
+                <td>Arbol caido</td>
+                <td>Fallen tree</td>
+            </tr>
+            <tr>
+                <td>Derrumbe</td>
+                <td>Collapse</td>
+            </tr>
+            <tr>
+                <td>Ahogamiento</td>
+                <td>Drowing</td>
+            </tr>
+            <tr>
+                <td>Arbol Caido</td>
+                <td>Fallen Tree</td>
+            </tr>
+            <tr>
+                <td>Incendio</td>
+                <td>Fire</td>
+            <tr>
+                <td>Explosion</td>
+                <td>Burst</td>
+            </tr>
+            <tr>
+                <td>Rescate</td>
+                <td>Rescue</td>
+            </tr>
+            <tr>
+                <td>Enfermedad</td>
+                <td>Collapse</td>
+            </tr>
+            <tr>
+                <td>Fallecimiento</td>
+                <td>Death</td>
+            </tr>
+            <tr>
+                <td>Desaparicion</td>
+                <td>Disappearance</td>
+            </tr>
+            <tr>
+                <td>Inundación</td>
+                <td>Flood</td>
+            </tr>
+        </tbody>
+    </table>
+</dialog>
+
+
+<dialog id="popup_localizacion">
+    <button id="close_localizacion" type="button"> <img src="{{ asset('images/cerrar_boton.png') }}" height="30px"
+            width="30px" alt="boton_cerrar"></button></p>
+    <h4>LOCALIZACIONES</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">ESPAÑOL</th>
+                <th scope="col">INGLES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Provincia</td>
+                <td>Province</td>
+            </tr>
+            <tr>
+                <td>Municipio</td>
+                <td>Municipality</td>
+            </tr>
+            <tr>
+                <td>Carretera</td>
+                <td>Road</td>
+            </tr>
+            <tr>
+                <td>Entidad Población</td>
+                <td>Entity Population</td>
+            </tr>
+        </tbody>
+    </table>
+</dialog>
 @endsection
