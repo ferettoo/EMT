@@ -20,11 +20,15 @@ use App\Http\Controllers\UsuarioController;
 //     return view('carta.carta');
 // });
 
- 
+
 // AUTENTIFICACION USUARIOS
 
 Route::get('/', function () {
-    return view('index'); 
+    return view('index');
+});
+
+Route::get('cartaVue', function() {
+    return view('carta.cartaVue');
 });
 
 

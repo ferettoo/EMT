@@ -35,8 +35,8 @@ class UsuarioController extends Controller
             $response = redirect('/carta');
         } else {
             $request->session()->flash('error', 'Usuari o contrasenya incorrectes');
-            // si queremos crear un usuario, hay que poner /login para que obtenga los datos 
-            // del nuevo usuario y los introduzca a la bd 
+            // si queremos crear un usuario, hay que poner /login para que obtenga los datos
+            // del nuevo usuario y los introduzca a la bd
             $response = redirect('/login')->withInput();
         }
 

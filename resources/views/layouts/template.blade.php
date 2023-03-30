@@ -51,7 +51,7 @@
                             aria-expanded="false">
                            {{ Auth::user()->tipusUsuaris->nom }} 
                         </a>
-                        
+
                 {{-- limitación segun tipo de usuario --}}
                         @if (Auth::check() && Auth::user()->tipus_usuaris_id == "3" )
                         <ul class="dropdown-menu" style="color: #be964c;">
