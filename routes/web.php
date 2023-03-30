@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdmUsuarios;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
@@ -26,6 +27,7 @@ Route::get('/', function () {
     return view('index'); 
 });
 
+
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
 Route::post('/login', [UsuarioController::class, 'login']);
 Route::get('/logout', [UsuarioController::class, 'logout']);
@@ -38,3 +40,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
+
+
+Route::resource('admUsuarios', AdmUsuarios::class);

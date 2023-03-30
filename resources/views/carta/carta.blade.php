@@ -4,9 +4,6 @@
 
 @section('content')
 
-{{-- nombre de usuario --}}
-{{ $user->username }}
-
 <div class="row">
     <div class="col-8 p-1">
         {{-- Contenido de la carta --}}

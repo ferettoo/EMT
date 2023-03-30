@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/2cf292bb20.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/css.css') }}">
     <title>@yield('title')</title>
+    @yield('admUsuariosCss')
     @vite(["resources/css/app.css", "resources/css/app.scss", "resources/js/app.js",])
 </head>
 <body>
@@ -48,24 +49,27 @@
                             <a style="color: #000000;"
                             class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <i id="person" class="bi bi-person-circle"></i>
+                           {{ Auth::user()->tipusUsuaris->nom }} 
                         </a>
                         
                 {{-- limitación segun tipo de usuario --}}
                         @if (Auth::check() && Auth::user()->tipus_usuaris_id == "3" )
                         <ul class="dropdown-menu" style="color: #be964c;">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item text-center" href="" > {{Auth::user()->username }}</a></li>
+                            <li><a class="dropdown-item text-center" href="{{ url('/admUsuarios') }}">Adm. Usuarios</a></li>
+                            <li><a class="dropdown-item text-center" href="#">Another action</a></li>
+                            <li><a class="dropdown-item text-center" href="{{ url('/logout') }}">Cerrar sesión</a></li>
                         </ul>
                         @elseif(Auth::check() && Auth::user()->tipus_usuaris_id == "2")
                         <ul class="dropdown-menu" style="color: #be964c;">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item text-center" href="">{{Auth::user()->username }}</a></li>
+                            <li><a class="dropdown-item text-center" href="#">Action</a></li>
+                            <li><a class="dropdown-item text-center" href="{{ url('/logout') }}">Cerrar sesión</a></li>
                         </ul>
                         @else
                         <ul class="dropdown-menu" style="color: #be964c;">
-                            <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item text-center" href=""> {{Auth::user()->username }}</a></li>
+                            <li><a class="dropdown-item text-center" href="{{ url('/logout') }}">Cerrar sesión</a></li>
                         </ul>
                         @endif
                     </div>
