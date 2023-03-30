@@ -16,12 +16,12 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
-#fondoLogin{
-  background-color: #0F9DB2;
+#fondoLogin {
+    background-color: #0F9DB2;
 }
 
-#amarillo{
-    color:#F7C363;
+#amarillo {
+    color: #F7C363;
 }
 
 #person {
@@ -135,7 +135,48 @@ tfoot {
 
 /* HELPBOX BOTON */
 
-.helpbox_boton{
-background-color: #F9F9F9;
-border:0;
+.helpbox_boton {
+    background-color: #F9F9F9;
+    border: 0;
+}
+
+/* POPUP */
+
+#popup_incidente::backdrop {
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+#popup_localizacion::backdrop {
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+#popup_incidente,#popup_localizacion {
+    text-align: center;
+    width: 400px;
+    height: 510px;
+    border-color: #000000;
+}
+
+#popup_localizacion {
+    height: 320px;
+}
+
+#close_incidente{
+    position: absolute;
+    background-color: #F9F9F9;
+    height: 25px;
+    width: 25px;
+    border: 0;
+    left: 357px;
+    bottom: 480px;
+}
+
+#close_localizacion {
+    position: absolute;
+    background-color: #F9F9F9;
+    height: 25px;
+    width: 25px;
+    border: 0;
+    left: 357px;
+    bottom: 290px;
 }
