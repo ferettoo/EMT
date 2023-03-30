@@ -50,11 +50,24 @@
                             aria-expanded="false">
                             <i id="person" class="bi bi-person-circle"></i>
                         </a>
+                        
+                {{-- limitación segun tipo de usuario --}}
+                        @if (Auth::check() && Auth::user()->tipus_usuaris_id == "3" )
                         <ul class="dropdown-menu" style="color: #be964c;">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
                         </ul>
+                        @elseif(Auth::check() && Auth::user()->tipus_usuaris_id == "2")
+                        <ul class="dropdown-menu" style="color: #be964c;">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
+                        </ul>
+                        @else
+                        <ul class="dropdown-menu" style="color: #be964c;">
+                            <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
+                        </ul>
+                        @endif
                     </div>
                 </ul>
             </div>

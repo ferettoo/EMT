@@ -1,8 +1,6 @@
-@extends('layouts.template')
+@extends('auth.login')
 
 @section('title', 'Emergency Medical Team')
 
-@section('content')
-
-
+@section( 'contenido')
 @endsection

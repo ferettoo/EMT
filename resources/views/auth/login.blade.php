@@ -39,8 +39,7 @@
                     <div class="card bg-glass" style="border-radius: 30px; ">
                         <div class="card-body px-4 py-5 px-md-5">
                             {{-- INPUTS LOGIN --}}
-                            <form action="{{ action([App\Http\Controllers\UsuarioController::class, 'login']) }}"
-                                method="POST">
+                            <form action="{{ action([App\Http\Controllers\UsuarioController::class, 'login']) }}" method="POST">
                                 @csrf
                                 <!-- Usuario input -->
                                 <div class="form-outline mb-4">

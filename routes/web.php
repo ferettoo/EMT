@@ -23,7 +23,7 @@ use App\Http\Controllers\UsuarioController;
 // AUTENTIFICACION USUARIOS
 
 Route::get('/', function () {
-    return view('index');
+    return view('index'); 
 });
 
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
@@ -31,7 +31,7 @@ Route::post('/login', [UsuarioController::class, 'login']);
 Route::get('/logout', [UsuarioController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/index', function () {
+    Route::get('/carta', function () {
         $user = Auth::user();
 
         return view('carta.carta', compact('user'));
