@@ -13,10 +13,10 @@ class UsuarioController extends Controller
     {
         // $usuario = new usuaris();
 
-        // $usuario->username = 'admin';
+        // $usuario->username = 'facu';
         // $usuario->contrasenya = bcrypt('admin');
-        // $usuario->nom = 'admin';
-        // $usuario->cognoms = 'adminApellido';
+        // $usuario->nom = 'facu';
+        // $usuario->cognoms = 'apellido';
         // $usuario->tipus_usuaris_id = 3;
 
         // $usuario->save();
@@ -36,8 +36,8 @@ class UsuarioController extends Controller
             $response = redirect('/carta');
         } else {
             $request->session()->flash('error', 'Usuari o contrasenya incorrectes');
-            // si queremos crear un usuario, hay que poner /login para que obtenga los datos 
-            // del nuevo usuario y los introduzca a la bd 
+            // si queremos crear un usuario, hay que poner /login para que obtenga los datos
+            // del nuevo usuario y los introduzca a la bd
             $response = redirect('/login')->withInput();
         }
 

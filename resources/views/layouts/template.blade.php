@@ -50,7 +50,7 @@
                             aria-expanded="false">
                             <i id="person" class="bi bi-person-circle"></i>
                         </a>
-                        
+
                 {{-- limitación segun tipo de usuario --}}
                         @if (Auth::check() && Auth::user()->tipus_usuaris_id == "3" )
                         <ul class="dropdown-menu" style="color: #be964c;">
