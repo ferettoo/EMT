@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\CartaController;
+use App\Http\Controllers\Api\tipoIncidenteController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Hacer las rutas de API para la carta de llamada, expedientes, graficos.
+
+Route::apiResource('cartes_trucades', CartaController::class );
+Route::apiResource('tipus_incidents', tipoIncidenteController::class);

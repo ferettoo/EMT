@@ -84,4 +84,5 @@
         @yield('content')
     </div>
 </body>
+@yield('jsFile')
 </html>

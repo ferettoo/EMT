@@ -87,7 +87,15 @@ li {
 
 /* CSS PARA LA TABLA DE LA CARTA DE LLAMADA */
 
+.custom-height {
+    height: 243px;
+}
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 tbody {
     display: block;
@@ -125,6 +133,7 @@ tfoot {
     bottom: 0;
     width: 100%;
 }
+
 
 /* CSS PARA EL MAPA */
 

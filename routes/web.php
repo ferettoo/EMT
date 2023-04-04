@@ -27,9 +27,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('cartaVue', function() {
-    return view('carta.cartaVue');
-});
 
 
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
@@ -40,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/carta', function () {
         $user = Auth::user();
 
-        return view('carta.carta', compact('user'));
+        return view('carta.cartaVue', compact('user'));
     });
 
 });
