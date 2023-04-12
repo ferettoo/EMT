@@ -13,11 +13,11 @@ class UsuarioController extends Controller
     {
         // $usuario = new usuaris();
 
-        // $usuario->username = 'prueba2';
-        // $usuario->contrasenya = bcrypt('prueba2');
-        // $usuario->nom = 'prueba2';
-        // $usuario->cognoms = 'admin2Apellido';
-        // $usuario->tipus_usuaris_id = 1;
+        // $usuario->username = 'supervisor3';
+        // $usuario->contrasenya = bcrypt('supervisor3');
+        // $usuario->nom = 'perez';
+        // $usuario->cognoms = 'gutierrez';
+        // $usuario->tipus_usuaris_id = 2;
         // $usuario->save();
 
         return view('auth.login');
