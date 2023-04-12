@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdmUsuarios;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
@@ -26,15 +27,20 @@ Route::get('/', function () {
     return view('carta.carta');
 });
 
+
+
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
 Route::post('/login', [UsuarioController::class, 'login']);
 Route::get('/logout', [UsuarioController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/index', function () {
+    Route::get('/carta', function () {
         $user = Auth::user();
 
-        return view('carta.carta', compact('user'));
+        return view('carta.cartaVue', compact('user'));
     });
 
 });
+
+
+Route::resource('admUsuarios', AdmUsuarios::class);
