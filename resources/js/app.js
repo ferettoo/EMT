@@ -1,12 +1,12 @@
 import "./bootstrap";
-
 import * as bootstrap from "bootstrap";
 import { createApp } from "vue";
-import cartaLlamada from './components/carta/cartaLlamada.vue'
+import cartaLlamada from './components/carta/cartaLlamada.vue';
 
 createApp(cartaLlamada).mount('#cartaLlamada');
 
-// Lo comento por que sino no me funciona el Vue
+// JS para cosas generales
+
 // window.addEventListener("load", (event) => {
 
 //     // BOTONES PARA ABRIR Y CERRAR POPUP INCIDENTES

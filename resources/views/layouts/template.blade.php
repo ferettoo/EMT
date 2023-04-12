@@ -86,4 +86,5 @@
 </body>
 {{-- script modal --}}
    @yield('scripts')
+@yield('jsFile')
 </html>
