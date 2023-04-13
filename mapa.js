@@ -22,3 +22,13 @@ var marker = new mapboxgl.Marker({
   element: element
 }).setLngLat([1.8676800,41.8204600])
   .addTo(map);
+
+  fetch('/EMT/public/api/mapVista')
+    .then(response => response.json())
+    .then(data =>{
+
+       datos = data;
+
+
+
+        })

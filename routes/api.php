@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\MapController;
 use App\Http\Controllers\Api\CartaController;
 use App\Http\Controllers\Api\tipoIncidenteController;
 
@@ -25,3 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('cartes_trucades', CartaController::class );
 Route::apiResource('tipus_incidents', tipoIncidenteController::class);
+
+//El nombre de esta ruta tendrá que coincidir con la que abra la vista donde queremos manipular o mostrar los datos
+Route::get('mapVista', [MapController::class, 'datos']);
