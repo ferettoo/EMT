@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdmUsuarios;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AdmUsuariosController;
+use App\Http\Controllers\ExpedientesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::resource('admUsuarios', AdmUsuarios::class);
+Route::resource('admUsuarios', AdmUsuariosController::class);
+Route::resource('expedientes', ExpedientesController::class);

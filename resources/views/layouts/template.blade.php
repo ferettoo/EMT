@@ -13,7 +13,7 @@
 <body>
 
     {{-- Navabar --}}
-<div class="shadow  mb-5" id="cuadroNav" style="background-color: #0F9DB2;">
+<div class="shadow" id="cuadroNav" style="background-color: #0F9DB2;">
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-body-tertiary  ">
             <div class="container ">
@@ -84,5 +84,7 @@
         @yield('content')
     </div>
 </body>
+{{-- script modal --}}
+   @yield('scripts')
 @yield('jsFile')
 </html>
