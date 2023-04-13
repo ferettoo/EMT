@@ -23,10 +23,14 @@ use App\Http\Controllers\ExpedientesController;
 // });
 
 
-// AUTENTIFICACION USUARIOS
+// AUTENTIFICACION USUARIOS (siempre /index)
 
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/mapa', function () {
+    return view('mapa.mapa');
 });
 
 
