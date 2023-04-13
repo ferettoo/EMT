@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cartes_trucades;
-use App\Models\estat_expedients;
+use App\Clases\Utilitat;
 use App\Models\expedients;
 use Illuminate\Http\Request;
+use App\Models\cartes_trucades;
+use App\Models\estat_expedients;
+use Illuminate\Database\QueryException;
 
 class ExpedientesController extends Controller
 {
@@ -48,11 +50,12 @@ class ExpedientesController extends Controller
             ->withQueryString();
         }
 
-
         $request->flash();
         return view('Expedientes.expedientes', compact('expedientes', 'estadoExpedientes'));
     }
 
+
+    // El expediente solo se creará en la carta de llamada
     /**
      * Show the form for creating a new resource.
      */
@@ -74,23 +77,36 @@ class ExpedientesController extends Controller
      */
     public function show(expedients $expedients)
     {
-        //
+        return view('Expedientes.visualCarta');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(expedients $expedients)
+    public function edit(expedients $expediente)
     {
-        //
+    
+        $estados = estat_expedients::all();
+        return view('Expedientes.modEstadoExpe', compact('expediente', 'estados'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, expedients $expedients)
+    public function update(Request $request, expedients $expediente)
     {
-        //
+        // solo se introduce el estado, es lo unico que se puede modificar
+        $expediente->estat_expedients_id = $request->input('estado');
+
+        try {
+            $expediente->save();
+            $response = redirect()->action([ExpedientesController::class, 'index']);
+        } catch (QueryException $ex) {
+            $mensaje = Utilitat::errorMessage($ex);
+            $request->session()->flash('error', $mensaje);
+            $response = redirect()->action([ExpedientesController::class, 'edit'], ['expediente' => $expediente->id]);
+        }
+        return $response;
     }
 
     /**

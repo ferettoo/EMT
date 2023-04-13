@@ -39,7 +39,7 @@
                         <div class="col-2">
                             <!-- boton de añadir usuario -->
                             <a href="{{ route('admUsuarios.create') }}" class=" shadow btn btn-warning text-white rounded-3"
-                                href="#">
+                                >
                                 <i class=" bi bi-plus-circle "></i>
                                 Nuevo usuario
                             </a>
