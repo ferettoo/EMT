@@ -3,8 +3,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleGlzcG9saXRlY25pY3MiLCJhIjoiY2xmdG12b3ZuM
 let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v12',
-    center: [1.8676800,41.8204600],
-    zoom : 8
+    center: [1.8676800, 41.8204600],
+    zoom: 8
 });
 
 map.addControl(new MapboxGeocoder({
@@ -17,18 +17,18 @@ element.style.color = '#FF0000';
 element.style.fontSize = '16px';
 
 var marker = new mapboxgl.Marker({
-  color: '#FF0000',
-  draggable: true,
-  element: element
-}).setLngLat([1.8676800,41.8204600])
-  .addTo(map);
+        color: '#FF0000',
+        draggable: true,
+        element: element
+    }).setLngLat([1.8676800, 41.8204600])
+    .addTo(map);
 
-  fetch('/EMT/public/api/mapVista')
+fetch('/EMT/public/api/mapVista')
     .then(response => response.json())
-    .then(data =>{
+    .then(data => {
 
-       datos = data;
+        datos = data;
 
 
 
-        })
+    })

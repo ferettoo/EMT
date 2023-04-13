@@ -28,6 +28,10 @@ Route::get('/', function () {
     return view('carta.carta');
 });
 
+Route::get('/mapa', function () {
+    return view('mapa');
+});
+
 
 
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
