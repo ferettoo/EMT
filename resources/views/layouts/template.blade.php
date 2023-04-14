@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @yield('hrefmap')
     <script src="https://kit.fontawesome.com/2cf292bb20.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/css.css') }}">
     <title>@yield('title')</title>
@@ -13,7 +14,7 @@
 <body>
 
     {{-- Navabar --}}
-<div class="shadow  mb-5" id="cuadroNav" style="background-color: #0F9DB2;">
+<div class="shadow" id="cuadroNav" style="background-color: #0F9DB2;">
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-body-tertiary  ">
             <div class="container ">
@@ -49,7 +50,7 @@
                             <a style="color: #000000;"
                             class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                           {{ Auth::user()->tipusUsuaris->nom }} 
+                           {{ Auth::user()->tipusUsuaris->nom }}
                         </a>
 
                 {{-- limitación segun tipo de usuario --}}
@@ -84,5 +85,7 @@
         @yield('content')
     </div>
 </body>
+{{-- script modal --}}
+   @yield('scripts')
 @yield('jsFile')
 </html>

@@ -13,9 +13,9 @@ class UsuarioController extends Controller
     {
         // $usuario = new usuaris();
 
-        // $usuario->username = 'prueba2';
-        // $usuario->contrasenya = bcrypt('prueba2');
-        // $usuario->nom = 'prueba2';
+        // $usuario->username = 'prueba';
+        // $usuario->contrasenya = bcrypt('prueba');
+        // $usuario->nom = 'prueba';
         // $usuario->cognoms = 'admin2Apellido';
         // $usuario->tipus_usuaris_id = 1;
         // $usuario->save();

@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdmUsuarios;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AdmUsuariosController;
+use App\Http\Controllers\CartasAgenciasController;
+use App\Http\Controllers\ExpedientesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,7 @@ use App\Http\Controllers\UsuarioController;
 // });
 
 
-// AUTENTIFICACION USUARIOS
+// AUTENTIFICACION USUARIOS (siempre /index)
 
 Route::get('/', function () {
     return view('index');

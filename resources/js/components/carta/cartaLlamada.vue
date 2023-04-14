@@ -258,7 +258,11 @@
 </div>
 
     </div>
+    
 </template>
+
+
+
 <script>
 import * as boostrap from 'bootstrap';
 

@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
 use App\Http\Controllers\Api\CartaController;
 use App\Http\Controllers\Api\GraficoController;
 use App\Http\Controllers\Api\tipoIncidenteController;
