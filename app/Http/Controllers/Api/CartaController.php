@@ -7,6 +7,7 @@ use App\Models\cartes_trucades;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartaResources;
+use Illuminate\Database\QueryException;
 
 class CartaController extends Controller
 {
@@ -24,7 +25,40 @@ class CartaController extends Controller
      */
     public function store(Request $request)
     {
-        $cartaLlamada = new cartes_trucades();
+        $carta = new cartes_trucades();
+
+        // En los $request->input hemos de añadir los nombres del objeto que añadimos. un ejemplo seria: idLlamada
+
+        $carta->codi_trucada = $request->input('idLlamada');
+        $carta->data_hora_trucada = $request->input('dataHoraTrucada');
+        $carta->durada = $request->input('tiempo');
+        $carta->interlocutor_id = $request->input('interlocutor');
+        $carta->telefon = $request->input('telefono');
+        $carta->nom = $request->input('nombre');
+        $carta->cognoms = $request->input('apellido');
+        $carta->nota_comuna = $request->input('notaComuna');
+        $carta->tipus_localitzacions_id = $request->input('tipoLocalizacion');
+        $carta->descripcio_localitzacio = $request->input('descripcionLocalizacion');
+        $carta->detall_localitzacio = $request->input('detallesLocalizacion');
+        $carta->altres_ref_localitzacio = $request->input('detallesLocalizacion');
+        $carta->municipis_id = $request->input('idMunicipio');
+        $carta->provincies_id = $request->input('idProvincia');
+        $carta->incidents_id = $request->input('incidente');
+        $carta->expedients_id = $request->input('idExpediente');
+        $carta->usuaris_id = $request->input('idUsuario');
+
+        // Añadir interlocutor
+
+        // $expediente = new expediente
+        try {
+            $carta->save();
+            $response = (new CartaResources($carta))->response()->setStatusCode(201);
+        } catch (QueryException $ex) {
+            $mensaje = 'Error a la hora de añadir la carta de llamada';
+            $response = \response()->json(['error' => $mensaje], 400);
+        }
+
+        return $response;
     }
 
     /**

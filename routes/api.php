@@ -5,7 +5,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\CartaController;
 use App\Http\Controllers\Api\GraficoController;
+use App\Http\Controllers\Api\ComarcasController;
+use App\Http\Controllers\Api\IncidenteController;
+use App\Http\Controllers\Api\MunicipiosController;
+use App\Http\Controllers\Api\ProvinciasController;
 use App\Http\Controllers\Api\tipoIncidenteController;
+use App\Http\Controllers\Api\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +32,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('cartes_trucades', CartaController::class);
 Route::apiResource('tipus_incidents', tipoIncidenteController::class);
 Route::get('graficos', [GraficoController::class, 'incidentes']);
+Route::apiResource('incidents', IncidenteController::class);
+Route::apiResource('municipis', MunicipiosController::class);
+Route::apiResource('provincies', ProvinciasController::class);
+Route::apiResource('comarques', ComarcasController::class);
+

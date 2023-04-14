@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AdmUsuarios;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AdmUsuariosController;
 use App\Http\Controllers\CartasAgenciasController;
 use App\Http\Controllers\ExpedientesController;
+use App\Http\Controllers\Api\ApiUsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,8 @@ use App\Http\Controllers\ExpedientesController;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::apiResource('api/usuari', ApiUsuarioController::class);
 
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
 Route::post('/login', [UsuarioController::class, 'login']);
