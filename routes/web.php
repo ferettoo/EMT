@@ -27,8 +27,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-
-
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
 Route::post('/login', [UsuarioController::class, 'login']);
 Route::get('/logout', [UsuarioController::class, 'logout']);
@@ -39,8 +37,17 @@ Route::middleware(['auth'])->group(function () {
 
         return view('carta.cartaVue', compact('user'));
     });
-
 });
 
 
-Route::resource('admUsuarios', AdmUsuarios::class);
+//Route::resource('admUsuarios', AdmUsuarios::class);
+
+
+//Ruta para los gráficos
+Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
+
+Route::get('admExpedientes', function () {
+    return view('admExpedientes.admExpedientes');
+});
+
+// Route::resource('admExpedients', admExpedientsController::class);
