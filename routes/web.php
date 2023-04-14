@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AdmUsuarios;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AdmUsuariosController;
 use App\Http\Controllers\CartasAgenciasController;
 use App\Http\Controllers\ExpedientesController;
+use App\Http\Controllers\Api\ApiUsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +31,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/mapa', function () {
-    return view('mapa.mapa');
-});
-
-
+Route::apiResource('api/usuari', ApiUsuarioController::class);
 
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
 Route::post('/login', [UsuarioController::class, 'login']);
@@ -45,7 +43,6 @@ Route::middleware(['auth'])->group(function () {
 
         return view('carta.cartaVue', compact('user'));
     });
-
 });
 
 
@@ -58,3 +55,14 @@ Route::get('editCartasExpediente/{expediente}',  [ExpedientesController::class, 
 
 Route::get('editEstadoAgencia/{carta}',  [ExpedientesController::class, 'editEstadoAgencia']);
 // Route::resource('cartasExpediente', CartasAgenciasController::class);
+//Route::resource('admUsuarios', AdmUsuarios::class);
+
+
+//Ruta para los gráficos
+Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
+
+Route::get('admExpedientes', function () {
+    return view('admExpedientes.admExpedientes');
+});
+
+// Route::resource('admExpedients', admExpedientsController::class);

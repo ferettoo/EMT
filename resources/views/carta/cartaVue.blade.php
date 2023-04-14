@@ -3,7 +3,7 @@
 @section('title', 'Carta de Llamada')
 
 @section('jsFile')
-    <script src="{{ asset('js/carta.js') }}"></script>
+    {{-- <script src="{{ asset('js/carta.js') }}"></script> --}}
 @endsection
 
 @section('content')

@@ -1,15 +1,18 @@
 <template>
-    <div>
+    <div class="mt-5">
         <div class="row">
     <div class="col-8 p-1">
         <!-- {{-- Contenido de la carta --}} -->
+        <div>{{ mensajeError }}</div>
         <div class="card border border-0 mb-3">
             <div class="card-header border-0  border-success text-center" style="background-color: #0F9DB2">
                 <!-- {{-- Contenido del header  --}} -->
                 <div class="row fs-6 fw-light text-light fw-bold">
-                    <div class="col" id="tiempo">{{ tiempo }}</div>
-                    <div class="col">ID-CL-0000</div>
+                    <div class="col" id="tiempo">{{ carta.tiempo }}</div>
+                    <div class="col">{{ carta.idLlamada }}</div>
                     <div class="col">ID Expediente</div>
+                    <input type="datetime-local" v-model="carta.dataHoraTrucada" hidden>
+                    <input type="text" v-model="carta.idUsuario" hidden>
                 </div>
             </div>
             <div class="card-body rounded-bottom" style="background-color: #f9f9f9">
@@ -24,56 +27,59 @@
                         </div>
                         <div class="mb-2">
                             <label for="telefono" class="form-label">Telefono</label>
-                            <input type="text" class="form-control w-100" id="telefono">
+                            <input type="text" class="form-control w-100" id="telefono" v-model="carta.telefono">
                         </div>
                         <div class="mb-2">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control w-100" id="nombre">
+                            <input type="text" class="form-control w-100" id="nombre" v-model="carta.nombre">
                         </div>
                         <div class="mb-2">
                             <label for="apellido" class="form-label">Apellido</label>
-                            <input type="text" class="form-control w-100" id="apellido">
-                        </div>
-                        <div class="mb-2">
-                            <label for="municipio" class="form-label">Municipio</label>
-                            <input type="text" class="form-control w-100" id="municipio">
-                        </div>
-                        <div class="mb-2">
-                            <label for="direccion" class="form-label">Direción</label>
-                            <input type="text" class="form-control w-100" id="direccion">
+                            <input type="text" class="form-control w-100" id="apellido" v-model="carta.apellido">
                         </div>
                         <div class="custom-height">
                             <label for="antecedentes" class="form-label">Antecedentes del Telefóno</label>
-                            <textarea class="form-control h-100" id="antecedentes"></textarea>
+                            <textarea class="form-control h-100" id="antecedentes" v-model="carta.interlocutor.antecedentesInterlocutor"></textarea>
                         </div>
                     </div>
                     <div class="col-8">
                         <h5 class="card-title fs-6"><strong>Nota Comuna</strong></h5>
-                        <textarea class="form-control mb-2" id="antecedentes" rows="3" style="height: 94px;"></textarea>
+                        <textarea class="form-control mb-2" id="antecedentes" rows="3" style="height: 94px;" v-model="carta.notaComuna"></textarea>
+
+
+                        <!-- Incidente -->
+
+
                         <div class="mb-2">
                             <p class="fs-6 mb-2"><strong>Incidente</strong>
                                 <button id="open_incidente"
                                     class="helpbox_boton" type="button"> <img class="helpbox_boton"
                                         src="../../../../public/images/helpbox_boton.png" height="18px" width="18px"
                                         alt="helpbox"></button>
-                                    </p>
-                            <select class="form-select w-100 mb-3" aria-label="Default select example">
-                                <option selected>Tipo de Incidente</option>
-                                <option value="1">One</option>
+                            </p>
+
+                            <select class="form-select w-100 mb-3" aria-label="Default select example"
+                            v-model="tipoIncidente_id"
+                            @change="incidentesVisibles()">
+                                <option disabled :value=null>Tipo de Incidente..</option>
+                                <option v-for="tipoIncidente in tipoIncidentes" :key="tipoIncidente.id" :value="tipoIncidente.id">{{ tipoIncidente.nom }}</option>
                             </select>
-                            <select class="form-select w-100 mb-3" aria-label="Default select example">
-                                <option selected> Tipo en Concreto..</option>
-                                <option value="1">One</option>
+                            <select class="form-select w-100 mb-3" aria-label="Default select example"
+                            v-model="carta.incidente.id"
+                            @change="mostrarDefinicion()">
+                                <option disabled value=""> Incidente en Concreto..</option>
+                                <option v-for="incidente in incidentesFiltrados" :key="incidente.id" :value="incidente.id" >{{ incidente.nom}}</option>
+
                             </select>
                             <textarea class="form-control" id="antecedentes" rows="3"
-                                placeholder="Explicación del incidente.."></textarea>
+                            placeholder="Explicación del incidente.." disabled>{{ definicioIncidente }}</textarea>
                         </div>
-                        <p class="fs-6 mb-1"><strong>Localización</strong>
+                            <p class="fs-6 mb-1"><strong>Localización</strong>
                             <button id="open_localizacion" class="helpbox_boton" type="button">
 
                                 <img class="helpbox_boton" src="../../../../public/images/helpbox_boton.png" height="18px"
                                     width="18px" alt="helpbox"></button>
-                        </p>
+                            </p>
                         <div class="row">
                             <div class="col">
                                 <div class="row mt-2">
@@ -85,122 +91,141 @@
                                 </div>
 
                                 <!-- Diseño si esta en Cataluña -->
+
                                 <div v-if="estaEnCataluna">
                                     <div class="mb-2" style="margin-top: 18px">
-                                        <label for="comarca" class="form-label">Comarca</label>
-                                        <input type="text" class="form-control w-100" id="comarca">
+                                        <div class="mb-2">
+                                        <label for="provincia" class="form-label">Provincia <span style="color: #E0127A;">*</span></label>
+                                        <select class="form-select w-100 mb-2" v-model="carta.idProvincia"
+                                        @change="comarcasVisibles()">
+                                            <option disabled value="">Seleccione una Provincia..</option>
+                                            <option v-for="provincia in provincias" :key="provincia.id" :value="provincia.id">{{ provincia.nom }}</option>
+                                        </select>
+                                    </div>
+                                        <label for="comarca" class="form-label">Comarca <span style="color: #E0127A;">*</span></label>
+                                        <select class="form-select w-100 mb-2" v-model="comarca_id"
+                                        @change="mucipiosVisibles()">
+                                            <option disabled value="">Seleccione una Comarca..</option>
+                                            <option v-for="comarca in comarcasFiltradas" :key="comarca.id" :value="comarca.id">{{ comarca.nom }}</option>
+                                        </select>
                                     </div>
                                     <div class="mb-2">
-                                        <label for="provincia" class="form-label">Provincia</label>
-                                        <input type="text" class="form-control w-100" id="provincia">
+                                        <label for="municipio" class="form-label">Municipio <span style="color: #E0127A;">*</span></label>
+                                        <select class="form-select w-100 mb-2" v-model="carta.idMunicipio">
+                                            <option disabled value="">Seleccione un Municipio</option>
+                                            <option v-for="municipio in municipioFiltrados" :key="municipio.id" :value="municipio.id">{{ municipio.nom }}</option>
+                                        </select>
                                     </div>
-                                    <div class="mb-2">
-                                        <label for="municipio" class="form-label">Municipio</label>
-                                        <input type="text" class="form-control w-100" id="municipio">
-                                    </div>
+
                                     <div class="mb-2">
                                         <textarea class="form-control" id="antecedentes" rows="1"
-                                            placeholder="Explicación breve.."></textarea>
+                                            placeholder="Explicación breve.." v-model="carta.otrasRefLocalizacion"></textarea>
                                     </div>
                                 </div>
 
                                 <!-- Diseño si no esta en Cataluña -->
+
                                 <div v-else>
                                     <div class="mb-2">
                                         <label for="provincia" class="form-label" style="margin-top: 18px">Provincia <span style="color: #E0127A;">*</span></label>
-                                        <input type="text" class="form-control w-100" id="provincia">
+                                        <select class="form-select w-100 mb-2" v-model="carta.idProvincia">
+                                            <option disabled value="">Tipo de localización..</option>
+                                            <option v-for="provincia in provincias" :key="provincia.id" :value="provincia.id">{{ provincia.nom }}</option>
+                                        </select>
                                     </div>
                                     <div class="mb-2">
                                         <label for="municipio" class="form-label">Municipio</label>
-                                        <input type="text" class="form-control w-100" id="municipio">
+                                        <select class="form-select w-100 mb-2" v-model="carta.idMunicipio">
+                                            <option disabled value="">Opcional..</option>
+                                            <option v-for="municipio in municipios" :key="municipio.id" :value="municipio.id">{{ municipio.nom }}</option>
+                                        </select>
                                     </div>
                                     <div class="mb-2">
                                         <textarea class="form-control" id="antecedentes" style="height: 116px;"
-                                            placeholder="Explicación breve.."></textarea>
+                                            placeholder="Explicación breve.." v-model="carta.otrasRefLocalizacion"></textarea>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Los tipos de localización -->
+
                             <div class="col">
-                                <select class="form-select w-100 mb-2" v-model="tipoLocalizacion">
+                                <select class="form-select w-100 mb-2" v-model="carta.tipoLocalizacion.id">
 
                                     <option disabled>Tipo de localización..</option>
-                                    <option v-if="!estaEnCataluna" value="5" selected>Provincia</option>
+                                    <option v-if="!estaEnCataluna" :value="'5'" selected>Provincia</option>
                                     <option value="1">Carretera</option>
                                     <option value="2">Punto Singular</option>
                                     <option value="3">Calle</option>
                                     <option value="4">Entidad Población</option>
                                 </select>
 
-                                <div v-if="tipoLocalizacion == 1">
+                                <div v-if="carta.tipoLocalizacion.id == 1">
                                     <div class="mb-2">
                                         <label for="nomCarretera" class="form-label" style="margin-top: 4px">Nom
                                             Carretera</label>
-                                        <input type="text" class="form-control w-100" id="nomCarretera">
+                                        <input type="text" class="form-control w-100" id="nomCarretera" v-model="descripcionLocalizacion.nomCarretera">
                                     </div>
                                     <div class="mb-2">
                                         <label for="puntoKilometrico" class="form-label">Punto Kilometrico</label>
-                                        <input type="text" class="form-control w-100" id="puntoKilometrico">
+                                        <input type="text" class="form-control w-100" id="puntoKilometrico" v-model="descripcionLocalizacion.puntoKilometrico">
                                     </div>
                                     <div class="mb-2">
                                         <label for="sentido" class="form-label">Sentido</label>
-                                        <input type="text" class="form-control w-100" id="sentido">
+                                        <input type="text" class="form-control w-100" id="sentido" v-model="descripcionLocalizacion.sentido">
                                     </div>
                                     <div class="mb-2">
                                         <textarea class="form-control" id="antecedentes" rows="1"
-                                            placeholder="Explicación breve..">
-                                        </textarea>
+                                            placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
-                                <div v-else-if="tipoLocalizacion == 2">
+                                <div v-else-if="carta.tipoLocalizacion.id == 2">
                                     <div class="mb-2">
                                         <label for="nombrePuntoSingular" class="form-label" style="margin-top: 4px">Nombre</label>
-                                        <input type="text" class="form-control w-100" id="nombrePuntoSingular">
+                                        <input type="text" class="form-control w-100" id="nombrePuntoSingular" v-model="descripcionLocalizacion.nombrePuntoSingular">
                                     </div>
                                     <div class="mb-2">
                                         <label for="puntoSingular" class="form-label">Punto Singular</label>
-                                        <input type="text" class="form-control w-100" id="puntoSingular">
+                                        <input type="text" class="form-control w-100" id="puntoSingular" v-model="descripcionLocalizacion.puntoSigular">
                                     </div>
                                     <div class="mb-2">
                                         <textarea class="form-control" id="antecedentes" style="height: 116px;"
-                                            placeholder="Explicación breve.."></textarea>
+                                            placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
-                                <div v-else-if="tipoLocalizacion == 3">
+                                <div v-else-if="carta.tipoLocalizacion.id == 3">
                                     <div class="mb-2">
                                         <label for="tipoVia" class="form-label" style="margin-top: 4px">Tipo de Via</label>
-                                        <input type="text" class="form-control w-100" id="tipoVia">
+                                        <input type="text" class="form-control w-100" id="tipoVia" v-model="descripcionLocalizacion.tipoVia">
                                     </div>
                                     <div class="mb-2">
                                         <label for="nombreCalle" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control w-100" id="nombreCalle">
+                                        <input type="text" class="form-control w-100" id="nombreCalle" v-model="descripcionLocalizacion.nombre">
                                     </div>
                                     <div class="mb-2 d-flex justify-content-evenly text-center">
-                                        <label for="numeroCasa" class="col">Numero</label>
+                                        <label for="numeroCasa" class="col">Num</label>
                                         <label for="escalera" class="col">Escalera</label>
                                         <label for="puerta" class="col">Puerta</label>
                                         <label for="piso" class="col">Piso</label>
                                     </div>
                                     <div class="mb-2 d-flex justify-content-between">
-                                        <input type="number" class="form-control mx-1">
-                                        <input type="number" class="form-control mx-1">
-                                        <input type="number" class="form-control mx-1">
-                                        <input type="number" class="form-control mx-1">
+                                        <input type="number" class="form-control mx-1" v-model="descripcionLocalizacion.numero">
+                                        <input type="number" class="form-control mx-1" v-model="descripcionLocalizacion.escalera">
+                                        <input type="number" class="form-control mx-1" v-model="descripcionLocalizacion.puerta">
+                                        <input type="number" class="form-control mx-1" v-model="descripcionLocalizacion.piso">
                                     </div>
                                     <div class="mb-2">
                                         <textarea class="form-control" id="antecedentes" rows="1"
-                                            placeholder="Explicación breve.."></textarea>
+                                            placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
-                                <div v-else-if="tipoLocalizacion == 4">
+                                <div v-else-if="carta.tipoLocalizacion.id == 4">
                                     <div class="mb-2">
                                         <textarea class="form-control" id="antecedentes" style="height: 275px;"
-                                            placeholder="Explicación breve.."></textarea>
+                                            placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -215,10 +240,10 @@
     <div class="col-4 d-flex flex-column p-1">
         <div class="h-50 tableContainer" style="background-color: #f9f9f9">
             <!-- {{-- Contenido de los expedientes --}} -->
-            <table class="table table-borderless">
-                <thead class='text-center text-light fw-bold' style="background-color: #0F9DB2">
+            <table class="table table-borderless ">
+                <thead class='text-center text-light w-bold' style="background-color: #0F9DB2">
                     <tr>
-                        <th scope="col">Incidente</th>
+                        <th scope="col">Expediente</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Asociar</th>
                         <th scope="col">Creación</th>
@@ -226,10 +251,10 @@
                 </thead>
                 <tbody class="text-center" style="background-color: #f9f9f9">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Inmobilizado</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row">0001</th>
+                        <td><button class="btn btn-danger btn-sm">Inmobilizado</button></td>
+                        <td><button class="btn btn-primary btn-sm">Asociar</button></td>
+                        <td>12-10-2023</td>
                     </tr>
                     <tr>
 
@@ -258,38 +283,185 @@
 </div>
 
     </div>
-    
+
 </template>
 
 
 
 <script>
 import * as boostrap from 'bootstrap';
+// import { log } from 'console';
 
 export default {
     data() {
         return {
             // Tiempo LLamada
-            tiempo: '00:00:00',
             intervalId: null,
             horas: 0,
             minutos: 0,
             segundos: 0,
-
-            idLlamada: '', // ID de la llamada (Pensar como hacerlo)
-            idExpediente: '', // ID del expediente
-            interlocutor:{}, // Crear un interlocutor en caso si no existe
             estaEnCataluna: false, // Saber si la localizacion esta en cataluña
-            guardarInterlocutor: {}, // Guardar interlocutor
-            tipoLocalizacion: '',
-            // Recoger Datos
-            expedientes: [],
+            mensajeError: '',
+            descripcionLocalizacion: {},
 
+            carta:{
+                tiempo:'00:00:00',
+                idLlamada: '',
+                idExpediente: '001', //Pensar como poner el expediente asociado
+                dataHoraTrucada: '',
+                descripcionLocalizacion: '',
+                idUsuario: '',
+                interlocutor:{},
+                tipoLocalizacion:{},
+                incidente:{
+
+                },
+            },
+
+            // Recoger Datos
+            cartasDeLlamada: [],
+            expedientes: [],
+            tipoIncidentes: [],
+            incidentes:[],
+            incidentesFiltrados: [],
+            provincias: [],
+            comarcas:[],
+            comarcasFiltradas: [],
+            municipios: [],
+            municipioFiltrados: [],
+            usuari: {},
+            definicioIncidente: '',
+            comarca_id: '',
+            tipoIncidente_id: '',
         }
     },
     mounted() {
+        this.contador();
+        this.carta.tipoLocalizacion.id = '5';
+    },
+    methods: {
+        finalizarLlamada(){
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+            this.dataHoraTrucada();
+            this.concatenarDetallesLocalizacion();
+            this.carta.idUsuario = this.usuari.id;
+            // AGREGAR ESTO CUANDO TENGAMOS QUE VISUALIZAR LA CARTA DE LLAMADA
+            // const separar = descLoc.split(';')
+            // console.log(separar.length);
 
-        this.intervalId = setInterval(() => {
+            const me = this;
+            axios
+                .post("cartes_trucades", me.carta)
+                .then((response) => {
+
+                })
+                .catch((error) => {
+                    // this.isError = true;
+                    me.mensajeError = error.response.data.error;
+                });
+
+        },
+        recogerUsuarios(){
+            const me = this;
+            axios
+                .get("usuari")
+                .then((response) => {
+                    me.usuari = response.data;
+                    console.log(me.usuari.id);
+                })
+                .catch((error) => {});
+        },
+        cambiarLocalizacion() {
+            if (this.carta.tipoLocalizacion.id) {
+                this.carta.tipoLocalizacion.id = '5';
+                this.carta.idMunicipio = '';
+            } else {
+                this.carta.tipoLocalizacion.id = '';
+            }
+        },
+        recogerCartaDeLlamada(){
+            const me = this;
+            axios
+                .get("cartes_trucades")
+                .then((response) => {
+                    me.cartasDeLlamada = response.data;
+                })
+                .catch((error) => {});
+        },
+        recogerMunicipios() {
+            const me = this;
+            axios
+                .get("municipis")
+                .then((response) => {
+                    me.municipios = response.data;
+                    // console.log('Municipios');
+                    // console.log(response.data);
+                })
+                .catch((error) => {});
+        },
+        recogerProvincias() {
+            const me = this;
+            axios
+                .get("provincies")
+                .then((response) => {
+                    me.provincias = response.data;
+                    // console.log('Provincias');
+                    // console.log(response.data);
+                })
+                .catch((error) => {});
+        },
+        recogerComarcas(){
+            const me = this;
+            axios
+                .get("comarques")
+                .then((response) => {
+                    me.comarcas = response.data;
+                    // console.log('Comarcas');
+                    // console.log(response.data);
+                })
+                .catch((error) => {});
+        },
+        recogerTipoIncidentes() {
+            const me = this;
+            axios
+                .get("tipus_incidents")
+                .then((response) => {
+                    me.tipoIncidentes = response.data;
+                })
+                .catch((error) => {});
+        },
+        recogerIncidentes(){
+            const me = this;
+            axios
+                .get("incidents")
+                .then((response) => {
+                    me.incidentes = response.data;
+                })
+                .catch((error) => {});
+        },
+        incidentesVisibles(){
+            // console.log('tipoIncidente: ',this.tipoIncidente);
+
+            this.incidentesFiltrados = this.incidentes.filter(opcion => opcion.tipus_incidents_id == this.tipoIncidente_id);
+            this.definicioIncidente = '';
+
+            // console.log('incidentes:', this.incidentesFiltrados);
+        },
+        mostrarDefinicion() {
+            const opcionSeleccionada = this.incidentesFiltrados.find(opcion => opcion.id === this.carta.incidente.id);
+            const dIncidente = opcionSeleccionada ? opcionSeleccionada.definicio : '';
+            this.definicioIncidente = dIncidente;
+        },
+        comarcasVisibles() {
+
+            this.comarcasFiltradas = this.comarcas.filter(opcion => opcion.provincies_id == this.carta.idProvincia);
+        },
+        mucipiosVisibles() {
+            this.municipioFiltrados = this.municipios.filter(opcion => opcion.comarques_id == this.comarca_id);
+        },
+        contador(){
+            this.intervalId = setInterval(() => {
             var hAux, mAux, sAux;
 
             this.segundos++;
@@ -300,29 +472,45 @@ export default {
             if (this.segundos<10){sAux="0"+this.segundos;}else{sAux=this.segundos;}
             if (this.minutos<10){mAux="0"+this.minutos;}else{mAux=this.minutos;}
             if (this.horas<10){hAux="0"+this.horas;}else{hAux=this.horas;}
-            this.tiempo = hAux + ':' + mAux + ':' + sAux
+            this.carta.tiempo = hAux + ':' + mAux + ':' + sAux
         }, 1000);
-
-        this.tipoLocalizacion = 5;
-    },
-    methods: {
-        finalizarLlamada(){
-            clearInterval(this.intervalId);
-            this.intervalId = null;
-
-            // He de enviar exacatamente esto 1970-01-01 00:00:01
-            // getDate() para el dia,
-            // getFullYear() para el año
-            // getMonth() para el mes
         },
-        cambiarLocalizacion() {
-            if (this.tipoLocalizacion) {
-                this.tipoLocalizacion = 5;
-            } else {
-                this.tipoLocalizacion = '';
+        concatenarDetallesLocalizacion(){
+            this.carta.descripcionLocalizacion =  Object.values(this.descripcionLocalizacion).join(';');
+        },
+        dataHoraTrucada(){
+            const date = new Date();
+            const options = {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
             }
-        },
+            this.carta.dataHoraTrucada =  date.toLocaleString('es-ES', options).replace(/\//g, '-').replace(',', '');
+        }
+
     },
+    created() {
+        this.recogerTipoIncidentes();
+        this.recogerIncidentes();
+        this.recogerMunicipios();
+        this.recogerProvincias();
+        this.recogerComarcas();
+        this.recogerCartaDeLlamada();
+        this.recogerUsuarios()
+        this.carta.idLlamada = 'ID-CL-' + this.cartasDeLlamada.length;
+    },
+    watch: {
+    'carta.tipoLocalizacion.id': {
+      handler() {
+        this.descripcionLocalizacion = {};
+        this.carta.detallesLocalizacion = '';
+      }
+    }
+  }
 }
 </script>
 <style>

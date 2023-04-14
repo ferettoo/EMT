@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/2cf292bb20.js" crossorigin="anonymous"></script>
-  
+
     <link rel="stylesheet" href="{{ asset('css/css.css') }}">
     <title>@yield('title')</title>
     @vite(['resources/css/app.css', 'resources/css/app.scss', 'resources/js/app.js'])

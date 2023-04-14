@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Clases;
-
 class Utilitat
 {
     // METODO DE ERROR
