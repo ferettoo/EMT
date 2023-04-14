@@ -13,13 +13,13 @@
             <div class="card-body ">
                 <!-- TITULO Y SUBTITULO-->
                 <div class="d-flex ">
-                    <h1 class="titulo"> Gestión</h1>
+                    <h1 class="titulo"> Gestión de expedientes</h1>
                 </div>
                 <!-- linea de division -->
                 <hr id="linea" class="w-100 clearfix d-md m-0" />
 
                 <div class="d-flex p-3">
-                    <h3 class="subtitulo">Expedientes</h3>
+                    <h3 class="subtitulo">Estado de expedientes</h3>
                 </div>
             </div>
         </div>
@@ -91,7 +91,8 @@
                                     <th class="text-center" >Codigo</th>
                                     <th class="text-center" >Estado expediente</th>
                                     {{-- <th class="text-center" scope="col">Fecha creación</th> --}}
-                                    <th class="text-center">Cartas / Editar</th>
+                                    <th class="text-center"></th>
+                                    {{-- <th class="text-center">Cartas / Editar</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,7 +101,7 @@
                                     @foreach ($expedientes as $expediente)
                                         <td>{{ $expediente->id }}</td>
                                         <td>{{ $expediente->codi }}</td>
-                                        <td>{{ $expediente->estatExpedients->estat }}</td>  
+                                        <td>{{ $expediente->estatExpedients->estat }}</td>                                     
                                         {{-- <td>{{ $expediente->cartaTrucades->data_hora_trucada }}</td> --}}
                                         
                                         <td> 
@@ -116,11 +117,12 @@
 
                                         {{-- VISUALIZAR --}}
                                             <form
-                                                action="{{ action([App\Http\Controllers\CartasAgenciasController::class, 'index']) }}">
-                                                <a class=" shadow btn btn-primary text-white rounded-3 float-end mx-1 "
-                                                    href="{{ route('cartasHasAgencias.index') }}">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
+                                                action="{{ action([App\Http\Controllers\ExpedientesController::class, 'editCartasExpediente'], ['expediente' => $expediente->id]) }}" method="POST"> 
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit" id="botonCarta" class=" shadow btn btn-primary text-white rounded-3 float-end mx-1">
+                                                    <i class="bi bi-envelope"></i>
+                                                </button>                   
                                             </form>
                                         </td>
                                 </tr>

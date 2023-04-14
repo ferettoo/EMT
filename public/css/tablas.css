@@ -1,4 +1,10 @@
 #coltablas{
     background-color: #0F9DB2;
-     border-radius: 15px;
+    border-radius: 15px;
+}
+
+#botonCarta{
+    background-color: #E0127A;
+    color: #E0127A;
+    border-radius: 15px;
 }

@@ -6,6 +6,8 @@ use App\Clases\Utilitat;
 use App\Models\expedients;
 use Illuminate\Http\Request;
 use App\Models\cartes_trucades;
+use App\Models\cartes_trucades_has_agencies;
+use App\Models\estat_agencies;
 use App\Models\estat_expedients;
 use Illuminate\Database\QueryException;
 
@@ -77,18 +79,55 @@ class ExpedientesController extends Controller
      */
     public function show(expedients $expedients)
     {
-        return view('Expedientes.visualCarta');
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+
+    // pagina de edicion de estado de expediente (FUNCIONA - APARTADO FINALIZADO)
     public function edit(expedients $expediente)
     {
-    
         $estados = estat_expedients::all();
         return view('Expedientes.modEstadoExpe', compact('expediente', 'estados'));
     }
+
+
+    //pagina de carta de llamadas (FINALIZADO)
+    public function editCartasExpediente(expedients $expediente)
+    {     
+        // esta linea es para paginar las cartas de llamadas de los expedientes.
+        $cartasLlamada=cartes_trucades::where('expedients_id',$expediente->id)->paginate(4);
+        return view('Expedientes.cartasDeExpediente', compact('expediente','cartasLlamada'));
+    }
+
+
+    //página de estado de agencia
+    public function editEstadoAgencia(cartes_trucades $carta, expedients $expediente)
+    {       
+        // $estado=cartaTrucadesHasAgencies::where()
+        return view('Expedientes.estadoAgencias', compact('carta', 'expediente'));
+    }
+
+
+    // falta aplicar actualizacion para modificar estado de agencia
+    public function updateEstadoAgencia(Request $request, cartes_trucades_has_agencies $estado)
+    {
+        // solo se introduce el estado, es lo unico que se puede modificar
+        $estado->estat_agencies_id = $request->input('estadoAgencia');
+
+        try {
+            $estado->save();
+            $response = redirect()->action([ExpedientesController::class, 'editCartasExpediente']);
+        } catch (QueryException $ex) {
+            $mensaje = Utilitat::errorMessage($ex);
+            $request->session()->flash('error', $mensaje);
+            $response = redirect()->action([ExpedientesController::class, 'editEstadoAgencia'], ['expediente' => $estado->cartes_trucades_id]);
+        }
+        return $response;
+    }
+
 
     /**
      * Update the specified resource in storage.

@@ -13,7 +13,7 @@
 
     <title>Document</title>
 </head>
-<
+
   <body class="row justify-content-center align-items-center vh-100" id="fondoLogin">
     {{-- style="background-image: url{{ asset('images/fondoVerdePetroleo.jpg') }}; " --}}
     <div class="container d-flex align-items-center">

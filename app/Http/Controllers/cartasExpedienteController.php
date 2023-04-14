@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cartes_trucades_has_agencies;
+use App\Models\expedients;
 use Illuminate\Http\Request;
+use App\Models\cartes_trucades;
 
-class CartasAgenciasController extends Controller
+class cartasExpedienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(expedients $expediente)
     {
-        return view('Expedientes.visualCarta');
+    
+
+        return view('Expedientes.cartasDeExpediente');
+
     }
 
     /**
@@ -34,7 +38,7 @@ class CartasAgenciasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(cartes_trucades_has_agencies $cartes_trucades_has_agencies)
+    public function show(cartes_trucades $cartes_trucades)
     {
         //
     }
@@ -42,7 +46,7 @@ class CartasAgenciasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(cartes_trucades_has_agencies $cartes_trucades_has_agencies)
+    public function edit(cartes_trucades $cartes_trucades)
     {
         //
     }
@@ -50,7 +54,7 @@ class CartasAgenciasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, cartes_trucades_has_agencies $cartes_trucades_has_agencies)
+    public function update(Request $request, cartes_trucades $cartes_trucades)
     {
         //
     }
@@ -58,7 +62,7 @@ class CartasAgenciasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(cartes_trucades_has_agencies $cartes_trucades_has_agencies)
+    public function destroy(cartes_trucades $cartes_trucades)
     {
         //
     }

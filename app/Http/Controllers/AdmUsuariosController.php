@@ -22,13 +22,13 @@ class AdmUsuariosController extends Controller
         // mostramos todos los usuarios
         if ($selTipo == 'todos') {
             $usuaris = usuaris::orderBy('tipus_usuaris_id')
-                ->paginate(4)
+                ->paginate(5)
                 ->withQueryString();
 
         // mostramos todos por orden de id
         } elseif (!$selTipo) {
             $usuaris = usuaris::orderBy('id')
-            ->paginate(4)
+            ->paginate(5)
             ->withQueryString();
 
         // mostramos un tipo de usuario concreto
@@ -36,7 +36,7 @@ class AdmUsuariosController extends Controller
             $consulta = usuaris::where('tipus_usuaris_id', $selTipo)
                 ->orderBy('nom');
             $usuaris = $consulta
-                ->paginate(4)
+                ->paginate(5)
                 ->withQueryString();
         }
 

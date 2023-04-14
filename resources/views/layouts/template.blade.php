@@ -29,10 +29,6 @@
                 <ul class="navbar-nav text-center mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active"
-                        aria-current="page" href="#"> EXPEDIENTES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active"
                         aria-current="page" href="#">GRAFICOS</a>
                     </li>
                     <li class="nav-item">
@@ -55,20 +51,20 @@
                 {{-- limitación segun tipo de usuario --}}
                         @if (Auth::check() && Auth::user()->tipus_usuaris_id == "3" )
                         <ul class="dropdown-menu" style="color: #be964c;">
-                            <li><a class="dropdown-item text-center" href="" > {{Auth::user()->username }}</a></li>
+                            <li><a class="dropdown-item text-center disabled" href="#" aria-disabled="true" > {{Auth::user()->username }}</a></li>
                             <li><a class="dropdown-item text-center" href="{{ url('/admUsuarios') }}">Adm. Usuarios</a></li>
-                            <li><a class="dropdown-item text-center" href="#">Another action</a></li>
+                            <li><a class="dropdown-item text-center" href="{{ url('/expedientes') }}">Gest.Expedientes</a></li>
                             <li><a class="dropdown-item text-center" href="{{ url('/logout') }}">Cerrar sesión</a></li>
                         </ul>
                         @elseif(Auth::check() && Auth::user()->tipus_usuaris_id == "2")
                         <ul class="dropdown-menu" style="color: #be964c;">
-                            <li><a class="dropdown-item text-center" href="">{{Auth::user()->username }}</a></li>
-                            <li><a class="dropdown-item text-center" href="#">Action</a></li>
+                            <li><a class="dropdown-item text-center disabled" aria-disabled="true">{{Auth::user()->username }}</a></li>
+                            <li><a class="dropdown-item text-center" href="{{ url('/expedientes') }}">Gest.Expedientes</a></li>
                             <li><a class="dropdown-item text-center" href="{{ url('/logout') }}">Cerrar sesión</a></li>
                         </ul>
                         @else
                         <ul class="dropdown-menu" style="color: #be964c;">
-                            <li><a class="dropdown-item text-center" href=""> {{Auth::user()->username }}</a></li>
+                            <li><a class="dropdown-item text-center" href="#" aria-disabled="true"> {{Auth::user()->username }}</a></li>
                             <li><a class="dropdown-item text-center" href="{{ url('/logout') }}">Cerrar sesión</a></li>
                         </ul>
                         @endif

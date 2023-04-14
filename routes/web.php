@@ -51,4 +51,10 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('admUsuarios', AdmUsuariosController::class);
 Route::resource('expedientes', ExpedientesController::class);
-Route::resource('cartasHasAgencias', CartasAgenciasController::class);
+// Route::resource('cartasExpediente', cartasDeExpedienteController::class);
+
+// pirula(es necesario crear un nueva ruta con el nuevo metodo añadido el controlador)
+Route::get('editCartasExpediente/{expediente}',  [ExpedientesController::class, 'editCartasExpediente']);
+
+Route::get('editEstadoAgencia/{carta}',  [ExpedientesController::class, 'editEstadoAgencia']);
+// Route::resource('cartasExpediente', CartasAgenciasController::class);
