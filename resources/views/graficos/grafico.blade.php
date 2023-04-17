@@ -1,6 +1,12 @@
-@extends('layouts.principal')
+@extends('layouts.template')
 
 @section('title', 'Graficos')
+@section('carta')
+<a class="rounded-5 btn btn-warning text-white" style=" font-weight: 700;" type="submit" href="{{ url('/carta') }}">
+<i class="bi bi-plus-lg"></i>
+    Call card
+</a>
+@endsection
 
 @section('content')
 

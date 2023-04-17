@@ -133,9 +133,10 @@
         </div>
     </div>
 
-    <div class="col-4 d-flex flex-column p-1">
+    {{-- <div class="col-4 d-flex flex-column p-1">
         <div class="h-50 tableContainer" style="background-color: #f9f9f9">
-            {{-- Contenido de los expedientes --}}
+
+
             <table class="table table-borderless">
                 <thead class='text-center text-light fw-bold' style="background-color: #0F9DB2">
                     <tr>
@@ -170,11 +171,13 @@
             </table>
         </div>
         <div class="h-50 position-relative">
-            {{-- Contenido del mapa --}}
+           
+
+
             <img src="{{ asset('images/mapa.jpg') }}" alt="mapa" class="img-fluid rounded mapa" style="height: 96%">
             <button class="btn btn-warning position-absolute top-50 start-50 translate-middle"><strong><i class="bi bi-geo-alt-fill"></i> LOCALIZACIÓN</strong></button>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 {{-- Popup Incidente --}}

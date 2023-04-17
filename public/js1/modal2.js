@@ -7,7 +7,6 @@ modaladmin.addEventListener('show.bs.modal' , event => {
 // seleccionamos el elemento que activa el modal
   const button = event.relatedTarget
   // obtenemos los atributos data de elemento button
-
   const username = button.getAttribute('data-bs-username')
   const deleteUser = button.getAttribute('data-bs-action')
 

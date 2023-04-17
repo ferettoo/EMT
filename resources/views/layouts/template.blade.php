@@ -18,7 +18,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-body-tertiary  ">
             <div class="container ">
-                <a class="navbar-brand" href="#"
+                <a class="navbar-brand text-white" href="#"
                 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">EMT(LOGO)</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -29,22 +29,26 @@
                 <!-- en el "ul" el ajuste en medio es "mx-auto"  y en el lado izquierdo "me-auto" -->
                 <ul class="navbar-nav text-center mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active"
+                        <a class="nav-link active text-white"
                         aria-current="page" href="#">GRAFICOS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active"
+                        <a class="nav-link active text-white"
                         aria-current="page" href="#">HELPBOX</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active"
+                        <a class="nav-link active text-white"
                         aria-current="page" href="#">AYUDA</a>
                     </li>
+
+                    
                 </ul>
+                    @yield('carta')
+
                     <div class="nav-item dropdown d-flex">
                         <ul class="nav justify-content-end">
                             <a style="color: #000000;"
-                            class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                            {{ Auth::user()->tipusUsuaris->nom }}
                         </a>
@@ -65,7 +69,7 @@
                         </ul>
                         @else
                         <ul class="dropdown-menu" style="color: #be964c;">
-                            <li><a class="dropdown-item text-center" href="#" aria-disabled="true"> {{Auth::user()->username }}</a></li>
+                            <li><a class="dropdown-item text-center disabled" aria-disabled="true" href="#" aria-disabled="true"> {{Auth::user()->username }}</a></li>
                             <li><a class="dropdown-item text-center" href="{{ url('/logout') }}">Cerrar sesión</a></li>
                         </ul>
                         @endif

@@ -53,11 +53,14 @@ Route::resource('expedientes', ExpedientesController::class);
 // pirula(es necesario crear un nueva ruta con el nuevo metodo añadido el controlador)
 Route::get('editCartasExpediente/{expediente}',  [ExpedientesController::class, 'editCartasExpediente']);
 
+
 Route::get('editEstadoAgencia/{carta}',  [ExpedientesController::class, 'editEstadoAgencia']);
 // Route::resource('cartasExpediente', CartasAgenciasController::class);
 //Route::resource('admUsuarios', AdmUsuarios::class);
 
+Route::get('editMostrarCarta/{carta}',  [ExpedientesController::class, 'editMostrarCarta']);
 
+// Route::get('editMostrarCarta/{expediente}',  [ExpedientesController::class, 'editMostrarCarta']);
 //Ruta para los gráficos
 Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
 

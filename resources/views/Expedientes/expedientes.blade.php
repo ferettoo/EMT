@@ -5,12 +5,19 @@
     <link rel="stylesheet" href="{{ asset('css/tablas.css') }}">
 @endsection
 
+@section('carta')
+<a class="rounded-5 btn btn-warning text-white" style=" font-weight: 700;" type="submit" href="{{ url('/carta') }}">
+   <i class="bi bi-plus-lg"></i>
+   Call card
+</a>
+@endsection
+
 @section('content')
-    <br>
-    <div class="container">
+   
+    <div class="container mt-0">
         <!-- TITULO Y SUBTITULO -->
-        <div class="card  mx-5 text-center border-0">
-            <div class="card-body ">
+        {{-- <div class="card mx-5 text-center border-0"> --}}
+            <div class="card-body  mx-5 text-center border-0">
                 <!-- TITULO Y SUBTITULO-->
                 <div class="d-flex ">
                     <h1 class="titulo"> Gestión de expedientes</h1>
@@ -22,7 +29,7 @@
                     <h3 class="subtitulo">Estado de expedientes</h3>
                 </div>
             </div>
-        </div>
+        {{-- </div> --}}
 
 
         <!-- SELECCION USUARIOS  -->
@@ -31,7 +38,7 @@
         {{-- <div class="row"> --}}
             <!-- OPCIONES DE BUSQUEDA-->
             <div class="col-12">
-                <div class="card mt-5 mx-5 text-center border-0">
+                <div class="card mt-0 mx-5 mt-3 text-center border-0">
 
                     <!-- NUEVO EXPEDIENTE Y ORDENAR -->
                     <form action="{{ action([App\Http\Controllers\ExpedientesController::class, 'index']) }}">
@@ -46,13 +53,8 @@
                                 </a> --}}
                                 </div>
 
-                                <!-- COLUMNA VACIA -->
-                                <div class="col-4">
-                                    Columna vacia 
-                                </div>
-
                                 <!-- DESPLEGABLE DE BUSQUEDA -->
-                                <div class="col-3">
+                                <div class="col-4 ">
                                     <div class="form-floating">
                                         <select class="form-select rounded-4" id="selecEstado" name="selecEstado"
                                             aria-label="Floating label select example">
@@ -69,11 +71,19 @@
                                         <label for="floatingSelect">Mostrar:</label>
                                     </div>
                                 </div>
+                                 
                                 {{-- BOTÓN DE BUSQUEDA --}}
                                 <div class="col-1">
                                     <button type="submit" id="coltablas"
-                                        class="shadow border border-0 rounded-3 btn btn-primary mb-3 "> Buscar</button>
+                                        class="shadow border border-0 rounded-3 btn btn-primary text-white mb-3 "> Buscar</button>
                                 </div>
+
+
+                                {{-- COLUMNA VACIA --}}
+                                <div class="col-3">
+
+                                </div>
+
                             </div>
                         </div>
                     </form>
@@ -82,14 +92,14 @@
 
 
                     <!-- TABLA PRINCIPAL -->
-                    <div class="card-body ">
+                    <div class="card-body mt-4 ">
                         <table class="table table-striped border-2">
                             {{-- <thead  id="coltablas" class="shadow bg-primary "> --}}
                                 <thead id="coltablas" class="shadow rounded text-white">
                                     <tr>
                                     <th class="text-center" >ID</th>
-                                    <th class="text-center" >Codigo</th>
-                                    <th class="text-center" >Estado expediente</th>
+                                    <th class="text-center" >Código</th>
+                                    <th class="text-center" >Estado expediente</th> 
                                     {{-- <th class="text-center" scope="col">Fecha creación</th> --}}
                                     <th class="text-center"></th>
                                     {{-- <th class="text-center">Cartas / Editar</th> --}}
@@ -101,16 +111,30 @@
                                     @foreach ($expedientes as $expediente)
                                         <td>{{ $expediente->id }}</td>
                                         <td>{{ $expediente->codi }}</td>
-                                        <td>{{ $expediente->estatExpedients->estat }}</td>                                     
+                                        @if( $expediente->estatExpedients->estat  == 'Acceptat' )
+
+                                            <td > 
+                                                <button type="button" class="btn btn-success rounded-5 disabled text-white">{{ $expediente->estatExpedients->estat }}</button>
+                                                
+                                             </td>   
+                                        @elseif($expediente->estatExpedients->estat  == 'En procés')
+                                            <td><button type="button" class="btn disabled rounded-5 text-white" style="background-color:#39DF09">{{ $expediente->estatExpedients->estat }}</button> </td>
+                                        @elseif($expediente->estatExpedients->estat  == 'Immobilitzat')
+                                            <td> <button type="button" class="btn btn-info disabled rounded-5 text-white">{{ $expediente->estatExpedients->estat }}</button></td> 
+                                        @elseif($expediente->estatExpedients->estat  == 'Sol·licitat')
+                                            <td> <button type="button" class="btn btn-warning disabled rounded-5 text-white">{{ $expediente->estatExpedients->estat }}</button></td> 
+                                        @else
+                                            <td> <button type="button" class="btn disabled rounded-5 text-white" style="background-color:#2587E8">{{ $expediente->estatExpedients->estat }}</button></td>  
+                                        @endif
+                                        {{-- <td>{{ $expediente->estatExpedients->estat }}</td>                                      --}}
                                         {{-- <td>{{ $expediente->cartaTrucades->data_hora_trucada }}</td> --}}
-                                        
                                         <td> 
                                             {{-- EDITAR --}}
                                             <form
                                             action="{{ action([App\Http\Controllers\ExpedientesController::class, 'edit'], ['expediente' => $expediente->id]) }}" method="POST">
                                             @csrf
                                             @method('GET')
-                                            <button type="submit" class="btn btn-secondary float-end mx-1 "><i
+                                            <button type="submit" class="btn btn-secondary border border-0 rounded-3 float-end mx-1 "><i
                                                     class="bi bi-pen"></i>
                                             </button>
                                             </form>
@@ -120,7 +144,7 @@
                                                 action="{{ action([App\Http\Controllers\ExpedientesController::class, 'editCartasExpediente'], ['expediente' => $expediente->id]) }}" method="POST"> 
                                                 @csrf
                                                 @method('GET')
-                                                <button type="submit" id="botonCarta" class=" shadow btn btn-primary text-white rounded-3 float-end mx-1">
+                                                <button type="submit" id="botonCarta" class=" shadow border border-0 btn btn-primary text-white rounded-3 float-end mx-1">
                                                     <i class="bi bi-envelope"></i>
                                                 </button>                   
                                             </form>
@@ -133,79 +157,12 @@
 
                         <!-- paginación -->
                         <div class="col-1">
+                        
                             {{ $expedientes->links() }}
+                            
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-            <!-- SEGUNDA TABLA -->
-{{-- 
-            <div class="col-5">
-                <div class="  ">
-                    <div class="container text-md-start ">
-                        <div class="col-12">
-                            <h5>
-                                Cartas de llamada
-                            </h5>
-                            <p>
-                                Pequeña descripción, Pequeña descripción, <br>
-                                Pequeña descripción, Pequeña descripción.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mt-5 mx-0 text-center border-0">
-
-                    <div class="card-body ">
-                        <table class="table table-striped border-2">
-                            <thead class="shadow bg-primary ">
-                                <tr style="background-color: #E0127A;">
-                                    <th class="text-light">
-                                        Expediente: <br>
-                                        1233
-                                    </th>
-                                    <th class="text-light ">
-                                        Estado:
-                                        <select class="form-select text-center form-select-sm rounded-3"
-                                            aria-label=".form-select-sm example">
-                                            <option selected aria-label="Buscar">Inmovilizado</option>
-                                            <option value="1">Uno</option>
-                                            <option value="2">Dos</option>
-                                            <option value="3">Tres</option>
-                                        </select>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th> Cod. de llamada: </th>
-                                    <td>12322</td>
-                                </tr>
-                                <tr>
-                                    <th> Cod. de llamada: </th>
-                                    <td>23422</td>
-                                </tr>
-                                <tr>
-                                    <th>Cod. de llamada: </th>
-                                    <td>12321</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div> --}}
-
-        {{-- </div> --}}
-
-
-
-
 
     @endsection

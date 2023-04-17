@@ -5,16 +5,23 @@
     <link rel="stylesheet" href="{{ asset('css/tablas.css') }}">
 @endsection
 
+@section('carta')
+<a class="rounded-5 btn btn-warning text-white" style=" font-weight: 700;" type="submit" href="{{ url('/carta') }}">
+    <i class="bi bi-plus-lg"></i>
+    Call card
+</a>
+
+@endsection
+
 @section('content')
 
-    <div class="container">
+    <div class="container mt-0">
         {{-- mensajes de error --}}
-        <br>
         @include('partials.mensajes')
 
         <!-- titulos y subtitulos en card -->
-        <div class="card  mx-5 text-center border-0">
-            <div class="card-body ">
+        {{-- <div class="card  mx-5 text-center border-0"> --}}
+            <div class="card-body mx-5 text-center border-0 ">
                 <!-- TITULO Y SUBTITULO-->
                 <div class="d-flex ">
                     <h1 class="titulo">Administración</h1>
@@ -26,11 +33,11 @@
                     <h3 class="subtitulo">Usuarios</h3>
                 </div>
             </div>
-        </div>
+        {{-- </div> --}}
 
         <!-- SELECCION USUARIOS  -->
 
-        <div class="card mt-0 mx-5 text-center border-0">
+        <div class="card mt-3 mx-5 text-center border-0">
             <div class="container text-center">
                 <br>
                 <form class=" form-row "
@@ -45,7 +52,7 @@
                             </a>
                         </div>
     
-                        <div class="col-6">Columna vacia
+                        <div class="col-6">
                         </div>
 
                         <form action="{{ action([App\Http\Controllers\AdmUsuariosController::class, 'index']) }}">
@@ -69,7 +76,7 @@
                             </div>
 
                             <div class="col-1">
-                                <button type="submit" id="coltablas" class="shadow border border-0 rounded-3 btn btn-primary mb-3 "> Buscar</button>
+                                <button type="submit" id="coltablas" class="shadow border border-0 rounded-3 text-white btn btn-primary mb-3 "> Buscar</button>
                             </div>
 
 
@@ -79,7 +86,7 @@
         </div>
 
         <!-- EMPEZAMOS TABLA -->
-        <div class="card mt-5 mx-5 text-center border-0">
+        <div class="card mt-3 mx-5 text-center border-0">
             <div class="card-body">
                 <table class="table table-striped border-3">
                     <thead id="coltablas" class="shadow rounded text-white">
@@ -140,7 +147,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         {{-- TITULO --}}
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Esborrar Usuari</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Borrar usuario</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     {{-- CONTENIDO BODY --}}
@@ -149,12 +156,12 @@
                     {{-- BOTONES --}}
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg">
-                            </i> Tancar</button>
+                            </i> Cancelar</button>
                         <form method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">
-                                <i class="bi bi-trash-fill"></i> Esborrar</button>
+                                <i class="bi bi-trash-fill"></i> Borrar</button>
                         </form>
                     </div>
                 </div>
@@ -166,5 +173,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js1/modal.js') }}"></script>
+    <script src="{{ asset('js1/modal2.js') }}"></script>
 @endsection

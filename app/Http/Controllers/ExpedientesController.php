@@ -19,37 +19,32 @@ class ExpedientesController extends Controller
     public function index(Request $request)
     {
         // impresion de los expedientes
-        $expedientes=expedients::all();
+        $expedientes = expedients::all();
         // para filtracion de expedientes
-        $estadoExpedientes=estat_expedients::all();
+        $estadoExpedientes = estat_expedients::all();
         // carta de llamada 
-        $carta=cartes_trucades::all();
+        $carta = cartes_trucades::all();
 
         // variable para condicion de busqueda
-        $estado=$request->input('selecEstado');
+        $estado = $request->input('selecEstado');
 
-        
+
         // mostramos todos los expedientes
 
-        if($estado == 'todos')
-        {
+        if ($estado == 'todos') {
             $expedientes = expedients::orderBy('codi')
-            ->paginate(5)
-            ->withQueryString();
-        }
-        elseif(!$estado)
-        {
+                ->paginate(5)
+                ->withQueryString();
+        } elseif (!$estado) {
             $expedientes = expedients::orderBy('id')
-            ->paginate(5)
-            ->withQueryString();
-        }
-        else
-        {
-            $consulta=expedients::where('estat_expedients_id', $estado)
-            ->orderBy('codi');
+                ->paginate(5)
+                ->withQueryString();
+        } else {
+            $consulta = expedients::where('estat_expedients_id', $estado)
+                ->orderBy('codi');
             $expedientes = $consulta
-            ->paginate(5)
-            ->withQueryString();
+                ->paginate(5)
+                ->withQueryString();
         }
 
         $request->flash();
@@ -79,7 +74,6 @@ class ExpedientesController extends Controller
      */
     public function show(expedients $expedients)
     {
-        
     }
 
     /**
@@ -96,16 +90,25 @@ class ExpedientesController extends Controller
 
     //pagina de carta de llamadas (FINALIZADO)
     public function editCartasExpediente(expedients $expediente)
-    {     
+    {
         // esta linea es para paginar las cartas de llamadas de los expedientes.
-        $cartasLlamada=cartes_trucades::where('expedients_id',$expediente->id)->paginate(4);
-        return view('Expedientes.cartasDeExpediente', compact('expediente','cartasLlamada'));
+        $cartasLlamada = cartes_trucades::where('expedients_id', $expediente->id)->paginate(4);
+        return view('Expedientes.cartasDeExpediente', compact('expediente', 'cartasLlamada'));
+    }
+
+    //metodo para mostrar info de la carta de llamada
+    public function editMostrarCarta(cartes_trucades $carta, expedients $expediente)
+    {
+        // esta linea es para paginar las cartas de llamadas de los expedientes.
+        // $cartasLlamada=cartes_trucades::where('expedients_id',$expediente->id)->paginate(4);
+        $agencias = cartes_trucades_has_agencies::where('cartes_trucades_id', $carta->id);
+        return view('Expedientes.mostrarCarta', compact('carta', 'agencias', 'expediente'));
     }
 
 
     //página de estado de agencia
     public function editEstadoAgencia(cartes_trucades $carta, expedients $expediente)
-    {       
+    {
         // $estado=cartaTrucadesHasAgencies::where()
         return view('Expedientes.estadoAgencias', compact('carta', 'expediente'));
     }

@@ -4,7 +4,12 @@
 @section('admUsuariosCss')
     <link rel="stylesheet" href="{{ asset('css/tablas.css') }}">
 @endsection
-
+@section('carta')
+<a class="rounded-5 btn btn-warning text-white" style=" font-weight: 700;" type="submit" href="{{ url('/carta') }}">
+<i class="bi bi-plus-lg"></i>
+    Call card
+</a>
+@endsection
 @section('content')
 
 
@@ -15,7 +20,7 @@
 
     <br>
     <div class="card">
-        <div class="card-header">
+        <div class="card-header text-white" style="background-color: #E0127A">
             Gestion de agencia
         </div>
         <div class="card-body">
@@ -79,10 +84,10 @@
             {{-- linea para posicionamiento de iconos --}}
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 {{-- CONFIRMACION DE EDICIÓN --}}
-                <button class="btn btn-primary" type="submit"><i class="bi bi-check-lg"></i> Aceptar</button>
+                <button class="btn btn-info text-white" type="submit"><i class="bi bi-check-lg"></i> Aceptar</button>
 
                 {{-- VOLVEMOS A CARTAS DE LLAMADA --}}
-                <a class="btn btn-secondary" href="{{ route('expedientes.index') }}"><i class="bi bi-x-lg"></i>Cancelar</a>
+                <a class="btn btn-secondary" href="javascript:history.back(-1)"><i class="bi bi-x-lg"></i>Cancelar</a>
 
             </div>
         </div>

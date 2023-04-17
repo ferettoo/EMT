@@ -55,11 +55,11 @@
                                     <input type="password" id="contrasenya" name="contrasenya" class="form-control"
                                         value="{{ old('contrasenya') }}" />
                                     <label class="form-label" for="form3Example4"
-                                        style="color: hsl(218, 59%, 68%)">Password</label>
+                                        style="color: hsl(218, 59%, 68%)">Contraseña</label>
                                 </div>
                                 <!-- Submit button -->
                                 <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary  mb-4">
+                                    <button type="submit" class="btn btn-primary text-white mb-4">
                                         Aceptar
                                     </button>
                                 </div>
