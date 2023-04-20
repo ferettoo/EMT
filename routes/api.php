@@ -36,4 +36,5 @@ Route::apiResource('incidents', IncidenteController::class);
 Route::apiResource('municipis', MunicipiosController::class);
 Route::apiResource('provincies', ProvinciasController::class);
 Route::apiResource('comarques', ComarcasController::class);
+Route::get('mapa', [MapController::class, 'datos']);
 

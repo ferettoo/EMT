@@ -39,7 +39,8 @@
                         </div>
                         <div class="custom-height">
                             <label for="antecedentes" class="form-label">Antecedentes del Telefóno</label>
-                            <textarea class="form-control h-100" id="antecedentes" v-model="carta.interlocutor.antecedentesInterlocutor"></textarea>
+                            <textarea class="form-control h-100" id="antecedentes" ></textarea>
+                            <!-- v-model="carta.interlocutor.antecedentesInterlocutor" -->
                         </div>
                     </div>
                     <div class="col-8">
@@ -65,10 +66,10 @@
                                 <option v-for="tipoIncidente in tipoIncidentes" :key="tipoIncidente.id" :value="tipoIncidente.id">{{ tipoIncidente.nom }}</option>
                             </select>
                             <select class="form-select w-100 mb-3" aria-label="Default select example"
-                            v-model="carta.incidente.id"
+                            v-model="carta.incidente"
                             @change="mostrarDefinicion()">
                                 <option disabled value=""> Incidente en Concreto..</option>
-                                <option v-for="incidente in incidentesFiltrados" :key="incidente.id" :value="incidente.id" >{{ incidente.nom}}</option>
+                                <option v-for="incidente in incidentesFiltrados" :key="incidente.id" :value="incidente.id" >{{ incidente.nom }}</option>
 
                             </select>
                             <textarea class="form-control" id="antecedentes" rows="3"
@@ -150,7 +151,7 @@
                             <!-- Los tipos de localización -->
 
                             <div class="col">
-                                <select class="form-select w-100 mb-2" v-model="carta.tipoLocalizacion.id">
+                                <select class="form-select w-100 mb-2" v-model="carta.tipoLocalizacion">
 
                                     <option disabled>Tipo de localización..</option>
                                     <option v-if="!estaEnCataluna" :value="'5'" selected>Provincia</option>
@@ -160,7 +161,7 @@
                                     <option value="4">Entidad Población</option>
                                 </select>
 
-                                <div v-if="carta.tipoLocalizacion.id == 1">
+                                <div v-if="carta.tipoLocalizacion == 1">
                                     <div class="mb-2">
                                         <label for="nomCarretera" class="form-label" style="margin-top: 4px">Nom
                                             Carretera</label>
@@ -179,7 +180,7 @@
                                             placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
-                                <div v-else-if="carta.tipoLocalizacion.id == 2">
+                                <div v-else-if="carta.tipoLocalizacion == 2">
                                     <div class="mb-2">
                                         <label for="nombrePuntoSingular" class="form-label" style="margin-top: 4px">Nombre</label>
                                         <input type="text" class="form-control w-100" id="nombrePuntoSingular" v-model="descripcionLocalizacion.nombrePuntoSingular">
@@ -193,7 +194,7 @@
                                             placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
-                                <div v-else-if="carta.tipoLocalizacion.id == 3">
+                                <div v-else-if="carta.tipoLocalizacion == 3">
                                     <div class="mb-2">
                                         <label for="tipoVia" class="form-label" style="margin-top: 4px">Tipo de Via</label>
                                         <input type="text" class="form-control w-100" id="tipoVia" v-model="descripcionLocalizacion.tipoVia">
@@ -219,7 +220,7 @@
                                             placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
-                                <div v-else-if="carta.tipoLocalizacion.id == 4">
+                                <div v-else-if="carta.tipoLocalizacion == 4">
                                     <div class="mb-2">
                                         <textarea class="form-control" id="antecedentes" style="height: 275px;"
                                             placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
@@ -311,11 +312,9 @@ export default {
                 dataHoraTrucada: '',
                 descripcionLocalizacion: '',
                 idUsuario: '',
-                interlocutor:{},
-                tipoLocalizacion:{},
-                incidente:{
-
-                },
+                interlocutor: '1',
+                tipoLocalizacion:'',
+                incidente: '',
             },
 
             // Recoger Datos
@@ -337,7 +336,7 @@ export default {
     },
     mounted() {
         this.contador();
-        this.carta.tipoLocalizacion.id = '5';
+        this.carta.tipoLocalizacion = '5';
     },
     methods: {
         finalizarLlamada(){
@@ -373,11 +372,11 @@ export default {
                 .catch((error) => {});
         },
         cambiarLocalizacion() {
-            if (this.carta.tipoLocalizacion.id) {
-                this.carta.tipoLocalizacion.id = '5';
+            if (this.carta.tipoLocalizacion) {
+                this.carta.tipoLocalizacion = '5';
                 this.carta.idMunicipio = '';
             } else {
-                this.carta.tipoLocalizacion.id = '';
+                this.carta.tipoLocalizacion = '';
             }
         },
         recogerCartaDeLlamada(){
@@ -449,7 +448,7 @@ export default {
             // console.log('incidentes:', this.incidentesFiltrados);
         },
         mostrarDefinicion() {
-            const opcionSeleccionada = this.incidentesFiltrados.find(opcion => opcion.id === this.carta.incidente.id);
+            const opcionSeleccionada = this.incidentesFiltrados.find(opcion => opcion.id === this.carta.incidente);
             const dIncidente = opcionSeleccionada ? opcionSeleccionada.definicio : '';
             this.definicioIncidente = dIncidente;
         },
@@ -504,7 +503,7 @@ export default {
         this.carta.idLlamada = 'ID-CL-' + this.cartasDeLlamada.length;
     },
     watch: {
-    'carta.tipoLocalizacion.id': {
+    'carta.tipoLocalizacion': {
       handler() {
         this.descripcionLocalizacion = {};
         this.carta.detallesLocalizacion = '';

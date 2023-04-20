@@ -6,12 +6,12 @@ var map = new mapboxgl.Map({
     zoom: 9
 });
 
-// fetch('/EMT/public/api/mapVista')
+//  let datos;
+// fetch('/EMT/public/api/mapa')
 //     .then(response => response.json())
 //     .then(data => {
 
 //         datos = data;
-
-
+//         console.log(datos);
 
 //     })

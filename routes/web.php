@@ -69,3 +69,6 @@ Route::get('admExpedientes', function () {
 });
 
 // Route::resource('admExpedients', admExpedientsController::class);
+
+
+Route::get('mapa', [App\Http\Controllers\MapController::class, 'mapa']);
