@@ -2,23 +2,25 @@
 
 @section('title', 'Mapa')
 @section('carta')
-<a class="rounded-5 btn btn-warning text-white" style=" font-weight: 700;" type="submit" href="{{ url('/carta') }}">
-<i class="bi bi-plus-lg"></i>
-    Call card
-</a>
+    <a class="rounded-5 btn btn-warning text-white" style=" font-weight: 700;" type="submit" href="{{ url('/carta') }}">
+        <i class="bi bi-plus-lg"></i>
+        Call card
+    </a>
 @endsection
 
 @section('hrefmap')
-<link rel="stylesheet" href="{{ asset('css/mapa.css') }}">
-<link rel="stylesheet" href="{{ asset('js/mapa.js') }}">
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link rel="stylesheet" href="{{ asset('css/mapa.css') }}">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
 @endsection
 
 @section('content')
-<body>
-    <div id="map">
 
-    </div>
-</body>
+    <body>
+        <div id="map">
+
+        </div>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+        <script src="{{ asset('js/mapa.js') }}"></script>
+    </body>
 @endsection
