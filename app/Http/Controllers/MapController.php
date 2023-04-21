@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class MapController extends Controller
 {
-    function mapa (){
+    function mapa()
+    {
 
         $datos = agencies::table('broggi.agencies')
-        ->select('nom', 'carrer', 'codi_postal')
-        ->get();
+            ->select('nom', 'carrer', 'codi_postal')
+            ->get();
 
         return view('Mapa.mapa', compact('datos'));
     }
