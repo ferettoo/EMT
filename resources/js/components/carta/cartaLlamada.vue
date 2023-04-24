@@ -22,7 +22,7 @@
                         <div class="row">
                             <label for="save" class="col-9 text-secondary">Guardar interlocutor?</label>
                             <div class="col-3">
-                                <input type="checkbox" name="save" id="save">
+                                <input type="checkbox" name="save" id="save" v-model="carta.guardarInterlocutor">
                             </div>
                         </div>
                         <div class="mb-2">
@@ -39,8 +39,8 @@
                         </div>
                         <div class="custom-height">
                             <label for="antecedentes" class="form-label">Antecedentes del Telefóno</label>
-                            <textarea class="form-control h-100" id="antecedentes" ></textarea>
-                            <!-- v-model="carta.interlocutor.antecedentesInterlocutor" -->
+                            <textarea class="form-control h-100" id="antecedentes" v-model="carta.antecedentesInterlocutor"></textarea>
+
                         </div>
                     </div>
                     <div class="col-8">
@@ -73,7 +73,7 @@
 
                             </select>
                             <textarea class="form-control" id="antecedentes" rows="3"
-                            placeholder="Explicación del incidente.." disabled>{{ definicioIncidente }}</textarea>
+                            placeholder="Explicación del incidente.." v-model="definicioIncidente" disabled></textarea>
                         </div>
                             <p class="fs-6 mb-1"><strong>Localización</strong>
                             <button id="open_localizacion" class="helpbox_boton" type="button">
@@ -250,21 +250,23 @@
                         <th scope="col">Creación</th>
                     </tr>
                 </thead>
-                <tbody class="text-center" style="background-color: #f9f9f9">
+                <tbody class="text-center" style="background-color: #f9f9f9" >
                     <tr>
                         <th scope="row">0001</th>
                         <td><button class="btn btn-danger btn-sm">Inmobilizado</button></td>
                         <td><button class="btn btn-primary btn-sm">Asociar</button></td>
                         <td>12-10-2023</td>
                     </tr>
-                    <tr>
+                    <tr v-for="expediente in expedientes" :key="expediente.id" >
+                        <th scope="col">{{ expediente.codi }}</th>
+                        <th scope="col">{{ expediente.estat_expedients_id }}</th>
+                        <th scope="col"><button class="btn btn-primary btn-sm">Asociar</button></th>
+                        <th scope="col"> Fecha de creación</th>
+                        <!-- Poner la ultima fecha de creación de la carta asociada al expediente -->
+                        <!-- Si la carta de llamada tiene el mismo id que el expediente, que recoja
+                            la primera carta de llamada y muestre la fecha. -->
 
-                        <th>1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
                     </tr>
-
                 </tbody>
                 <tfoot style="background-color: #f9f9f9" class="mb-1">
                     <!-- footer -->
@@ -304,17 +306,17 @@ export default {
             carta:{
                 tiempo:'00:00:00',
                 idLlamada: '',
-                idExpediente: '1', //Pensar como poner el expediente asociado
                 dataHoraTrucada: '',
                 descripcionLocalizacion: '',
                 idUsuario: '',
-                interlocutor: '1',
                 tipoLocalizacion:'',
                 incidente: '',
+                estadoExpediente: '1',
             },
 
             // Recoger Datos
             cartasDeLlamada: [],
+            interlocutor: [],
             expedientes: [],
             tipoIncidentes: [],
             incidentes:[],
@@ -331,8 +333,12 @@ export default {
         }
     },
     mounted() {
+        this.recogerCartaDeLlamada();
+        this.recogerExpedientes();
         this.contador();
         this.carta.tipoLocalizacion = '5';
+        this.carta.idLlamada = 'ID-CT-' + this.cartasDeLlamada.length;
+        this.carta.idExpediente = 'ID-EX-' + this.expedientes.length;
     },
     methods: {
         finalizarLlamada(){
@@ -341,6 +347,7 @@ export default {
             // this.dataHoraTrucada();
             this.concatenarDetallesLocalizacion();
             this.carta.idUsuario = this.usuari.id;
+
             // AGREGAR ESTO CUANDO TENGAMOS QUE VISUALIZAR LA CARTA DE LLAMADA
             // const separar = descLoc.split(';')
             // console.log(separar.length);
@@ -364,7 +371,7 @@ export default {
                 .get("usuari")
                 .then((response) => {
                     me.usuari = response.data;
-                    console.log(me.usuari.id);
+                    // console.log(me.usuari.id);
                 })
                 .catch((error) => {});
         },
@@ -382,6 +389,26 @@ export default {
                 .get("cartes_trucades")
                 .then((response) => {
                     me.cartasDeLlamada = response.data;
+                })
+                .catch((error) => {});
+        },
+        recogerExpedientes(){
+            const me = this;
+            axios
+                .get("expediente")
+                .then((response) => {
+                    me.expedientes = response.data;
+                    // console.log(response.data);
+                })
+                .catch((error) => {});
+        },
+        recogerInterlocutor(){
+            const me = this;
+            axios
+                .get("interlocutor")
+                .then((response) => {
+                    me.interlocutor = response.data;
+                    // console.log(response.data);
                 })
                 .catch((error) => {});
         },
@@ -438,7 +465,6 @@ export default {
         },
         incidentesVisibles(){
             // console.log('tipoIncidente: ',this.tipoIncidente);
-
             this.incidentesFiltrados = this.incidentes.filter(opcion => opcion.tipus_incidents_id == this.tipoIncidente_id);
             this.definicioIncidente = '';
 
@@ -487,7 +513,7 @@ export default {
             }
             this.carta.dataHoraTrucada =  date.toLocaleString('es-ES', options).replace(/\//g, '-').replace(',', '');
                 console.log(date.toLocaleString('es-ES', options));
-        }
+        },
 
     },
     created() {
@@ -496,9 +522,10 @@ export default {
         this.recogerMunicipios();
         this.recogerProvincias();
         this.recogerComarcas();
-        this.recogerCartaDeLlamada();
-        this.recogerUsuarios()
-        this.carta.idLlamada = 'ID-CL-' + this.cartasDeLlamada.length;
+        this.recogerUsuarios();
+        this.recogerInterlocutor();
+        // this.mostrarExpedientes();
+
     },
     watch: {
     'carta.tipoLocalizacion': {
