@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 
-use App\Models\cartes_trucades;
+use DateTime;
+use App\Models\expedients;
 use Illuminate\Http\Request;
+use App\Models\interlocutors;
+use App\Models\cartes_trucades;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartaResources;
 use Illuminate\Database\QueryException;
@@ -25,35 +29,57 @@ class CartaController extends Controller
      */
     public function store(Request $request)
     {
-        $carta = new cartes_trucades();
+        DB::beginTransaction();
 
-        // En los $request->input hemos de añadir los nombres del objeto que añadimos. un ejemplo seria: idLlamada
-
-        $carta->codi_trucada = $request->input('idLlamada');
-        $carta->data_hora_trucada = $request->input('dataHoraTrucada');
-        $carta->durada = $request->input('tiempo');
-        $carta->interlocutor_id = $request->input('interlocutor');
-        $carta->telefon = $request->input('telefono');
-        $carta->nom = $request->input('nombre');
-        $carta->cognoms = $request->input('apellido');
-        $carta->nota_comuna = $request->input('notaComuna');
-        $carta->tipus_localitzacions_id = $request->input('tipoLocalizacion');
-        $carta->descripcio_localitzacio = $request->input('descripcionLocalizacion');
-        $carta->detall_localitzacio = $request->input('detallesLocalizacion');
-        $carta->altres_ref_localitzacio = $request->input('detallesLocalizacion');
-        $carta->municipis_id = $request->input('idMunicipio');
-        $carta->provincies_id = $request->input('idProvincia');
-        $carta->incidents_id = $request->input('incidente');
-        $carta->expedients_id = $request->input('idExpediente');
-        $carta->usuaris_id = $request->input('idUsuario');
-
-        // Añadir interlocutor
-
-        // $expediente = new expediente
         try {
+
+            $carta = new cartes_trucades();
+            $interlocutor = new interlocutors();
+            $expediente = new expedients();
+
+            // Interlocutor de la carta
+            if ($request->input('guardarInterlocutor') == true) {
+                $interlocutor->telefon = $request->input('telefono');
+                $interlocutor->antecedents = $request->input('antecedentesInterlocutor');
+                $interlocutor->nom = $request->input('nombre');
+                $interlocutor->cognoms = $request->input('apellido');
+                $interlocutor->save();
+            }
+
+            // Expediente de la carta
+            $expediente->codi = $request->input('idExpediente');
+            $expediente->estat_expedients_id = $request->input('estadoExpediente');
+            $expediente->save();
+
+            // En los $request->input hemos de añadir los nombres del objeto que añadimos. un ejemplo seria: idLlamada
+
+            $carta->codi_trucada = $request->input('idLlamada');
+            $carta->data_hora_trucada = $request->input('dataHoraTrucada');
+            $carta->data_hora_trucada = new \DateTime($request->input('dataHoraTrucada'));
+            $carta->durada = $request->input('tiempo');
+            $carta->interlocutors_id = $interlocutor->id;
+            $carta->telefon = $request->input('telefono');
+            $carta->nom = $request->input('nombre');
+            $carta->cognoms = $request->input('apellido');
+            $carta->nota_comuna = $request->input('notaComuna');
+            $carta->tipus_localitzacions_id = $request->input('tipoLocalizacion');
+            $carta->decripcio_localitzacio = $request->input('descripcionLocalizacion');
+            $carta->detall_localitzacio = $request->input('detallesLocalizacion');
+            $carta->altres_ref_localitzacio = $request->input('otrasRefLocalizacion');
+            $carta->municipis_id = $request->input('idMunicipio');
+            $carta->provincies_id = $request->input('idProvincia');
+            $carta->incidents_id = $request->input('incidente');
+            $carta->expedients_id = $expediente->id;
+            $carta->usuaris_id = $request->input('idUsuario');
+
             $carta->save();
+
+            DB::commit();
+
             $response = (new CartaResources($carta))->response()->setStatusCode(201);
         } catch (QueryException $ex) {
+
+            DB::rollback();
             $mensaje = 'Error a la hora de añadir la carta de llamada';
             $response = \response()->json(['error' => $mensaje], 400);
         }

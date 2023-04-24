@@ -22,7 +22,7 @@
                         <div class="row">
                             <label for="save" class="col-9 text-secondary">Guardar interlocutor?</label>
                             <div class="col-3">
-                                <input type="checkbox" name="save" id="save">
+                                <input type="checkbox" name="save" id="save" v-model="carta.guardarInterlocutor">
                             </div>
                         </div>
                         <div class="mb-2">
@@ -39,7 +39,8 @@
                         </div>
                         <div class="custom-height">
                             <label for="antecedentes" class="form-label">Antecedentes del Telefóno</label>
-                            <textarea class="form-control h-100" id="antecedentes" v-model="carta.interlocutor.antecedentesInterlocutor"></textarea>
+                            <textarea class="form-control h-100" id="antecedentes" v-model="carta.antecedentesInterlocutor"></textarea>
+
                         </div>
                     </div>
                     <div class="col-8">
@@ -65,14 +66,14 @@
                                 <option v-for="tipoIncidente in tipoIncidentes" :key="tipoIncidente.id" :value="tipoIncidente.id">{{ tipoIncidente.nom }}</option>
                             </select>
                             <select class="form-select w-100 mb-3" aria-label="Default select example"
-                            v-model="carta.incidente.id"
+                            v-model="carta.incidente"
                             @change="mostrarDefinicion()">
                                 <option disabled value=""> Incidente en Concreto..</option>
-                                <option v-for="incidente in incidentesFiltrados" :key="incidente.id" :value="incidente.id" >{{ incidente.nom}}</option>
+                                <option v-for="incidente in incidentesFiltrados" :key="incidente.id" :value="incidente.id" >{{ incidente.nom }}</option>
 
                             </select>
                             <textarea class="form-control" id="antecedentes" rows="3"
-                            placeholder="Explicación del incidente.." disabled>{{ definicioIncidente }}</textarea>
+                            placeholder="Explicación del incidente.." v-model="definicioIncidente" disabled></textarea>
                         </div>
                             <p class="fs-6 mb-1"><strong>Localización</strong>
                             <button id="open_localizacion" class="helpbox_boton" type="button">
@@ -150,7 +151,7 @@
                             <!-- Los tipos de localización -->
 
                             <div class="col">
-                                <select class="form-select w-100 mb-2" v-model="carta.tipoLocalizacion.id">
+                                <select class="form-select w-100 mb-2" v-model="carta.tipoLocalizacion">
 
                                     <option disabled>Tipo de localización..</option>
                                     <option v-if="!estaEnCataluna" :value="'5'" selected>Provincia</option>
@@ -160,7 +161,7 @@
                                     <option value="4">Entidad Población</option>
                                 </select>
 
-                                <div v-if="carta.tipoLocalizacion.id == 1">
+                                <div v-if="carta.tipoLocalizacion == 1">
                                     <div class="mb-2">
                                         <label for="nomCarretera" class="form-label" style="margin-top: 4px">Nom
                                             Carretera</label>
@@ -179,7 +180,7 @@
                                             placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
-                                <div v-else-if="carta.tipoLocalizacion.id == 2">
+                                <div v-else-if="carta.tipoLocalizacion == 2">
                                     <div class="mb-2">
                                         <label for="nombrePuntoSingular" class="form-label" style="margin-top: 4px">Nombre</label>
                                         <input type="text" class="form-control w-100" id="nombrePuntoSingular" v-model="descripcionLocalizacion.nombrePuntoSingular">
@@ -193,7 +194,7 @@
                                             placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
-                                <div v-else-if="carta.tipoLocalizacion.id == 3">
+                                <div v-else-if="carta.tipoLocalizacion == 3">
                                     <div class="mb-2">
                                         <label for="tipoVia" class="form-label" style="margin-top: 4px">Tipo de Via</label>
                                         <input type="text" class="form-control w-100" id="tipoVia" v-model="descripcionLocalizacion.tipoVia">
@@ -219,7 +220,7 @@
                                             placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
                                     </div>
                                 </div>
-                                <div v-else-if="carta.tipoLocalizacion.id == 4">
+                                <div v-else-if="carta.tipoLocalizacion == 4">
                                     <div class="mb-2">
                                         <textarea class="form-control" id="antecedentes" style="height: 275px;"
                                             placeholder="Explicación breve.." v-model="carta.detallesLocalizacion"></textarea>
@@ -249,26 +250,26 @@
                         <th scope="col">Creación</th>
                     </tr>
                 </thead>
-                <tbody class="text-center" style="background-color: #f9f9f9">
+                <tbody class="text-center" style="background-color: #f9f9f9" >
                     <tr>
                         <th scope="row">0001</th>
                         <td><button class="btn btn-danger btn-sm">Inmobilizado</button></td>
                         <td><button class="btn btn-primary btn-sm">Asociar</button></td>
                         <td>12-10-2023</td>
                     </tr>
-                    <tr>
+                    <tr v-for="expediente in expedientes" :key="expediente.id" >
+                        <th scope="col">{{ expediente.codi }}</th>
+                        <th scope="col">{{ expediente.estat_expedients_id }}</th>
+                        <th scope="col"><button class="btn btn-primary btn-sm">Asociar</button></th>
+                        <th scope="col"> Fecha de creación</th>
+                        <!-- Poner la ultima fecha de creación de la carta asociada al expediente -->
+                        <!-- Si la carta de llamada tiene el mismo id que el expediente, que recoja
+                            la primera carta de llamada y muestre la fecha. -->
 
-                        <th>1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
                     </tr>
-
                 </tbody>
                 <tfoot style="background-color: #f9f9f9" class="mb-1">
-                    <tr class="float-end">
-                        <td><button class="btn btn-warning btn-sm"><strong>Nuevo Expediente</strong></button></td>
-                    </tr>
+                    <!-- footer -->
                 </tfoot>
 
             </table>
@@ -282,11 +283,9 @@
     </div>
 </div>
 
-    </div>
+</div>
 
 </template>
-
-
 
 <script>
 import * as boostrap from 'bootstrap';
@@ -307,19 +306,17 @@ export default {
             carta:{
                 tiempo:'00:00:00',
                 idLlamada: '',
-                idExpediente: '001', //Pensar como poner el expediente asociado
                 dataHoraTrucada: '',
                 descripcionLocalizacion: '',
                 idUsuario: '',
-                interlocutor:{},
-                tipoLocalizacion:{},
-                incidente:{
-
-                },
+                tipoLocalizacion:'',
+                incidente: '',
+                estadoExpediente: '1',
             },
 
             // Recoger Datos
             cartasDeLlamada: [],
+            interlocutor: [],
             expedientes: [],
             tipoIncidentes: [],
             incidentes:[],
@@ -336,19 +333,25 @@ export default {
         }
     },
     mounted() {
+        this.recogerCartaDeLlamada();
+        this.recogerExpedientes();
         this.contador();
-        this.carta.tipoLocalizacion.id = '5';
+        this.carta.tipoLocalizacion = '5';
+        this.carta.idLlamada = 'ID-CT-' + this.cartasDeLlamada.length;
+        this.carta.idExpediente = 'ID-EX-' + this.expedientes.length;
     },
     methods: {
         finalizarLlamada(){
             clearInterval(this.intervalId);
             this.intervalId = null;
-            this.dataHoraTrucada();
+            // this.dataHoraTrucada();
             this.concatenarDetallesLocalizacion();
             this.carta.idUsuario = this.usuari.id;
+
             // AGREGAR ESTO CUANDO TENGAMOS QUE VISUALIZAR LA CARTA DE LLAMADA
             // const separar = descLoc.split(';')
             // console.log(separar.length);
+            this.carta.dataHoraTrucada = new Date().toISOString();
 
             const me = this;
             axios
@@ -368,16 +371,16 @@ export default {
                 .get("usuari")
                 .then((response) => {
                     me.usuari = response.data;
-                    console.log(me.usuari.id);
+                    // console.log(me.usuari.id);
                 })
                 .catch((error) => {});
         },
         cambiarLocalizacion() {
-            if (this.carta.tipoLocalizacion.id) {
-                this.carta.tipoLocalizacion.id = '5';
+            if (this.carta.tipoLocalizacion) {
+                this.carta.tipoLocalizacion = '5';
                 this.carta.idMunicipio = '';
             } else {
-                this.carta.tipoLocalizacion.id = '';
+                this.carta.tipoLocalizacion = '';
             }
         },
         recogerCartaDeLlamada(){
@@ -386,6 +389,26 @@ export default {
                 .get("cartes_trucades")
                 .then((response) => {
                     me.cartasDeLlamada = response.data;
+                })
+                .catch((error) => {});
+        },
+        recogerExpedientes(){
+            const me = this;
+            axios
+                .get("expediente")
+                .then((response) => {
+                    me.expedientes = response.data;
+                    // console.log(response.data);
+                })
+                .catch((error) => {});
+        },
+        recogerInterlocutor(){
+            const me = this;
+            axios
+                .get("interlocutor")
+                .then((response) => {
+                    me.interlocutor = response.data;
+                    // console.log(response.data);
                 })
                 .catch((error) => {});
         },
@@ -442,14 +465,13 @@ export default {
         },
         incidentesVisibles(){
             // console.log('tipoIncidente: ',this.tipoIncidente);
-
             this.incidentesFiltrados = this.incidentes.filter(opcion => opcion.tipus_incidents_id == this.tipoIncidente_id);
             this.definicioIncidente = '';
 
             // console.log('incidentes:', this.incidentesFiltrados);
         },
         mostrarDefinicion() {
-            const opcionSeleccionada = this.incidentesFiltrados.find(opcion => opcion.id === this.carta.incidente.id);
+            const opcionSeleccionada = this.incidentesFiltrados.find(opcion => opcion.id === this.carta.incidente);
             const dIncidente = opcionSeleccionada ? opcionSeleccionada.definicio : '';
             this.definicioIncidente = dIncidente;
         },
@@ -490,7 +512,8 @@ export default {
                 hour12: false
             }
             this.carta.dataHoraTrucada =  date.toLocaleString('es-ES', options).replace(/\//g, '-').replace(',', '');
-        }
+                console.log(date.toLocaleString('es-ES', options));
+        },
 
     },
     created() {
@@ -499,12 +522,13 @@ export default {
         this.recogerMunicipios();
         this.recogerProvincias();
         this.recogerComarcas();
-        this.recogerCartaDeLlamada();
-        this.recogerUsuarios()
-        this.carta.idLlamada = 'ID-CL-' + this.cartasDeLlamada.length;
+        this.recogerUsuarios();
+        this.recogerInterlocutor();
+        // this.mostrarExpedientes();
+
     },
     watch: {
-    'carta.tipoLocalizacion.id': {
+    'carta.tipoLocalizacion': {
       handler() {
         this.descripcionLocalizacion = {};
         this.carta.detallesLocalizacion = '';

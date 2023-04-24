@@ -3,14 +3,17 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\MapController;
 use App\Http\Controllers\Api\CartaController;
 use App\Http\Controllers\Api\GraficoController;
+use App\Http\Controllers\Api\UsuarioController;
 use App\Http\Controllers\Api\ComarcasController;
+use App\Http\Controllers\Api\ExpedienteController;
 use App\Http\Controllers\Api\IncidenteController;
+use App\Http\Controllers\Api\InterlocutorController;
 use App\Http\Controllers\Api\MunicipiosController;
 use App\Http\Controllers\Api\ProvinciasController;
 use App\Http\Controllers\Api\tipoIncidenteController;
-use App\Http\Controllers\Api\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +39,7 @@ Route::apiResource('incidents', IncidenteController::class);
 Route::apiResource('municipis', MunicipiosController::class);
 Route::apiResource('provincies', ProvinciasController::class);
 Route::apiResource('comarques', ComarcasController::class);
+Route::get('mapa', [MapController::class, 'datos']);
+Route::apiResource('expediente', ExpedienteController::class );
+Route::apiResource('interlocutor', InterlocutorController::class );
 

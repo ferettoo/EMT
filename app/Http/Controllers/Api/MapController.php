@@ -16,6 +16,5 @@ class MapController extends Controller
         ->get();
 
         return $datos;
-
     }
 }
