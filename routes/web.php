@@ -50,17 +50,21 @@ Route::resource('admUsuarios', AdmUsuariosController::class);
 Route::resource('expedientes', ExpedientesController::class);
 // Route::resource('cartasExpediente', cartasDeExpedienteController::class);
 
+// MOSTRAR EXPEDIENTES
 // pirula(es necesario crear un nueva ruta con el nuevo metodo añadido el controlador)
 Route::get('editCartasExpediente/{expediente}',  [ExpedientesController::class, 'editCartasExpediente']);
 
-
+// MOSTRAR - ESTADO DE AGENCIA
 Route::get('editEstadoAgencia/{carta}',  [ExpedientesController::class, 'editEstadoAgencia']);
 // Route::resource('cartasExpediente', CartasAgenciasController::class);
 //Route::resource('admUsuarios', AdmUsuarios::class);
 
+// ACTUALIZAR ESTADO AGENCIA
+Route::put('updateEstadoAgencia/{carta}/{agencia}',  [ExpedientesController::class, 'updateEstadoAgencia']);
+
+// MOSTRAR LAS CARTAS DEL EXPEDIENTE
 Route::get('editMostrarCarta/{carta}',  [ExpedientesController::class, 'editMostrarCarta']);
 
-// Route::get('editMostrarCarta/{expediente}',  [ExpedientesController::class, 'editMostrarCarta']);
 //Ruta para los gráficos
 Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
 
@@ -69,3 +73,4 @@ Route::get('admExpedientes', function () {
 });
 
 // Route::resource('admExpedients', admExpedientsController::class);
+

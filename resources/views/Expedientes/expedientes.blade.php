@@ -13,11 +13,13 @@
 @endsection
 
 @section('content')
+<br>
+@include('partials.mensajes')
+<br>
    
     <div class="container mt-0">
         <!-- TITULO Y SUBTITULO -->
-        {{-- <div class="card mx-5 text-center border-0"> --}}
-            <div class="card-body  mx-5 text-center border-0">
+            <div class="card-body mx-5 text-center border-0">
                 <!-- TITULO Y SUBTITULO-->
                 <div class="d-flex ">
                     <h1 class="titulo"> Gestión de expedientes</h1>
@@ -29,7 +31,7 @@
                     <h3 class="subtitulo">Estado de expedientes</h3>
                 </div>
             </div>
-        {{-- </div> --}}
+       
 
 
         <!-- SELECCION USUARIOS  -->
@@ -38,7 +40,7 @@
         {{-- <div class="row"> --}}
             <!-- OPCIONES DE BUSQUEDA-->
             <div class="col-12">
-                <div class="card mt-0 mx-5 mt-3 text-center border-0">
+                <div class="card mt-0 mx-5 mt-0 text-center border-0">
 
                     <!-- NUEVO EXPEDIENTE Y ORDENAR -->
                     <form action="{{ action([App\Http\Controllers\ExpedientesController::class, 'index']) }}">
@@ -46,11 +48,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-4">
-                                    <!-- boton de añadir usuario -->
-                                    {{-- <a class="shadow btn btn-warning text-white rounded-3" href="#">
-                                    <!-- <i class=" bi bi-plus-circle "></i> -->
-                                    Nuevo Expediente
-                                </a> --}}
+         
                                 </div>
 
                                 <!-- DESPLEGABLE DE BUSQUEDA -->
