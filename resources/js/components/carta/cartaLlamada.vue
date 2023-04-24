@@ -267,9 +267,7 @@
 
                 </tbody>
                 <tfoot style="background-color: #f9f9f9" class="mb-1">
-                    <tr class="float-end">
-                        <td><button class="btn btn-warning btn-sm"><strong>Nuevo Expediente</strong></button></td>
-                    </tr>
+                    <!-- footer -->
                 </tfoot>
 
             </table>
@@ -283,11 +281,9 @@
     </div>
 </div>
 
-    </div>
+</div>
 
 </template>
-
-
 
 <script>
 import * as boostrap from 'bootstrap';
@@ -308,7 +304,7 @@ export default {
             carta:{
                 tiempo:'00:00:00',
                 idLlamada: '',
-                idExpediente: '001', //Pensar como poner el expediente asociado
+                idExpediente: '1', //Pensar como poner el expediente asociado
                 dataHoraTrucada: '',
                 descripcionLocalizacion: '',
                 idUsuario: '',
@@ -342,12 +338,13 @@ export default {
         finalizarLlamada(){
             clearInterval(this.intervalId);
             this.intervalId = null;
-            this.dataHoraTrucada();
+            // this.dataHoraTrucada();
             this.concatenarDetallesLocalizacion();
             this.carta.idUsuario = this.usuari.id;
             // AGREGAR ESTO CUANDO TENGAMOS QUE VISUALIZAR LA CARTA DE LLAMADA
             // const separar = descLoc.split(';')
             // console.log(separar.length);
+            this.carta.dataHoraTrucada = new Date().toISOString();
 
             const me = this;
             axios
@@ -489,6 +486,7 @@ export default {
                 hour12: false
             }
             this.carta.dataHoraTrucada =  date.toLocaleString('es-ES', options).replace(/\//g, '-').replace(',', '');
+                console.log(date.toLocaleString('es-ES', options));
         }
 
     },
