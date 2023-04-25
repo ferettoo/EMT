@@ -21,6 +21,6 @@
 
         </div>
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-        <script src="{{ asset('js/mapa.js') }}"></script>
+        <script src="{{ asset('js/mapas.js') }}"></script>
     </body>
 @endsection
