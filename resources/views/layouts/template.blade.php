@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @yield('hrefmap')
     <script src="https://kit.fontawesome.com/2cf292bb20.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="{{ asset('images/logotipo_final2.png') }}">
     <link rel="stylesheet" href="{{ asset('css/css.css') }}">
     <title>@yield('title')</title>
     @yield('admUsuariosCss')
