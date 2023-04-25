@@ -322,7 +322,7 @@ export default {
                 tipoLocalizacion:'',
                 incidente: '',
                 estadoExpediente: '1',
-                nuevoExpediente: 1,
+
             },
 
             // Recoger Datos
@@ -355,15 +355,13 @@ export default {
             this.intervalId = null;
             this.concatenarDetallesLocalizacion();
             this.carta.idUsuario = this.usuari.id;
+            this.carta.dataHoraTrucada = new Date().toISOString();
 
             // AGREGAR ESTO CUANDO TENGAMOS QUE VISUALIZAR LA CARTA DE LLAMADA
             // const separar = descLoc.split(';')
             // console.log(separar.length);
-            this.carta.dataHoraTrucada = new Date().toISOString();
 
-            // Comprobar que el id del expediente es nuevo o no
-
-
+            // Enviar la carta
             const me = this;
             axios
                 .post("cartes_trucades", me.carta)
@@ -516,7 +514,6 @@ export default {
         },
         asociarExpediente(expediente){
             this.carta.idExpediente = expediente.codi;
-            console.log(expediente.codi);
         }
 
     },
@@ -537,7 +534,7 @@ export default {
         this.descripcionLocalizacion = {};
         this.carta.detallesLocalizacion = '';
       }
-    }
+    },
   }
 }
 </script>
