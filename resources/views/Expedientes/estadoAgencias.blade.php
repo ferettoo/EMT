@@ -94,8 +94,9 @@
         <br>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             {{-- CONFIRMACION DE EDICIÓN --}}
-            <button class="btn btn-secondary text-white" type="submit">
-                Salir</button>
+            <a class="btn btn-secondary text-white"  href="{{ url('editCartasExpediente/'.$carta->expedients_id) }}">
+                Volver a cartas
+            </a>
         </div>
     </div>
     </div>
