@@ -40,6 +40,10 @@ Route::apiResource('municipis', MunicipiosController::class);
 Route::apiResource('provincies', ProvinciasController::class);
 Route::apiResource('comarques', ComarcasController::class);
 Route::get('mapa', [MapController::class, 'datos']);
-Route::apiResource('expediente', ExpedienteController::class );
-Route::apiResource('interlocutor', InterlocutorController::class );
-
+Route::apiResource('expediente', ExpedienteController::class);
+Route::apiResource('interlocutor', InterlocutorController::class);
+Route::get('graficosGirona', [GraficoController::class, 'incidentesGirona']);
+Route::get('graficosBcn', [GraficoController::class, 'incidentesBcn']);
+Route::get('graficosLleida', [GraficoController::class, 'incidentesLleida']);
+Route::get('graficosTarragona', [GraficoController::class, 'incidentesTarragona']);
+Route::get('graficosIncidentesMes', [GraficoController::class, 'incidentesPorMes']);

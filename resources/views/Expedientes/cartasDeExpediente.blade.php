@@ -21,7 +21,7 @@
         <div class="card-body mx-5 text-center border-0">
             <!-- TITULO Y SUBTITULO-->
             <div class="d-flex ">
-                <h1 class="titulo">Cartas de llamadas</h3>
+                <h1 class="titulo">Cartas de llamadas <i class="bi bi-envelope-fill info"></i></h3>
             </div>
             <!-- linea de division -->
             <hr id="linea" class="w-100 clearfix d-md m-0" />

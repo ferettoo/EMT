@@ -2,10 +2,10 @@
 
 @section('title', 'Graficos')
 @section('carta')
-<a class="rounded-5 btn btn-warning text-white" style=" font-weight: 700;" type="submit" href="{{ url('/carta') }}">
-<i class="bi bi-plus-lg"></i>
-    Call card
-</a>
+    <a class="rounded-5 btn btn-warning text-white" style=" font-weight: 700;" type="submit" href="{{ url('/carta') }}">
+        <i class="bi bi-plus-lg"></i>
+        Call card
+    </a>
 @endsection
 
 @section('content')
@@ -46,7 +46,7 @@
                 <div class="col-3">
                     <!-- En esta primera columna pondremos los datos con el porcentage -->
 
-                    <div class="container" id="porcentages">
+                    <div class="container porcentages">
 
                         @foreach ($incidentes as $key => $incident)
                             <h5 class="incidentes">{{ $incident->nom . ' ' . $porcentages[$key] . '%' }}</h5>
@@ -59,7 +59,7 @@
                 <div class="col-7">
                     <!-- Segunda columna donde queremos poner el gráfico -->
 
-                    <div width="" heigth="">
+                    <div width="" heigth="" class="pepe">
                         <canvas id="grafico"></canvas>
                     </div>
 
@@ -72,13 +72,118 @@
 
                 </div>
 
+
+                <!-- Gràfics BCN -->
+                <div class="col-2">
+
+                    <div class="container porcentagesProvincia">
+
+                        @foreach ($incidentesBcn as $key => $incident)
+                            <h5 class="incidentesProvincia">{{ $incident->nom . ' ' . $porcentagesBcn[$key] . '%' }}</h5>
+                        @endforeach
+
+                    </div>
+
+                    <div>
+                        <h5 class="incidentes">Llamadas: {{ $llamadasBcn }}</h2>
+                    </div>
+                </div>
+
+                <div class="col-4 mt-5">
+                    <h2 class="subtituloDelGrafico">Barcelona</h2>
+                    <div width="" heigth="">
+                        <canvas id="graficoBcn"></canvas>
+                    </div>
+                </div>
+
+                <!-- Gràfics GIR  -->
+                <div class="col-2">
+                    <div class="container porcentagesProvincia">
+
+                        @foreach ($incidentesGir as $key => $incident)
+                            <h5 class="incidentesProvincia">{{ $incident->nom . ' ' . $porcentagesGir[$key] . '%' }}</h5>
+                        @endforeach
+
+                    </div>
+
+                    <div>
+                        <h5 class="incidentes">Llamadas: {{ $llamadasGir }}</h5>
+                    </div>
+                </div>
+
+                <div class="col-4 mt-5">
+                    <h2 class="subtituloDelGrafico">Girona</h2>
+                    <div width="" heigth="">
+                        <canvas id="graficoGir"></canvas>
+                    </div>
+                </div>
+
+
+                <!-- Gràfics LLEIDA -->
+                <div class="col-2">
+                    <div class="container porcentagesProvincia">
+
+                        @foreach ($incidentesLlei as $key => $incident)
+                            <h5 class="incidentesProvincia">{{ $incident->nom . ' ' . $porcentagesLlei[$key] . '%' }}</h5>
+                        @endforeach
+
+                    </div>
+
+                    <div>
+                        <h5 class="incidentes">Llamadas: {{ $llamadasLlei }}</h2>
+                    </div>
+                </div>
+
+                <div class="col-4 mt-5">
+                    <h2 class="subtituloDelGrafico">Lleida</h2>
+                    <div width="" heigth="" class="pepe">
+                        <canvas id="graficoLleida"></canvas>
+                    </div>
+                </div>
+
+                <!-- Gràfics TARR -->
+                <div class="col-2">
+                    <div class="container porcentagesProvincia">
+
+                        @foreach ($incidentesTarr as $key => $incident)
+                            <h5 class="incidentesProvincia">{{ $incident->nom . ' ' . $porcentagesTarr[$key] . '%' }}</h5>
+                        @endforeach
+
+                    </div>
+
+                    <div>
+                        <h5 class="incidentes">Llamadas: {{ $llamadasTarr }}</h5>
+                    </div>
+                </div>
+
+                <div class="col-4 mt-5">
+                    <h2 class="subtituloDelGrafico">Tarragona</h2>
+                    <div width="" heigth="" class="pepe">
+                        <canvas id="graficoTarr"></canvas>
+                    </div>
+                </div>
+
+                <div id="margin">
+                    <canvas id="meses"></canvas>
+                </div>
+
             </div>
 
             <script>
                 let pepe;
                 let nombres = [];
                 let datos = [];
+                let nombresBcn = [];
+                let datosBcn = [];
+                let nombresGir = [];
+                let datosGir = [];
+                let nombresLlei = [];
+                let datosLlei = [];
+                let nombresTarr = [];
+                let datosTarr = [];
 
+
+                // Gráfico principal
                 fetch('/EMT/public/api/graficos')
                     .then(response => response.json())
                     .then(data => {
@@ -120,28 +225,184 @@
                         });
                     })
 
-                // let grafica = document.getElementById("grafico");
-                // let donut = new Chart(grafica, {
-                //     type: 'doughnut',
-                //     data: {
-                //         labels: ['Accident', 'Altres incidències', 'Assistència sanitària', 'Civisme',
-                //             'Fuita (Aigua, gas, altres)', 'Incendi', 'Medi ambient', 'Meteorologia',
-                //             'Seguretat',
-                //             'Trànsit'
-                //         ],
-                //         datasets: [{
-                //             label: "Número de incidentes",
-                //             data: [500, 200, 300, 300, 300, 300, 300, 300, 300, 300],
-                //             backgroundColor: ["#ff6384", "#36a2eb", "#ffcd56"]
-                //         }]
-                //     },
-                //     options: {
-                //         responsive: true,
-                //         maintainAspectRatio: false,
-                //         width: 800,
-                //         height: 700
-                //     }
-                // });
+
+                // Gráfico BCN
+                fetch('/EMT/public/api/graficosBcn')
+                    .then(response => response.json())
+                    .then(data => {
+                        pepe = data;
+                        console.log(pepe);
+
+                        pepe.forEach(function(pepe) {
+                            console.log(pepe);
+                            //Ahora en estas variables tenemos los datos traídos de la Api
+                            nombresBcn.push(pepe.nom);
+                            datosBcn.push(pepe.numeros);
+                        });
+
+                        let grafica1 = document.getElementById("graficoBcn");
+                        let donut1 = new Chart(grafica1, {
+                            type: 'doughnut',
+                            data: {
+                                labels: nombresBcn,
+                                datasets: [{
+
+                                    label: "Número de incidentes",
+                                    data: datosBcn,
+                                    backgroundColor: ["#ff6384", "#36a2eb", "#ffcd56", "#FCED60", "#7EFC00",
+                                        "#0CD9F2", "#05F281", "#D13DFC", "#F2531B", "#FCC779"
+                                    ]
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                width: 400,
+                                height: 350
+                            }
+                        });
+                    })
+
+                // Gráfico GIRONA
+                fetch('/EMT/public/api/graficosGirona')
+                    .then(response => response.json())
+                    .then(data => {
+                        pepe = data;
+                        console.log(pepe);
+
+                        pepe.forEach(function(pepe) {
+                            console.log(pepe);
+                            //Ahora en estas variables tenemos los datos traídos de la Api
+                            nombresGir.push(pepe.nom);
+                            datosGir.push(pepe.numeros);
+                        });
+
+                        let grafica2 = document.getElementById("graficoGir");
+                        let donut2 = new Chart(grafica2, {
+                            type: 'doughnut',
+                            data: {
+                                labels: nombresGir,
+                                datasets: [{
+
+                                    label: "Número de incidentes",
+                                    data: datosGir,
+                                    backgroundColor: ["#ff6384", "#36a2eb", "#ffcd56", "#FCED60", "#7EFC00",
+                                        "#0CD9F2", "#05F281", "#D13DFC", "#F2531B", "#FCC779"
+                                    ]
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                width: 400,
+                                height: 350
+                            }
+                        });
+                    })
+
+
+                // Gráfico LLEIDA
+                fetch('/EMT/public/api/graficosLleida')
+                    .then(response => response.json())
+                    .then(data => {
+                        pepe = data;
+                        console.log(pepe);
+
+                        pepe.forEach(function(pepe) {
+                            console.log(pepe);
+                            //Ahora en estas variables tenemos los datos traídos de la Api
+                            nombresLlei.push(pepe.nom);
+                            datosLlei.push(pepe.numeros);
+                        });
+
+                        let grafica3 = document.getElementById("graficoLleida");
+                        let donut3 = new Chart(grafica3, {
+                            type: 'doughnut',
+                            data: {
+                                labels: nombresLlei,
+                                datasets: [{
+
+                                    label: "Número de incidentes",
+                                    data: datosLlei,
+                                    backgroundColor: ["#ff6384", "#36a2eb", "#ffcd56", "#FCED60", "#7EFC00",
+                                        "#0CD9F2", "#05F281", "#D13DFC", "#F2531B", "#FCC779"
+                                    ]
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                width: 400,
+                                height: 350
+                            }
+                        });
+                    })
+
+
+                // Gráfico TARRAGONA
+                fetch('/EMT/public/api/graficosTarragona')
+                    .then(response => response.json())
+                    .then(data => {
+                        pepe = data;
+                        console.log(pepe);
+
+                        pepe.forEach(function(pepe) {
+                            console.log(pepe);
+                            //Ahora en estas variables tenemos los datos traídos de la Api
+                            nombresTarr.push(pepe.nom);
+                            datosTarr.push(pepe.numeros);
+                        });
+
+                        let grafica4 = document.getElementById("graficoTarr");
+                        let donut4 = new Chart(grafica4, {
+                            type: 'doughnut',
+                            data: {
+                                labels: nombresTarr,
+                                datasets: [{
+
+                                    label: "Número de incidentes",
+                                    data: datosTarr,
+                                    backgroundColor: ["#ff6384", "#36a2eb", "#ffcd56", "#FCED60", "#7EFC00",
+                                        "#0CD9F2", "#05F281", "#D13DFC", "#F2531B", "#FCC779"
+                                    ]
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                width: 400,
+                                height: 350
+                            }
+                        });
+                    })
+
+
+                // Gráfico incidentes por mes
+                const ctx = document.getElementById('meses');
+
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre',
+                            'Octubre', 'Noviembre', 'Diciembre'
+                        ],
+                        datasets: [{
+                            label: 'Incidentes registrados',
+                            data: [15, 12, 8, 5, 7, 20, 22, 50, 14, 61, 22, 78],
+                            fill: true,
+                            borderColor: '#11ADC4',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
             </script>
 
             <style>
@@ -199,14 +460,27 @@
                     font-weight: bold;
                 }
 
-                #porcentages {
+                .porcentages {
 
-                    background-color: #F9F9F9;
+                    /* background-color: #F9F9F9; */
+                    background-color: #9e999977;
                     border-radius: 7px;
                     padding-top: 8px;
                     padding-bottom: 8px;
                     width: 332px;
                     padding-left: 1px
+                }
+
+                .porcentagesProvincia {
+
+                    /* background-color: #F9F9F9; */
+                    background-color: #9e999977;
+                    border-radius: 7px;
+                    padding-top: 8px;
+                    padding-bottom: 8px;
+                    width: 150px;
+                    padding-left: 1px;
+                    margin-top: 100px;
                 }
 
                 /* SUBTITULO PRINCIAPL DE LA PAGINA */
@@ -244,14 +518,38 @@
                 /* Nuevos elementos */
                 h5.incidentes {
                     font-weight: bold;
-                    margin-left: 30px;
+                    margin-left: 24px;
                     margin-bottom: 10px;
                     margin-top: 10px;
                 }
 
+                h5.incidentesProvincia {
+                    font-weight: bold;
+                    margin-left: 20px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                    font-size: 12px;
+                }
+
                 #grafico {
-                    height: 600px !important;
-                    width: 766px !important;
+                    height: 600px;
+                    width: 766px;
+
+                }
+
+                .pepe {
+                    margin-bottom: 500px;
+                }
+
+                .subtituloDelGrafico {
+                    font-size: 40px;
+                    font-weight: bold;
+                    text-align: center;
+
+                }
+
+                #margin {
+                    margin-bottom: 100px
                 }
             </style>
 

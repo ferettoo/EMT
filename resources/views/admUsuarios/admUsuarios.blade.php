@@ -25,7 +25,7 @@
         <div class="card-body mx-5 text-center border-0 ">
             <!-- TITULO Y SUBTITULO-->
             <div class="d-flex ">
-                <h1 class="titulo">Administración</h1>
+                <h1 class="titulo">Administración  <i class="bi bi-person-fill"></i></h1>
             </div>
 
             <hr id="linea" class="w-100 clearfix d-md m-0" />

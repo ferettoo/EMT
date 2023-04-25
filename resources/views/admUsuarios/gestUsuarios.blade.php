@@ -22,7 +22,7 @@
                 </div>
             @else
                 <div class="card-header shadow rounded text-bg-secondary text-white">
-                    Editar de usuario
+                    Editar usuario
                 </div>
             @endif
             <div class="card-body">

@@ -22,7 +22,7 @@
             <div class="card-body mx-5 text-center border-0">
                 <!-- TITULO Y SUBTITULO-->
                 <div class="d-flex ">
-                    <h1 class="titulo"> Gestión de expedientes</h1>
+                    <h1 class="titulo"> Gestión de expedientes <i class="bi bi-archive-fill"></i></h1>
                 </div>
                 <!-- linea de division -->
                 <hr id="linea" class="w-100 clearfix d-md m-0" />
