@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @yield('hrefmap')
     <script src="https://kit.fontawesome.com/2cf292bb20.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="icon" type="image/png" href="{{ asset('images/logotipo_final2.png') }}">
     <link rel="stylesheet" href="{{ asset('css/css.css') }}">
     <title>@yield('title')</title>
@@ -25,7 +26,7 @@
                         style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                         <img class="justify-content-md-end" src="{{ asset('images/logotipo_final2.png') }}"
                             style="width:40px;
-                height:30px;" class="  card-img-top" alt="...">  EMT
+                height:30px;" class="  card-img-top" alt="..."> EMT
                     </a>
                     {{-- ESTO ES PARA CUANDO SE REDUZCA LA PANTALLA  --}}
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
