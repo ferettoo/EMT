@@ -136,19 +136,6 @@ class ExpedientesController extends Controller
     }
 
 
-
-    // 
-    // try {
-    //     $cartaLlamada->save();
-    //     $response = redirect()->action([ExpedientesController::class, 'editCartasExpediente']);
-    // } catch (QueryException $ex) {
-    //     $mensaje = Utilitat::errorMessage($ex);
-    //     $request->session()->flash('error', $mensaje);
-    //     $response = redirect()->action([ExpedientesController::class, 'editEstadoAgencia'], ['expediente' => $cartaLlamada->cartes_trucades_id]);
-    // }
-
-
-
     /**
      * Update the specified resource in storage.
      */

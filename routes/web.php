@@ -45,19 +45,24 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-
+// GESTION DE USUARIOS
 Route::resource('admUsuarios', AdmUsuariosController::class);
+
+// GESTION DE USUARIOS CONTRASEÑA ACTUALIZACION
+Route::get('editContrasenya/{admUsuario}',  [AdmUsuariosController::class, 'editContrasenya']);
+Route::put('updateContrasenya/{admUsuario}',  [AdmUsuariosController::class, 'updateContrasenya']);
+
+// GESTION DE EXPEDIENTES
 Route::resource('expedientes', ExpedientesController::class);
 // Route::resource('cartasExpediente', cartasDeExpedienteController::class);
 
-// MOSTRAR EXPEDIENTES
+// MOSTRAR CARTAS DE EXPEDIENTE
 // pirula(es necesario crear un nueva ruta con el nuevo metodo añadido el controlador)
 Route::get('editCartasExpediente/{expediente}',  [ExpedientesController::class, 'editCartasExpediente']);
 
 // MOSTRAR - ESTADO DE AGENCIA
 Route::get('editEstadoAgencia/{carta}',  [ExpedientesController::class, 'editEstadoAgencia']);
 // Route::resource('cartasExpediente', CartasAgenciasController::class);
-//Route::resource('admUsuarios', AdmUsuarios::class);
 
 // ACTUALIZAR ESTADO AGENCIA
 Route::put('updateEstadoAgencia/{carta}/{agencia}',  [ExpedientesController::class, 'updateEstadoAgencia']);
@@ -71,6 +76,9 @@ Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLl
 Route::get('admExpedientes', function () {
     return view('admExpedientes.admExpedientes');
 });
+
+
+
 
 // Route::resource('admExpedients', admExpedientsController::class);
 

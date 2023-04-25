@@ -86,7 +86,7 @@ class AdmUsuariosController extends Controller
     public function update(Request $request, usuaris $admUsuario)
     {
         $admUsuario->username = $request->input('username');
-        $admUsuario->contrasenya = bcrypt($request->input('contrasenya'));
+        // $admUsuario->contrasenya = bcrypt($request->input('contrasenya'));
         $admUsuario->nom = $request->input('nom');
         $admUsuario->cognoms = $request->input('cognoms');
         $admUsuario->tipus_usuaris_id = $request->input('tipo');
@@ -107,11 +107,40 @@ class AdmUsuariosController extends Controller
     {
         try {   //si no hay request no se utiliza el session
             $admUsuario->delete();
-            $request->session()->flash('mensaje', 'Registre esborrat correctament');
+            $request->session()->flash('mensaje', 'Registro borrado correctamente');
         } catch (QueryException $ex) {
             $mensaje = Utilitat::errorMessage($ex);
             $request->session()->flash('error', $mensaje);
         }
         return redirect()->action([AdmUsuariosController::class, 'index']);
     }
+
+
+
+    // ACTULIZACION CONTRASEÑA
+
+    public function editContrasenya(usuaris $admUsuario)
+    {
+        return view('admUsuarios.contrasenyaUsuarios', compact('admUsuario'));
+    }
+
+
+    public function updateContrasenya(Request $request, usuaris $admUsuario)
+    {
+      
+        $admUsuario->contrasenya = bcrypt($request->input('contrasenya'));
+        try {
+            $admUsuario->save();
+            $response = redirect()->action([AdmUsuariosController::class, 'index']);
+            $request->session()->flash('mensaje', 'Contraseña actualizada correctamente');
+        } catch (QueryException $ex) {
+            $mensaje = Utilitat::errorMessage($ex);
+            $request->session()->flash('error', $mensaje);
+            $response = redirect()->action([AdmUsuariosController::class, 'editContrasenya'], ['admUsuario' => $admUsuario->id]);
+        }
+        return $response;
+    }
+
+
+
 }

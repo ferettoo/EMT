@@ -57,6 +57,7 @@
                                     <label class="form-label" for="form3Example4"
                                         style="color: hsl(218, 59%, 68%)">Contraseña</label>
                                 </div>
+                                @include('partials.mensajes')
                                 <!-- Submit button -->
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary text-white mb-4">

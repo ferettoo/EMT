@@ -94,7 +94,7 @@
         <br>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             {{-- CONFIRMACION DE EDICIÓN --}}
-            <button class="btn btn-secondary text-white" type="submit"><i class="bi bi-check-lg"></i>
+            <button class="btn btn-secondary text-white" type="submit">
                 Salir</button>
         </div>
     </div>

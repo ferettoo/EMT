@@ -11,14 +11,14 @@ class UsuarioController extends Controller
 {
     public function showLogin()
     {
-        $usuario = new usuaris();
+        // $usuario = new usuaris();
 
-        $usuario->username = 'facu';
-        $usuario->contrasenya = bcrypt('123');
-        $usuario->nom = 'prueba';
-        $usuario->cognoms = 'admin2Apellido';
-        $usuario->tipus_usuaris_id = 1;
-        $usuario->save();
+        // $usuario->username = 'facu';
+        // $usuario->contrasenya = bcrypt('123');
+        // $usuario->nom = 'prueba';
+        // $usuario->cognoms = 'admin2Apellido';
+        // $usuario->tipus_usuaris_id = 1;
+        // $usuario->save();
 
         return view('auth.login');
     }
@@ -34,9 +34,10 @@ class UsuarioController extends Controller
             Auth::login($user);
             $response = redirect('/carta');
         } else {
-            $request->session()->flash('error', 'Usuari o contrasenya incorrectes');
+            $request->session()->flash('error', 'Usuario o contraseña incorrectos');
             // si queremos crear un usuario, hay que poner /login para que obtenga los datos
             // del nuevo usuario y los introduzca a la bd
+            // dejar solo "/" para que solo utilice el indice en lugar del "login"
             $response = redirect('/login')->withInput();
         }
 
