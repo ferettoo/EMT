@@ -40,8 +40,12 @@
                         <a class="nav-link active text-white"
                         aria-current="page" href="#">AYUDA</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white"
+                        aria-current="page" href="{{ url('menu') }}">MENU</a>
+                    </li>
 
-                    
+
                 </ul>
                     @yield('carta')
 

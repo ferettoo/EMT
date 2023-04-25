@@ -47,14 +47,15 @@ class CartaController extends Controller
             }
 
             // Expediente de la carta
-            $expediente->codi = $request->input('idExpediente');
-            $expediente->estat_expedients_id = $request->input('estadoExpediente');
-            $expediente->save();
+            if ($request->input('nuevoExpediente') == 1) {
+                $expediente->codi = $request->input('idExpediente');
+                $expediente->estat_expedients_id = $request->input('estadoExpediente');
+                $expediente->save();
+            }
 
             // En los $request->input hemos de añadir los nombres del objeto que añadimos. un ejemplo seria: idLlamada
 
             $carta->codi_trucada = $request->input('idLlamada');
-            $carta->data_hora_trucada = $request->input('dataHoraTrucada');
             $carta->data_hora_trucada = new \DateTime($request->input('dataHoraTrucada'));
             $carta->durada = $request->input('tiempo');
             $carta->interlocutors_id = $interlocutor->id;

@@ -18,7 +18,7 @@
                 {{-- espaciado --}}
                 <div class="col-12">
                     <div class="p-5"></div>
-                    <div class="p-4"></div>   
+                    <div class="p-4"></div>
                 </div>
 
                 {{-- PRIMERA FILA --}}
