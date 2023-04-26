@@ -11,7 +11,7 @@ class AuthenticateAdmin
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        if ($user && $user->tipus_usuaris_id == 3) {
+        if (($user && $user->tipus_usuaris_id == 3) || ($user && $user->tipus_usuaris_id == 2)) {
             return $next($request);
         }
 

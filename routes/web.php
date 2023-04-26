@@ -57,9 +57,34 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+// // SUPERVISOR
+// Route::middleware(['auth', 'authSupervisor' ])->group(function () {
+//     // GESTION DE EXPEDIENTES
+//     Route::resource('expedientes', ExpedientesController::class);
+//     // Route::resource('cartasExpediente', cartasDeExpedienteController::class);
+
+//     // MOSTRAR CARTAS DE EXPEDIENTE
+//     Route::get('editCartasExpediente/{expediente}',  [ExpedientesController::class, 'editCartasExpediente']);
+
+//     // MOSTRAR - ESTADO DE AGENCIA
+//     Route::get('editEstadoAgencia/{carta}',  [ExpedientesController::class, 'editEstadoAgencia']);
+//     // Route::resource('cartasExpediente', CartasAgenciasController::class);
+
+//     // ACTUALIZAR ESTADO AGENCIA
+//     Route::put('updateEstadoAgencia/{carta}/{agencia}',  [ExpedientesController::class, 'updateEstadoAgencia']);
+
+//     // MOSTRAR LAS CARTAS DEL EXPEDIENTE
+//     Route::get('editMostrarCarta/{carta}',  [ExpedientesController::class, 'editMostrarCarta']);
+
+//     Route::get('admExpedientes', function () {
+//         return view('admExpedientes.admExpedientes');
+//     });
+// });
+
+
 
 // ADMINISTRADOR
-Route::middleware(['auth', 'authAdmin'])->group(function () {
+Route::middleware(['auth', 'authAdmin'] )->group(function () {
 
     // GESTION DE USUARIOS
     Route::resource('admUsuarios', AdmUsuariosController::class);
@@ -88,58 +113,11 @@ Route::middleware(['auth', 'authAdmin'])->group(function () {
     Route::get('admExpedientes', function () {
         return view('admExpedientes.admExpedientes');
     });
-    // carta de llamada
-    Route::get('carta', function () {
-        return view('carta.cartaVue');
-    });
 
-    //Ruta para los gráficos
-    Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
-    //Ruta para el mapa
-    Route::get('mapa', [App\Http\Controllers\MapController::class, 'mapa']);
-    // ruta helpbox
-    Route::get('helpbox', function () {
-        return view('helpbox.helpbox');
-    });
 
 });
 
 
-// SUPERVISOR
-Route::middleware(['auth', 'authSupervisor'])->group(function () {
-    // GESTION DE EXPEDIENTES
-    Route::resource('expedientes', ExpedientesController::class);
-    // Route::resource('cartasExpediente', cartasDeExpedienteController::class);
-
-    // MOSTRAR CARTAS DE EXPEDIENTE
-    // pirula(es necesario crear un nueva ruta con el nuevo metodo añadido el controlador)
-    Route::get('editCartasExpediente/{expediente}',  [ExpedientesController::class, 'editCartasExpediente']);
-
-    // MOSTRAR - ESTADO DE AGENCIA
-    Route::get('editEstadoAgencia/{carta}',  [ExpedientesController::class, 'editEstadoAgencia']);
-    // Route::resource('cartasExpediente', CartasAgenciasController::class);
-
-    // ACTUALIZAR ESTADO AGENCIA
-    Route::put('updateEstadoAgencia/{carta}/{agencia}',  [ExpedientesController::class, 'updateEstadoAgencia']);
-
-    // MOSTRAR LAS CARTAS DEL EXPEDIENTE
-    Route::get('editMostrarCarta/{carta}',  [ExpedientesController::class, 'editMostrarCarta']);
-
-    Route::get('admExpedientes', function () {
-        return view('admExpedientes.admExpedientes');
-    });
-    Route::get('carta', function () {
-        return view('carta.cartaVue');
-    });
-
-    //Ruta para los gráficos
-    Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
-    //Ruta para el mapa
-    Route::get('mapa', [App\Http\Controllers\MapController::class, 'mapa']);
-    Route::get('helpbox', function () {
-        return view('helpbox.helpbox');
-    });
-});
 
 Route::fallback(function () {
     return redirect('menu');
