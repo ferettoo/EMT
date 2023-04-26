@@ -23,7 +23,10 @@
                   {{-- Descripción programa --}}
                     <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(0, 0%, 100%)">
                         Bienvenido a EMT <br />
-                        <span id="amarillo">Empecemos</span>
+                        <div class=" align-items-center">
+                            <span id="amarillo">Empecemos</span>
+                            <img src="{{ asset('images/logotipo_final2.png') }}" alt=""height="50px" style="margin-left: 30px">
+                        </div>
                     </h1>
                     <p class="mb-4 opacity-70" style="color: hsl(0, 0%, 100%)">
                         Bienvenido a EMT, una aplicación diseñada para crear y gestionar expedientes de emergencias de
@@ -40,10 +43,6 @@
                     <div class="card bg-glass" style="border-radius: 30px; ">
                         <div class="card-body px-4 py-5 px-md-5">
                             <div class="justify-content-center align-items-center">
-                                <img src="" alt="">
-                                {{-- LOGOTIPO?? --}}
-                                <p></p>
-                                {{-- <img src="{{  }}" alt=""> --}}
                             </div>
                             {{-- INPUTS LOGIN --}}
                             <form action="{{ action([App\Http\Controllers\UsuarioController::class, 'login']) }}" method="POST">

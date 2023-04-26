@@ -27,7 +27,7 @@
                         </div>
                         <div class="mb-2">
                             <label for="telefono" class="form-label">Telefono</label>
-                            <input type="text" class="form-control w-100" id="telefono" v-model="carta.telefono">
+                            <input type="number" class="form-control w-100" id="telefono" v-model="carta.telefono">
                         </div>
                         <div class="mb-2">
                             <label for="nombre" class="form-label">Nombre</label>

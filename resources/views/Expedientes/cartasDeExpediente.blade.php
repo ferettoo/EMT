@@ -30,19 +30,14 @@
                 <h3 class="subtitulo"> Expediente - {{ $expediente->codi }} </h1>
             </div>
         </div>
-            <div class="card-body mx-5 text-center border-0">
-            <div class="container text-center">
-                    <br>
-                    <div class="row">
-                        <div class="col-4">
-                            <a href="{{ url('/expedientes') }}"
-                                class=" shadow btn btn-info text-white rounded-3  mx-5 text-center start-0 border-0">
-                                <i class="bi bi-arrow-left"></i> Volver a expedientes
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-4 ms-3 mb-2">
+                <a href="{{ url('/expedientes') }}"
+                class=" shadow btn btn-info text-white rounded-3  mx-5 text-center start-0 border-0">
+                <i class="bi bi-arrow-left"></i> Volver a expedientes
+            </a>
             </div>
+        </div>
     </div>
 
 
