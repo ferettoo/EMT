@@ -105,7 +105,7 @@
                         </a>
                         {{-- MIRAR MODIFICACIONES EN CARTA --}}
                         <a class="btn btn-warning text-white" href="{{ url('editMostrarCarta/' . $carta->id) }}">
-                            <i class="bi bi-arrow-right"></i> Mostrar cambios
+                             Mostrar cambios <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
 

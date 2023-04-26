@@ -57,32 +57,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-// // SUPERVISOR
-// Route::middleware(['auth', 'authSupervisor' ])->group(function () {
-//     // GESTION DE EXPEDIENTES
-//     Route::resource('expedientes', ExpedientesController::class);
-//     // Route::resource('cartasExpediente', cartasDeExpedienteController::class);
-
-//     // MOSTRAR CARTAS DE EXPEDIENTE
-//     Route::get('editCartasExpediente/{expediente}',  [ExpedientesController::class, 'editCartasExpediente']);
-
-//     // MOSTRAR - ESTADO DE AGENCIA
-//     Route::get('editEstadoAgencia/{carta}',  [ExpedientesController::class, 'editEstadoAgencia']);
-//     // Route::resource('cartasExpediente', CartasAgenciasController::class);
-
-//     // ACTUALIZAR ESTADO AGENCIA
-//     Route::put('updateEstadoAgencia/{carta}/{agencia}',  [ExpedientesController::class, 'updateEstadoAgencia']);
-
-//     // MOSTRAR LAS CARTAS DEL EXPEDIENTE
-//     Route::get('editMostrarCarta/{carta}',  [ExpedientesController::class, 'editMostrarCarta']);
-
-//     Route::get('admExpedientes', function () {
-//         return view('admExpedientes.admExpedientes');
-//     });
-// });
-
-
-
 // ADMINISTRADOR
 Route::middleware(['auth', 'authAdmin'] )->group(function () {
 
