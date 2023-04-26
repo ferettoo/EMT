@@ -38,10 +38,12 @@
                         <!-- en el "ul" el ajuste en medio es "mx-auto"  y en el lado izquierdo "me-auto" -->
                         <ul class="navbar-nav text-center mx-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="#">GRÁFICOS</a>
+                                <a class="nav-link active text-white" aria-current="page"
+                                    href="{{ url('graficos') }}">GRÁFICOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="{{ url('helpbox') }}">HELPBOX</a>
+                                <a class="nav-link active text-white" aria-current="page"
+                                    href="{{ url('helpbox') }}">HELPBOX</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active text-white" aria-current="page" href="#">AYUDA</a>
