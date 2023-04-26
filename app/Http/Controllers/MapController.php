@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use App\Models\agencies;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class MapController extends Controller
 {
-    function mapa()
+    public function mapa()
     {
-
-        $datos = DB::table('broggi.agencies')
+        $datos = DB::table('agencies')
             ->select('nom', 'carrer', 'codi_postal')
             ->get();
 
