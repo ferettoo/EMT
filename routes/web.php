@@ -77,7 +77,9 @@ Route::get('admExpedientes', function () {
     return view('admExpedientes.admExpedientes');
 });
 
-
+Route::get('carta', function () {
+    return view('carta.cartaVue');
+});
 
 
 // Route::resource('admExpedients', admExpedientsController::class);

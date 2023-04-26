@@ -40,8 +40,7 @@
                     <div class="card bg-glass" style="border-radius: 30px; ">
                         <div class="card-body px-4 py-5 px-md-5">
                             <div class="justify-content-center align-items-center">
-                                <img src="" alt="">
-                                <p>a</p>
+                                {{-- <img src="{{  }}" alt=""> --}}
                             </div>
                             {{-- INPUTS LOGIN --}}
                             <form action="{{ action([App\Http\Controllers\UsuarioController::class, 'login']) }}" method="POST">
