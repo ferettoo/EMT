@@ -41,7 +41,7 @@
                                 <a class="nav-link active text-white" aria-current="page" href="#">GRÁFICOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="#">HELPBOX</a>
+                                <a class="nav-link active text-white" aria-current="page" href="{{ url('helpbox') }}">HELPBOX</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active text-white" aria-current="page" href="#">AYUDA</a>

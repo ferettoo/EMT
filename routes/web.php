@@ -80,7 +80,9 @@ Route::get('admExpedientes', function () {
 Route::get('carta', function () {
     return view('carta.cartaVue');
 });
-
+Route::get('helpbox', function () {
+    return view('helpbox.helpbox');
+});
 
 // Route::resource('admExpedients', admExpedientsController::class);
 
