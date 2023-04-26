@@ -11,7 +11,7 @@
 @section('hrefmap')
     <link rel="stylesheet" href="{{ asset('css/mapa.css') }}">
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-    <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.1/mapbox-gl-geocoder.css"
+    <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.1/mapbox-gl-geocoder.css'
         rel='stylesheet' />
 @endsection
 
@@ -22,7 +22,7 @@
 
         </div>
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.1/mapbox-gl-geocoder.min.js"></script>
+        <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.1/mapbox-gl-geocoder.min.js'></script>
         <script src="{{ asset('js/mapas.js') }}"></script>
     </body>
 @endsection
