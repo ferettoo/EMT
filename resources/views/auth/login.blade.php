@@ -43,6 +43,7 @@
                                 <img src="" alt="">
                                 {{-- LOGOTIPO?? --}}
                                 <p></p>
+                                {{-- <img src="{{  }}" alt=""> --}}
                             </div>
                             {{-- INPUTS LOGIN --}}
                             <form action="{{ action([App\Http\Controllers\UsuarioController::class, 'login']) }}" method="POST">

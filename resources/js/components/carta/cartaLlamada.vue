@@ -251,22 +251,22 @@
                     </tr>
                 </thead>
                 <tbody class="text-center" style="background-color: #f9f9f9" >
-                    <tr v-for="expediente in expedientes" :key="expediente.id"  >
-                        <th scope="col" class="align-middle">{{ expediente.codi }}</th>
+                    <tr v-for="expediente in expedienteFiltrado" :key="expediente.id"  >
+                        <th scope="col" class="align-middle">{{ expediente.expedients.codi }}</th>
                         <!-- <td scope="col">{{ expediente.estat_expedients_id }}</td> -->
-                        <td v-if="expediente.estat_expedients_id == 1" class="d-grid">
+                        <td v-if="expediente.expedients.estat_expedients_id == 1" class="d-grid">
                             <button type="button" class="btn btn-sm  disabled rounded-2 text-white" style="background-color:#39DF09" @click="asociarExpediente(expediente)">EnProcés</button>
                         </td>
-                        <td v-else-if="expediente.estat_expedients_id == 2" class="d-grid">
+                        <td v-else-if="expediente.expedients.estat_expedients_id == 2" class="d-grid">
                             <button type="button" class="btn btn-sm btn-warning disabled rounded-2 text-white" >Sol·licitat</button>
                         </td>
-                        <td v-else-if="expediente.estat_expedients_id == 3" class="d-grid">
+                        <td v-else-if="expediente.expedients.estat_expedients_id == 3" class="d-grid">
                             <button type="button" class="btn btn-sm btn-success disabled rounded-2 text-white">Acceptat</button>
                         </td>
-                        <td v-else-if="expediente.estat_expedients_id == 4" class="d-grid">
+                        <td v-else-if="expediente.expedients.estat_expedients_id == 4" class="d-grid">
                             <button type="button" class="btn btn-sm disabled rounded-2 text-white" style="background-color:#2587E8">Tancat</button>
                         </td>
-                        <td v-else-if="expediente.estat_expedients_id == 5" class="d-grid">
+                        <td v-else-if="expediente.expedients.estat_expedients_id == 5" class="d-grid">
                             <button type="button" class="btn btn-sm btn-info disabled rounded-2 text-white" >Immobil</button>
                         </td>
 
@@ -275,7 +275,6 @@
                         <!-- Poner la ultima fecha de creación de la carta asociada al expediente -->
                         <!-- Si la carta de llamada tiene el mismo id que el expediente, que recoja
                             la primera carta de llamada y muestre la fecha. -->
-
                     </tr>
                 </tbody>
                 <tfoot style="background-color: #f9f9f9" class="mb-1">
@@ -338,9 +337,11 @@ export default {
             municipios: [],
             municipioFiltrados: [],
             usuari: {},
+            expedienteFiltrado: [],
             definicioIncidente: '',
             comarca_id: '',
             tipoIncidente_id: '',
+            cartaDeLlamadaFiltrado: '',
         }
     },
     mounted() {
@@ -366,7 +367,7 @@ export default {
             axios
                 .post("cartes_trucades", me.carta)
                 .then((response) => {
-
+                    window.location.href = "/EMT/public/menu";
                 })
                 .catch((error) => {
                     // this.isError = true;
@@ -399,6 +400,7 @@ export default {
                 .then((response) => {
                     me.cartasDeLlamada = response.data;
                     me.carta.idLlamada = 'ID-CT-' + (me.cartasDeLlamada.length + 1);
+                    console.log(response.data);
                 })
                 .catch((error) => {});
         },
@@ -513,9 +515,18 @@ export default {
             this.carta.descripcionLocalizacion =  Object.values(this.descripcionLocalizacion).join(';');
         },
         asociarExpediente(expediente){
-            this.carta.idExpediente = expediente.codi;
-        }
+            this.carta.idExpediente = expediente.expedients.codi;
 
+            if (expediente.interlocutors != null) {
+                this.carta.nombre = expediente.interlocutors.nom;
+                this.carta.apellido = expediente.interlocutors.cognoms;
+                this.carta.antecedentesInterlocutor = expediente.interlocutors.antecedents;
+            } else {
+                this.carta.nombre = '';
+                this.carta.apellido = '';
+                this.carta.antecedentesInterlocutor = '';
+            }
+        }
     },
     created() {
         this.recogerTipoIncidentes();
@@ -535,6 +546,24 @@ export default {
         this.carta.detallesLocalizacion = '';
       }
     },
+    'carta.telefono': {
+        handler() {
+            this.expedienteFiltrado = this.cartasDeLlamada.filter(carta => carta.telefon === this.carta.telefono);
+        }
+    },
+    'carta.idProvincia': {
+        handler() {
+            this.expedienteFiltrado = this.cartasDeLlamada.filter(carta => carta.provincies_id === this.carta.idProvincia);
+            console.log(this.expedienteFiltrado);
+        }
+    },
+    'carta.incidente': {
+        handler() {
+            this.expedienteFiltrado = this.cartasDeLlamada.filter(carta => carta.incidents_id === this.carta.incidente);
+            console.log(this.expedienteFiltrado);
+        }
+    }
+
   }
 }
 </script>

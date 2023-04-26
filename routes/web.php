@@ -32,10 +32,8 @@ Route::get('/', function () {
 });
 
 Route::apiResource('api/usuari', ApiUsuarioController::class);
-
 Route::get('/login', [UsuarioController::class, 'showLogin'])->name('login');
 Route::post('/login', [UsuarioController::class, 'login']);
-// logout
 Route::get('/logout', [UsuarioController::class, 'logout']);
 
 
@@ -45,11 +43,20 @@ Route::middleware(['auth'])->group(function () {
         $user = Auth::user();
         return view('menu.menu', compact('user'));
     });
-    //Ruta para los gráficos
-    Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
+  
     //Ruta para el mapa
     Route::get('mapa', [App\Http\Controllers\MapController::class, 'mapa']);
+    Route::get('carta', function () {
+        return view('carta.cartaVue');
+    });
+    Route::get('helpbox', function () {
+        return view('helpbox.helpbox');
+    });
+      //Ruta para los gráficos
+      Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
 });
+
+
 
 // ADMINISTRADOR
 Route::middleware(['auth', 'authAdmin'])->group(function () {
@@ -66,7 +73,6 @@ Route::middleware(['auth', 'authAdmin'])->group(function () {
     // Route::resource('cartasExpediente', cartasDeExpedienteController::class);
 
     // MOSTRAR CARTAS DE EXPEDIENTE
-    // pirula(es necesario crear un nueva ruta con el nuevo metodo añadido el controlador)
     Route::get('editCartasExpediente/{expediente}',  [ExpedientesController::class, 'editCartasExpediente']);
 
     // MOSTRAR - ESTADO DE AGENCIA
@@ -82,11 +88,20 @@ Route::middleware(['auth', 'authAdmin'])->group(function () {
     Route::get('admExpedientes', function () {
         return view('admExpedientes.admExpedientes');
     });
+    // carta de llamada
+    Route::get('carta', function () {
+        return view('carta.cartaVue');
+    });
 
     //Ruta para los gráficos
     Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
     //Ruta para el mapa
     Route::get('mapa', [App\Http\Controllers\MapController::class, 'mapa']);
+    // ruta helpbox
+    Route::get('helpbox', function () {
+        return view('helpbox.helpbox');
+    });
+
 });
 
 
@@ -113,12 +128,17 @@ Route::middleware(['auth', 'authSupervisor'])->group(function () {
     Route::get('admExpedientes', function () {
         return view('admExpedientes.admExpedientes');
     });
-
+    Route::get('carta', function () {
+        return view('carta.cartaVue');
+    });
 
     //Ruta para los gráficos
     Route::get('graficos', [App\Http\Controllers\GraficoController::class, 'numeroLlamadas']);
     //Ruta para el mapa
     Route::get('mapa', [App\Http\Controllers\MapController::class, 'mapa']);
+    Route::get('helpbox', function () {
+        return view('helpbox.helpbox');
+    });
 });
 
 Route::fallback(function () {
@@ -128,6 +148,12 @@ Route::fallback(function () {
 
 
 
+// Route::get('carta', function () {
+//     return view('carta.cartaVue');
+// });
+// Route::get('helpbox', function () {
+//     return view('helpbox.helpbox');
+// });
 
 // Route::resource('admExpedients', admExpedientsController::class);
 // Route::get('/mapa', function () {
