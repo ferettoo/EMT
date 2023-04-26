@@ -10,7 +10,7 @@
                 <div class="row fs-6 fw-light text-light fw-bold">
                     <div class="col" id="tiempo">{{ carta.tiempo }}</div>
                     <div class="col">{{ carta.idLlamada }}</div>
-                    <div class="col">ID Expediente</div>
+                    <div class="col">{{ carta.idExpediente }}</div>
                     <input type="datetime-local" v-model="carta.dataHoraTrucada" hidden>
                     <input type="text" v-model="carta.idUsuario" hidden>
                 </div>
@@ -251,17 +251,27 @@
                     </tr>
                 </thead>
                 <tbody class="text-center" style="background-color: #f9f9f9" >
-                    <tr>
-                        <th scope="row">0001</th>
-                        <td><button class="btn btn-danger btn-sm">Inmobilizado</button></td>
-                        <td><button class="btn btn-primary btn-sm">Asociar</button></td>
-                        <td>12-10-2023</td>
-                    </tr>
-                    <tr v-for="expediente in expedientes" :key="expediente.id" >
-                        <th scope="col">{{ expediente.codi }}</th>
-                        <th scope="col">{{ expediente.estat_expedients_id }}</th>
-                        <th scope="col"><button class="btn btn-primary btn-sm">Asociar</button></th>
-                        <th scope="col"> Fecha de creación</th>
+                    <tr v-for="expediente in expedientes" :key="expediente.id"  >
+                        <th scope="col" class="align-middle">{{ expediente.codi }}</th>
+                        <!-- <td scope="col">{{ expediente.estat_expedients_id }}</td> -->
+                        <td v-if="expediente.estat_expedients_id == 1" class="d-grid">
+                            <button type="button" class="btn btn-sm  disabled rounded-2 text-white" style="background-color:#39DF09" @click="asociarExpediente(expediente)">EnProcés</button>
+                        </td>
+                        <td v-else-if="expediente.estat_expedients_id == 2" class="d-grid">
+                            <button type="button" class="btn btn-sm btn-warning disabled rounded-2 text-white" >Sol·licitat</button>
+                        </td>
+                        <td v-else-if="expediente.estat_expedients_id == 3" class="d-grid">
+                            <button type="button" class="btn btn-sm btn-success disabled rounded-2 text-white">Acceptat</button>
+                        </td>
+                        <td v-else-if="expediente.estat_expedients_id == 4" class="d-grid">
+                            <button type="button" class="btn btn-sm disabled rounded-2 text-white" style="background-color:#2587E8">Tancat</button>
+                        </td>
+                        <td v-else-if="expediente.estat_expedients_id == 5" class="d-grid">
+                            <button type="button" class="btn btn-sm btn-info disabled rounded-2 text-white" >Immobil</button>
+                        </td>
+
+                        <td scope="col"><button class="btn btn-primary btn-sm " @click="asociarExpediente(expediente)">Asociar</button></td>
+                        <td scope="col" class="align-middle" style="font-size: 13px;">12/10/2023</td>
                         <!-- Poner la ultima fecha de creación de la carta asociada al expediente -->
                         <!-- Si la carta de llamada tiene el mismo id que el expediente, que recoja
                             la primera carta de llamada y muestre la fecha. -->
@@ -312,6 +322,7 @@ export default {
                 tipoLocalizacion:'',
                 incidente: '',
                 estadoExpediente: '1',
+
             },
 
             // Recoger Datos
@@ -337,22 +348,20 @@ export default {
         this.recogerExpedientes();
         this.contador();
         this.carta.tipoLocalizacion = '5';
-        this.carta.idLlamada = 'ID-CT-' + this.cartasDeLlamada.length;
-        this.carta.idExpediente = 'ID-EX-' + this.expedientes.length;
     },
     methods: {
         finalizarLlamada(){
             clearInterval(this.intervalId);
             this.intervalId = null;
-            // this.dataHoraTrucada();
             this.concatenarDetallesLocalizacion();
             this.carta.idUsuario = this.usuari.id;
+            this.carta.dataHoraTrucada = new Date().toISOString();
 
             // AGREGAR ESTO CUANDO TENGAMOS QUE VISUALIZAR LA CARTA DE LLAMADA
             // const separar = descLoc.split(';')
             // console.log(separar.length);
-            this.carta.dataHoraTrucada = new Date().toISOString();
 
+            // Enviar la carta
             const me = this;
             axios
                 .post("cartes_trucades", me.carta)
@@ -371,7 +380,7 @@ export default {
                 .get("usuari")
                 .then((response) => {
                     me.usuari = response.data;
-                    // console.log(me.usuari.id);
+                    console.log(me.usuari.id);
                 })
                 .catch((error) => {});
         },
@@ -389,6 +398,7 @@ export default {
                 .get("cartes_trucades")
                 .then((response) => {
                     me.cartasDeLlamada = response.data;
+                    me.carta.idLlamada = 'ID-CT-' + (me.cartasDeLlamada.length + 1);
                 })
                 .catch((error) => {});
         },
@@ -398,6 +408,8 @@ export default {
                 .get("expediente")
                 .then((response) => {
                     me.expedientes = response.data;
+                    me.carta.idExpediente = 'ID-EX-' + (me.expedientes.length + 1);
+
                     // console.log(response.data);
                 })
                 .catch((error) => {});
@@ -500,20 +512,9 @@ export default {
         concatenarDetallesLocalizacion(){
             this.carta.descripcionLocalizacion =  Object.values(this.descripcionLocalizacion).join(';');
         },
-        dataHoraTrucada(){
-            const date = new Date();
-            const options = {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false
-            }
-            this.carta.dataHoraTrucada =  date.toLocaleString('es-ES', options).replace(/\//g, '-').replace(',', '');
-                console.log(date.toLocaleString('es-ES', options));
-        },
+        asociarExpediente(expediente){
+            this.carta.idExpediente = expediente.codi;
+        }
 
     },
     created() {
@@ -533,7 +534,7 @@ export default {
         this.descripcionLocalizacion = {};
         this.carta.detallesLocalizacion = '';
       }
-    }
+    },
   }
 }
 </script>

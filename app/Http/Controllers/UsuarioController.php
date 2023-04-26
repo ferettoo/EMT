@@ -13,11 +13,11 @@ class UsuarioController extends Controller
     {
         // $usuario = new usuaris();
 
-        // $usuario->username = 'facu';
+        // $usuario->username = 'super';
         // $usuario->contrasenya = bcrypt('123');
         // $usuario->nom = 'prueba';
         // $usuario->cognoms = 'admin2Apellido';
-        // $usuario->tipus_usuaris_id = 1;
+        // $usuario->tipus_usuaris_id = 2;
         // $usuario->save();
 
         return view('auth.login');
@@ -32,13 +32,13 @@ class UsuarioController extends Controller
 
         if ($user != null && Hash::check($contrasenya, $user->contrasenya)) {
             Auth::login($user);
-            $response = redirect('/carta');
+            $response = redirect('/menu');
         } else {
             $request->session()->flash('error', 'Usuario o contraseña incorrectos');
             // si queremos crear un usuario, hay que poner /login para que obtenga los datos
             // del nuevo usuario y los introduzca a la bd
             // dejar solo "/" para que solo utilice el indice en lugar del "login"
-            $response = redirect('/login')->withInput();
+            $response = redirect('/')->withInput();
         }
 
         return $response;

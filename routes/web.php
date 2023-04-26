@@ -38,10 +38,10 @@ Route::post('/login', [UsuarioController::class, 'login']);
 Route::get('/logout', [UsuarioController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/carta', function () {
+    Route::get('/menu', function () {
         $user = Auth::user();
 
-        return view('carta.cartaVue', compact('user'));
+        return view('menu.menu', compact('user'));
     });
 });
 

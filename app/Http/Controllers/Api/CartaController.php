@@ -35,7 +35,7 @@ class CartaController extends Controller
 
             $carta = new cartes_trucades();
             $interlocutor = new interlocutors();
-            $expediente = new expedients();
+            $expediente = expedients::where('codi','=',$request->input('idExpediente'))->first();
 
             // Interlocutor de la carta
             if ($request->input('guardarInterlocutor') == true) {
@@ -47,14 +47,17 @@ class CartaController extends Controller
             }
 
             // Expediente de la carta
-            $expediente->codi = $request->input('idExpediente');
-            $expediente->estat_expedients_id = $request->input('estadoExpediente');
-            $expediente->save();
+            if ($expediente == null) {
+                $expediente = new expedients();
+                $expediente->codi = $request->input('idExpediente');
+                $expediente->estat_expedients_id = $request->input('estadoExpediente');
+                $expediente->save();
+            }
+
 
             // En los $request->input hemos de añadir los nombres del objeto que añadimos. un ejemplo seria: idLlamada
 
             $carta->codi_trucada = $request->input('idLlamada');
-            $carta->data_hora_trucada = $request->input('dataHoraTrucada');
             $carta->data_hora_trucada = new \DateTime($request->input('dataHoraTrucada'));
             $carta->durada = $request->input('tiempo');
             $carta->interlocutors_id = $interlocutor->id;

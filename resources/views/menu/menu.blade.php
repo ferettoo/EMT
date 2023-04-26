@@ -3,12 +3,6 @@
 @section('modEstadoExpeCss')
     <link rel="stylesheet" href="{{ asset('css/tablas.css') }}">
 @endsection
-@section('carta')
-    <a class="rounded-5 btn btn-warning text-white" style=" font-weight: 700;" type="submit" href="{{ url('/carta') }}">
-        <i class="bi bi-plus-lg"></i>
-        Call card
-    </a>
-@endsection
 
 @section('content')
 
@@ -18,7 +12,7 @@
                 {{-- espaciado --}}
                 <div class="col-12">
                     <div class="p-5"></div>
-                    <div class="p-4"></div>   
+                    <div class="p-4"></div>
                 </div>
 
                 {{-- PRIMERA FILA --}}

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/2cf292bb20.js" crossorigin="anonymous"></script>
-
+    <link rel="icon" type="image/png" href="{{ asset('images/logotipo_final2.png') }}">
     <link rel="stylesheet" href="{{ asset('css/css.css') }}">
     <title>@yield('title')</title>
     @vite(['resources/css/app.css', 'resources/css/app.scss', 'resources/js/app.js'])
@@ -39,6 +39,10 @@
                 <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
                     <div class="card bg-glass" style="border-radius: 30px; ">
                         <div class="card-body px-4 py-5 px-md-5">
+                            <div class="justify-content-center align-items-center">
+                                <img src="" alt="">
+                                <p>a</p>
+                            </div>
                             {{-- INPUTS LOGIN --}}
                             <form action="{{ action([App\Http\Controllers\UsuarioController::class, 'login']) }}" method="POST">
                                 @csrf
