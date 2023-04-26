@@ -28,7 +28,6 @@
 
             <div class="d-flex p-3">
                 <h3 class="subtitulo"> Expediente - {{ $expediente->codi }} </h1>
-
             </div>
         </div>
             <div class="card-body mx-5 text-center border-0">
@@ -123,13 +122,6 @@
             </div>
         </div>
     </div>
-
-
-    {{-- @foreach ($expediente->cartaTrucades as $carta)
-    {{ $carta->id }}
-@endforeach --}}
-
-
 
     </div>
 @endsection

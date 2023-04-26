@@ -12,9 +12,9 @@
 @endsection
 @section('content')
 
-<br>
-@include('partials.mensajes')
-<br>
+    <br>
+    @include('partials.mensajes')
+    <br>
     <div class="card">
         <div class="card-header text-white" style="background-color: #E0127A">
             Gestión de agencia
@@ -86,20 +86,32 @@
                         {{-- <a class="btn btn-secondary" href="javascript:history.back(-1)"><i
                                 class="bi bi-x-lg"></i>Cancelar</a> --}}
                     </div>
-        
-        </form>
-        @endforeach
 
-        {{-- linea para posicionamiento de iconos --}}
-        <br>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            {{-- CONFIRMACION DE EDICIÓN --}}
-            <a class="btn btn-secondary text-white"  href="{{ url('editCartasExpediente/'.$carta->expedients_id) }}">
-                Volver a cartas
-            </a>
+                </form>
+            @endforeach
+
+            {{-- linea para posicionamiento de iconos --}}
+            <br>
+            <div>
+                {{-- <hr id="linea" class="w-100 clearfix d-md m-0" />
+                <br> --}}
+                <div class="col-12">
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        {{-- VOLVER A LAS CARTAS --}}
+                        <a class="btn btn-info text-white"
+                            href="{{ url('editCartasExpediente/' . $carta->expedients_id) }}">
+                            <i class="bi bi-arrow-left"></i> Volver a cartas
+                        </a>
+                        {{-- MIRAR MODIFICACIONES EN CARTA --}}
+                        <a class="btn btn-warning text-white" href="{{ url('editMostrarCarta/' . $carta->id) }}">
+                            <i class="bi bi-arrow-right"></i> Mostrar cambios
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
-    </div>
 
-@endsection
+    @endsection

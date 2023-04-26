@@ -135,9 +135,9 @@
 
             {{-- BOTÓN DE SALIR DE CARTA --}}
             <div class="col-2">
-                <a href="javascript:history.back(-1)"
+                <a href="{{ url('editCartasExpediente/' . $carta->expedients->id) }}"
                     class="shadow border border-0 btn btn-info text-white rounded-3 mx-1">
-                    <i class="bi bi-arrow-left"></i> Volver
+                    <i class="bi bi-arrow-left"></i> Volver a cartas
                 </a>
             </div>
         </div>
