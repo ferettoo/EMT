@@ -21,7 +21,7 @@
                     {{-- Contenido del header  --}}
                     <div class="row fs-6 fw-light text-light fw-bold">
                         <div class="col-2">Identificación</div>
-                        <div class="col-2">Incidente / Localizacion</div>
+                        <div class="col-2">Incidente / Localización</div>
                         <div class="col-8">Agencias / Estado de agencias</div>
                         {{-- <div class="col-3">Agencias</div> --}}
                     </div>
