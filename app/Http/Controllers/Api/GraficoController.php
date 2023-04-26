@@ -76,13 +76,9 @@ class GraficoController extends Controller
     //Recoger todos los incidentes / cartas de llamada por mes
     public function incidentesPorMes()
     {
-
+        // $tipus_incident = 2;
         $meses = range(1, 12);
-        $resultados = DB::table(DB::raw('(' . implode(',', $meses) . ') meses'))
-            ->leftJoin(DB::raw('(SELECT MONTH(data_hora_trucada) AS mes, COUNT(*) AS total FROM cartes_trucades GROUP BY mes) registros'), 'meses.mes', '=', 'registros.mes')
-            ->select('meses.mes', DB::raw('IFNULL(total, 0) AS total'))
-            ->orderBy('meses.mes')
-            ->get();
+        $resultados = DB::select('SELECT MONTH(data_hora_trucada) AS mes, COUNT(data_hora_trucada) AS total FROM cartes_trucades GROUP BY mes');
 
         return $resultados;
     }

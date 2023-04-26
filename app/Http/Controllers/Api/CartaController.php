@@ -20,7 +20,7 @@ class CartaController extends Controller
      */
     public function index()
     {
-        $cartaLlamada = cartes_trucades::all();
+        $cartaLlamada = cartes_trucades::with('expedients')->with('interlocutors')->get();
         return CartaResources::collection($cartaLlamada);
     }
 
