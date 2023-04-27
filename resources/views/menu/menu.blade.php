@@ -29,7 +29,7 @@
                                 alt="...">
                         </a>
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Gestión de usuarios</h5>
+                            <h5 class="card-title text-center fw-bold text-primary">Gestión de usuarios</h5>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Carta de llamada</h5>
+                            <h5 class="card-title text-center fw-bold text-primary">Carta de llamada</h5>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Gestión de expedientes</h5>
+                            <h5 class="card-title text-center fw-bold text-primary">Gestión de expedientes</h5>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Gráficos</h5>
+                            <h5 class="card-title text-center fw-bold text-primary">Gráficos</h5>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                                 height:150px;" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Carta de llamada</h5>
+                            <h5 class="card-title text-center fw-bold text-primary">Carta de llamada</h5>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Gestión de expedientes</h5>
+                            <h5 class="card-title text-center fw-bold text-primary">Gestión de expedientes</h5>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Gráficos</h5>
+                            <h5 class="card-title text-center fw-bold text-primary">Gráficos</h5>
                         </div>
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Carta de llamada</h5>
+                            <h5 class="card-title text-center fw-bold text-primary">Carta de llamada</h5>
                         </div>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Gráficos</h5>
+                            <h5 class="card-title text-center fw-bold text-primary">Gráficos</h5>
                         </div>
                     </div>
                 </div>

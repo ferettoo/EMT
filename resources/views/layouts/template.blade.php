@@ -67,7 +67,7 @@
                                 {{-- limitación segun tipo de usuario --}}
                                 @if (Auth::check() && Auth::user()->tipus_usuaris_id == '3')
                                     <ul class="dropdown-menu" style="color: #be964c;">
-                                        <li><a class="dropdown-item text-center disabled" href="#"
+                                        <li><a class="dropdown-item text-center text-primary disabled" href="#"
                                                 aria-disabled="true"> {{ Auth::user()->username }}</a></li>
                                         <li><a class="dropdown-item text-center" href="{{ url('/admUsuarios') }}">Adm.
                                                 Usuarios</a></li>
@@ -78,8 +78,8 @@
                                     </ul>
                                 @elseif(Auth::check() && Auth::user()->tipus_usuaris_id == '2')
                                     <ul class="dropdown-menu" style="color: #be964c;">
-                                        <li><a class="dropdown-item text-center disabled"
-                                                aria-disabled="true">{{ Auth::user()->username }}</a></li>
+                                        <li><a class="dropdown-item text-center  text-primary disabled"
+                                                aria-disabled="true"> {{ Auth::user()->username }}</a></li>
                                         <li><a class="dropdown-item text-center"
                                                 href="{{ url('/expedientes') }}">Gest.Expedientes</a></li>
                                         <li><a class="dropdown-item text-center" href="{{ url('/logout') }}">Cerrar
@@ -87,7 +87,7 @@
                                     </ul>
                                 @else
                                     <ul class="dropdown-menu" style="color: #be964c;">
-                                        <li><a class="dropdown-item text-center disabled" aria-disabled="true"
+                                        <li><a class="dropdown-item text-center text-primary disabled" aria-disabled="true"
                                                 href="#" aria-disabled="true"> {{ Auth::user()->username }}</a>
                                         </li>
                                         <li><a class="dropdown-item text-center" href="{{ url('/logout') }}">Cerrar
