@@ -68,7 +68,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Gestión Expedientes</h5>
+                            <h5 class="card-title text-center text-primary">Gestión de expedientes</h5>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Graficos</h5>
+                            <h5 class="card-title text-center text-primary">Gráficos</h5>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Gestión Expedientes</h5>
+                            <h5 class="card-title text-center text-primary">Gestión de expedientes</h5>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Graficos</h5>
+                            <h5 class="card-title text-center text-primary">Gráficos</h5>
                         </div>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                         </a>
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-primary">Graficos</h5>
+                            <h5 class="card-title text-center text-primary">Gráficos</h5>
                         </div>
                     </div>
                 </div>
