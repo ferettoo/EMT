@@ -1,10 +1,13 @@
 <template>
     <div class="mt-5">
         <div class="row">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" v-if='mensajeError    '>
+                {{ mensajeError }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
     <div class="col-8 p-1">
         <!-- {{-- Contenido de la carta --}} -->
-        <div>{{ mensajeError }}</div>
-        <div class="card border border-0 mb-3">
+            <div class="card border border-0 mb-3">
             <div class="card-header border-0  border-success text-center" style="background-color: #0F9DB2">
                 <!-- {{-- Contenido del header  --}} -->
                 <div class="row fs-6 fw-light text-light fw-bold">
