@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 
 use DateTime;
+use App\Clases\Utilitat;
 use App\Models\expedients;
 use Illuminate\Http\Request;
 use App\Models\interlocutors;
@@ -83,7 +84,7 @@ class CartaController extends Controller
         } catch (QueryException $ex) {
 
             DB::rollback();
-            $mensaje = 'Error a la hora de añadir la carta de llamada';
+            $mensaje = Utilitat::errorMessage($ex);
             $response = \response()->json(['error' => $mensaje], 400);
         }
 
