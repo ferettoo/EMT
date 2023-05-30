@@ -13,11 +13,11 @@ class UsuarioController extends Controller
     {
         // $usuario = new usuaris();
 
-        // $usuario->username = 'super';
-        // $usuario->contrasenya = bcrypt('123');
+        // $usuario->username = 'admin1';
+        // $usuario->contrasenya = bcrypt('admin1');
         // $usuario->nom = 'prueba';
         // $usuario->cognoms = 'admin2Apellido';
-        // $usuario->tipus_usuaris_id = 2;
+        // $usuario->tipus_usuaris_id = 3;
         // $usuario->save();
 
         return view('auth.login');
@@ -38,7 +38,7 @@ class UsuarioController extends Controller
             // si queremos crear un usuario, hay que poner /login para que obtenga los datos
             // del nuevo usuario y los introduzca a la bd
             // dejar solo "/" para que solo utilice el indice en lugar del "login"
-            $response = redirect('/')->withInput();
+            $response = redirect('/login')->withInput();
         }
 
         return $response;
@@ -47,6 +47,6 @@ class UsuarioController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/login');
     }
 }
